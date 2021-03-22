@@ -1,19 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:tester/Screens/Administrator/Requests.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:tester/Screens/Administrator/homepage_administrator.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
-import 'dart:io' show Platform;
-import 'dart:async';
-
-import 'package:tester/Screens/SignIn.dart';
-import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/model/student.dart';
 import 'package:tester/Screens/services/auth.dart';
-
 import 'Screens/signUp.dart';
 
 void main() {

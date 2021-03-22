@@ -87,8 +87,11 @@ class CourseAdminState extends State<CourseAdmin> {
               SizedBox(
                 height: 20,
               ),
-              SubmitButtons(text: "Add Course", onpressed: () {}),
-              SubmitButtons(text: "Update", onpressed: () {}),
+              SubmitButtons(
+                  text: "Add Course",
+                  onpressed: () {
+                    runApp(NewCourse());
+                  }),
             ])));
   }
 }
