@@ -14,6 +14,8 @@ import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/model/student.dart';
 import 'package:tester/Screens/services/auth.dart';
 
+import 'Screens/signUp.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: SignIn()),
+          home: SignUp()),
     );
   }
 }
