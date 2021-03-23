@@ -79,7 +79,7 @@ class EFAdminState extends State<EFAdmin> {
               SizedBox(
                 height: 20,
               ),
-              SubmitButtons(text: "Add New Evaluation Form", onpressed: () {}),
+              //SubmitButtons(text: "Add New Evaluation Form", onpressed: () {}),
             ],
           ),
         ));
@@ -93,6 +93,9 @@ class EvaluationFormInfo extends StatefulWidget {
 }
 
 class EvaluationFormInfoState extends State<EvaluationFormInfo> {
+  int group1 = -1;
+  int group2 = -1;
+  int group3 = -1;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -122,9 +125,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
           body: Container(
             padding: EdgeInsets.only(left: 16, top: 25, right: 16),
             child: GestureDetector(
-              onTap: () {
-                //FocusScope.of(context).unfocus();
-              },
+              onTap: () {},
               child: ListView(
                 children: [
                   SizedBox(
@@ -148,35 +149,19 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                   SizedBox(
                     height: 35,
                   ),
-                  buildTextField("Course code", "OMR 312"),
-                  buildTextField("Course name", "Pain Control"),
-                  buildTextField("Year", "3"),
-                  buildTextField("Semester", "One year (1st/2nd)"),
-                  buildTextField("Crediet hours", ""),
-                  buildTextField("Practical", "1st Semester: Phantom Lab"),
-                  buildTextField("Evaluation form MPE",
-                      "Infiltration \(preclinical\)\nInferior alveolar Nerve Block \(IANB\)\(preclinical\)"),
-                  buildTextField("No.", "2"),
-                  buildTextField("Exam form CE",
-                      "Preclinical Exam Infiltration\nPreclinical Exam IANB"),
+                  questionType(1, "Punctuality"),
+                  questionType(
+                      2, "Appropriate attire as described in Critical PPM"),
+                  questionType(2, "Proper bench cleanliness"),
+                  questionType(3,
+                      "Benches & instrument cleanliness and waste disposals"),
+                  questionType(4, "Feedback"),
                   SizedBox(
                     height: 35,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                      ),
-                      SubmitButtons(
-                        text: "Save",
-                        onpressed: () {},
-                      ),
-                      SubmitButtons(
-                        text: "Delete this form",
-                        onpressed: () {},
-                      ),
-                    ],
+                  SubmitButtons(
+                    text: "Save",
+                    onpressed: () {},
                   ),
                   SizedBox(
                     height: 35,
@@ -188,24 +173,191 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
         ));
   }
 
-  Widget buildTextField(String labelText, String placeholder) {
-    return Container(
-      margin: EdgeInsets.only(left: 30, right: 30),
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        keyboardType: TextInputType.multiline,
-        maxLines: null,
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
-      ),
-    );
+  Widget questionType(int questiontype, String question) {
+    String questionStr = question;
+    int questiontypeint = questiontype;
+
+    switch (questiontypeint) {
+      case 1:
+        {
+          return Container(
+              child: Stack(children: [
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              questionStr,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: <Widget>[
+                    Radio(
+                      value: 1,
+                      groupValue: group1,
+                      onChanged: (T) {
+                        setState(() {
+                          group1 = T;
+                        });
+                      },
+                    ),
+                    Text("Satisfactory"),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Radio(
+                      value: 2,
+                      groupValue: group1,
+                      onChanged: (T) {
+                        setState(() {
+                          group1 = T;
+                        });
+                      },
+                    ),
+                    Text(
+                      "Needs Improvement",
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 35,
+            ),
+          ]));
+        }
+        break;
+      case 2:
+        {
+          return Container(
+              child: Stack(children: [
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              questionStr,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: <Widget>[
+                    Radio(
+                      value: 1,
+                      groupValue: group2,
+                      onChanged: (T) {
+                        setState(() {
+                          group2 = T;
+                        });
+                      },
+                    ),
+                    Text("Satisfactory"),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 35,
+            ),
+          ]));
+        }
+        break;
+      case 3:
+        {
+          return Container(
+              child: Stack(children: [
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              questionStr,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: <Widget>[
+                    Radio(
+                      value: 1,
+                      groupValue: group3,
+                      onChanged: (T) {
+                        setState(() {
+                          group3 = T;
+                        });
+                      },
+                    ),
+                    Text("Satisfactory"),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Radio(
+                      value: 2,
+                      groupValue: group3,
+                      onChanged: (T) {
+                        setState(() {
+                          group3 = T;
+                        });
+                      },
+                    ),
+                    Text("Needs Improvement"),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Radio(
+                      value: 3,
+                      groupValue: group3,
+                      onChanged: (T) {
+                        setState(() {
+                          group3 = T;
+                        });
+                      },
+                    ),
+                    Text("NA/NO"),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 35,
+            ),
+          ]));
+        }
+        break;
+      case 4:
+        {
+          return Container(
+              child: Stack(children: [
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              questionStr,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              child: TextFormField(
+                maxLines: 8,
+                decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    hintText:
+                        "Please use this space to record areas strength or any suggestions for development",
+                    border: OutlineInputBorder()),
+              ),
+            )
+          ]));
+        }
+        break;
+    }
   }
 }

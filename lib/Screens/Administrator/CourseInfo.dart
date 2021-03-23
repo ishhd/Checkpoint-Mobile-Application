@@ -168,10 +168,7 @@ class _NewCourseState extends State<NewCourse> {
         child: ListView(
           children: [
             SizedBox(
-              height: 15,
-            ),
-            SizedBox(
-              height: 35,
+              height: 50,
             ),
             buildTextField("Course code", ""),
             buildTextField("Course name", ""),
