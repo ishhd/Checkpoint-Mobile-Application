@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/SignIn.dart';
 import 'package:tester/Screens/model/student.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'Screens/signUp.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: homePageAdministrator()),
+          home: SignIn()),
     );
   }
 }
