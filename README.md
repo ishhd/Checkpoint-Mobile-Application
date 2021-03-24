@@ -1,4 +1,4 @@
-# tester
+# Checkpoint mobile application
 
 A new Flutter project.
 
