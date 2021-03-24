@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
+import 'package:tester/Screens/SignIn.dart';
+import 'package:tester/Screens/Student/homePageStudent.dart';
+import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/model/student.dart';
-import 'package:tester/Screens/services/api.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -26,28 +31,67 @@ class AuthService {
     }
   }
 
+  Future<void> resetPassword(String email) async {
+    return await _auth.sendPasswordResetEmail(email: email);
+  }
+
   //Sign in
   Future SignInProcess(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      await User().AuthPage(user.uid);
       return _userFromFire(user);
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
-
   // Register With email and password
-  Future registerProcess(String email, String password) async {
+  Future registerProcessStudent(String email, String password, String name,
+      String id, String position, int activate
+      //String name,
+      //String id,
+      ) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
-      await Api(uid: user.uid).updateUserData('name', 'email', 'password', 0);
+      await User().NewStudent(email, password, name, id, user.uid, 0, position);
+      runApp(SignIn());
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
-      return _userFromFire(user);
+  Future registerProcessAcademicStaff(String email, String password,
+      String name, String id, String position, int activate
+      //String name,
+      //String id,
+      ) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = result.user;
+      await User()
+          .NewAcademicStaff(email, password, name, id, user.uid, 0, position);
+      runApp(SignIn());
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future p() async {
+    try {
+      FirebaseUser user;
+      await User().AuthPage(user.uid);
+      print(user);
+      return user;
     } catch (e) {
       print(e.toString());
       return null;

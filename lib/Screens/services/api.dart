@@ -7,16 +7,16 @@ class Api {
   //final Firestore _db = Firestore.instance;
   //final String path;
   //CollectionReference ref;
-  final CollectionReference ref = Firestore.instance.collection('path');
+  final CollectionReference ref = Firestore.instance.collection('User');
   final String uid;
   Api({this.uid});
   //Api(this.path) {
   //ref = _db.collection(path);
   //}
   Future updateUserData(
-      String name, String email, String password, int id) async {
+      String name, String email, String password, String id) async {
     return await ref.document(uid).setData(
-        {'name': name, 'email': email, 'password': password, 'id': id});
+        {'email': email, 'password': password, 'name': name, 'id': id});
   }
 
   List<Student> _StudentList(QuerySnapshot snapshot) {

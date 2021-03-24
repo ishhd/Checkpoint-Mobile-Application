@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
-import 'package:tester/Screens/model/student.dart';
+import 'package:tester/Screens/ResetPass.dart';
+import 'package:tester/Screens/Student/homePageStudent.dart';
+import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/signUp.dart';
 import 'package:tester/Screens/style.dart';
@@ -89,14 +94,15 @@ class _SignInState extends State<SignIn> {
                       Container(
                         child: TextButton(
                           child: Text("Forget my password"),
-                          onPressed: () {},
+                          onPressed: () {
+                            //runApp(ResetPass());
+                          },
                         ),
                       ),
                       SubmitButtons(
                           text: "Sign In",
                           onpressed: () async {
                             if (_formkey.currentState.validate()) {
-                              print("vv");
                               dynamic result =
                                   await _auth.SignInProcess(email, password);
 
@@ -104,7 +110,7 @@ class _SignInState extends State<SignIn> {
                                 setState(
                                     () => error = 'Check Your Input Agean');
                               } else {
-                                runApp(homePageAdministrator());
+                                _auth.p();
                               }
                             }
                           }),
