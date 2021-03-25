@@ -97,6 +97,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
   int group1 = -1;
   int group2 = -1;
   int group3 = -1;
+  int group = -1;
 
   // This widget is the root of your application.
   @override
@@ -175,6 +176,11 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                   ),
                   sectionII("Preparation of armamentarium"),
                   sectionII("Syringe assembly for injection and aspiration"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  sectionIV(
+                      "Student’s overall ability to perform the protective"),
                   SizedBox(
                     height: 35,
                   ),
@@ -442,6 +448,64 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
         SizedBox(
           height: 140,
         )
+      ],
+    );
+  }
+
+  Widget sectionIV(String question) {
+    return Stack(
+      children: [
+        Text(
+          question,
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 15, color: Colors.red),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 10),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                Radio(
+                  value: 1,
+                  groupValue: group,
+                  onChanged: (T) {
+                    setState(() {
+                      group = T;
+                    });
+                  },
+                ),
+                Text("Needs Improvement"),
+                SizedBox(
+                  width: 5,
+                ),
+                Radio(
+                  value: 2,
+                  groupValue: group,
+                  onChanged: (T) {
+                    setState(() {
+                      group = T;
+                    });
+                  },
+                ),
+                Text("Competent"),
+                SizedBox(
+                  width: 5,
+                ),
+                Radio(
+                  value: 3,
+                  groupValue: group,
+                  onChanged: (T) {
+                    setState(() {
+                      group = T;
+                    });
+                  },
+                ),
+                Text("Above Expectation"),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
