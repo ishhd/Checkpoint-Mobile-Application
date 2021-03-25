@@ -12,6 +12,7 @@ class EFAdmin extends StatefulWidget {
 
 class EFAdminState extends State<EFAdmin> {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -96,6 +97,8 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
   int group1 = -1;
   int group2 = -1;
   int group3 = -1;
+  int group = -1;
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -149,6 +152,12 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                   SizedBox(
                     height: 35,
                   ),
+                  Text("Section I",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+                  SizedBox(
+                    height: 5,
+                  ),
                   questionType(1, "Punctuality"),
                   questionType(
                       2, "Appropriate attire as described in Critical PPM"),
@@ -159,12 +168,25 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                   SizedBox(
                     height: 35,
                   ),
+                  Text("Section II",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  sectionII("Preparation of armamentarium"),
+                  sectionII("Syringe assembly for injection and aspiration"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  sectionIV(
+                      "Student’s overall ability to perform the protective"),
+                  SizedBox(
+                    height: 35,
+                  ),
                   SubmitButtons(
                     text: "Save",
                     onpressed: () {},
-                  ),
-                  SizedBox(
-                    height: 35,
                   ),
                 ],
               ),
@@ -359,5 +381,132 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
         }
         break;
     }
+  }
+
+  Widget sectionII(String question) {
+    String selfAssessment;
+    String instructorEvaluation;
+
+    return Stack(
+      children: <Widget>[
+        Text(
+          question,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        ),
+        Container(
+            height: 45,
+            margin: EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(4)),
+            child: DropdownButtonFormField(
+              isExpanded: true,
+              hint: Text("  Self Assessment"),
+              value: selfAssessment,
+              validator: (value) =>
+                  value.isEmpty ? 'Choose the Position Please' : null,
+              onChanged: (value) {
+                setState(() {
+                  selfAssessment = value;
+                });
+              },
+              items: ['  0', '  1', '  2', '  NA'].map((value) {
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            )),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 45,
+          margin: EdgeInsets.only(top: 70),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(4)),
+          child: DropdownButtonFormField(
+            isExpanded: true,
+            hint: Text("  Instructor Evaluation"),
+            value: instructorEvaluation,
+            validator: (value) =>
+                value.isEmpty ? 'Choose the Position Please' : null,
+            onChanged: (value) {
+              setState(() {
+                instructorEvaluation = value;
+              });
+            },
+            items: ['  0', '  1', '  2', '  NA'].map((value) {
+              return DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+        ),
+        SizedBox(
+          height: 140,
+        )
+      ],
+    );
+  }
+
+  Widget sectionIV(String question) {
+    return Stack(
+      children: [
+        Text(
+          question,
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 15, color: Colors.red),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 10),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                Radio(
+                  value: 1,
+                  groupValue: group,
+                  onChanged: (T) {
+                    setState(() {
+                      group = T;
+                    });
+                  },
+                ),
+                Text("Needs Improvement"),
+                SizedBox(
+                  width: 5,
+                ),
+                Radio(
+                  value: 2,
+                  groupValue: group,
+                  onChanged: (T) {
+                    setState(() {
+                      group = T;
+                    });
+                  },
+                ),
+                Text("Competent"),
+                SizedBox(
+                  width: 5,
+                ),
+                Radio(
+                  value: 3,
+                  groupValue: group,
+                  onChanged: (T) {
+                    setState(() {
+                      group = T;
+                    });
+                  },
+                ),
+                Text("Above Expectation"),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
