@@ -16,14 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<Student>.value(
-      value: AuthService().user,
-      child: MaterialApp(
+        value: AuthService().user,
+        child: MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: SignIn()),
-    );
+          home: SignIn(),
+        ));
   }
 }

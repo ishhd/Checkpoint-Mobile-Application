@@ -105,7 +105,6 @@ class _SignInState extends State<SignIn> {
                             if (_formkey.currentState.validate()) {
                               dynamic result =
                                   await _auth.SignInProcess(email, password);
-
                               if (result == null) {
                                 setState(
                                     () => error = 'Check Your Input Agean');

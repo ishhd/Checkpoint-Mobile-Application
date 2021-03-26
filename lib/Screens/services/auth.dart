@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/SignIn.dart';
-import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/model/student.dart';
 
@@ -48,6 +45,7 @@ class AuthService {
       return null;
     }
   }
+
   // Register With email and password
   Future registerProcessStudent(String email, String password, String name,
       String id, String position, int activate
@@ -91,6 +89,29 @@ class AuthService {
       FirebaseUser user;
       await User().AuthPage(user.uid);
       print(user);
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  // get the information
+  Future RequstsActivate() async {
+    try {
+      await User().PrintUs();
+      return;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  // send Active id
+  Future ActivateSt(String uid) async {
+    try {
+      FirebaseUser user;
+      await User().Activate(uid);
       return user;
     } catch (e) {
       print(e.toString());

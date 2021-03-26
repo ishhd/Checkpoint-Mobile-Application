@@ -33,6 +33,7 @@ dependencies:
   barcode_scan: ^1.0.0
   cloud_firestore: ^0.12.11 
   provider: ^4.3.3
+  firebase_core: ^0.4.0+1
 
 dev_dependencies:
   flutter_test:

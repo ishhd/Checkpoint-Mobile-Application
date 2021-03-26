@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
-
 import 'package:tester/Screens/model/student.dart';
 
 class Api {

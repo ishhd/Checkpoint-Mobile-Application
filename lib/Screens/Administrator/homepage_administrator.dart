@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
 import 'package:tester/Screens/Administrator/EFAdmin.dart';
+import 'package:tester/Screens/Administrator/Requests.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Sidebar/SidebarHome.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/style.dart';
 
 class homePageAdministrator extends StatefulWidget with NavigationStates {
@@ -14,6 +16,8 @@ class homePageAdministrator extends StatefulWidget with NavigationStates {
 }
 
 class homePageAdministratorState extends State<homePageAdministrator> {
+  final AuthService _auth = AuthService();
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -54,8 +58,8 @@ class homePageAdministratorState extends State<homePageAdministrator> {
             ),
             MenuButtons(
               label: "Schedules",
-              onpressed: () {
-                runApp(SchedulesAdmin());
+              onpressed: () async {               
+                _auth.RequstsActivate();
               },
             ),
           ])),
