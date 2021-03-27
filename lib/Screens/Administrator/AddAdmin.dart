@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/style.dart';
 
-class Profile extends StatefulWidget with NavigationStates {
+class AddAdmin extends StatefulWidget with NavigationStates {
   @override
-  _ProfileState createState() => _ProfileState();
+  _AddAdminState createState() => _AddAdminState();
 }
 
-class _ProfileState extends State<Profile> {
+class _AddAdminState extends State<AddAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,17 +55,40 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Maysaa "),
-              buildTextField("Id", "000012702"),
-              buildTextField("E-mail", "admin@gmail.com"),
-              buildTextField("Position", "Administarator"),
+              buildTextField("Full Name", ""),
+              buildTextField("Id", ""),
+              buildTextField("E-mail", ""),
+              buildTextField("Position", "Administrator"),
               SizedBox(
                 height: 35,
               ),
               SubmitButtons(
-                text: "Add another admin",
+                text: "Save",
                 onpressed: () {
-                  runApp(AddAdmin());
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: new Text("Save these information"),
+                        content:
+                            new Text("Do you want to save these information"),
+                        actions: <Widget>[
+                          new FlatButton(
+                            child: new Text("Yes"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          new FlatButton(
+                            child: new Text("No"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               ),
             ],
@@ -81,7 +103,6 @@ class _ProfileState extends State<Profile> {
       margin: EdgeInsets.only(left: 30, right: 30),
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
-        readOnly: true,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,

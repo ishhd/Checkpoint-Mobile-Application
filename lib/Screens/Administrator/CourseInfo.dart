@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
-import 'package:tester/Screens/ShowDialog.dart';
 import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/style.dart';
@@ -40,9 +39,7 @@ class _CourseInfoState extends State<CourseInfo> {
           body: Container(
             padding: EdgeInsets.only(left: 16, top: 25, right: 16),
             child: GestureDetector(
-              onTap: () {
-                //FocusScope.of(context).unfocus();
-              },
+              onTap: () {},
               child: ListView(
                 children: [
                   SizedBox(
@@ -88,11 +85,61 @@ class _CourseInfoState extends State<CourseInfo> {
                       ),
                       SubmitButtons(
                         text: "Save",
-                        onpressed: () {},
+                        onpressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: new Text("Save the course"),
+                                content:
+                                    new Text("Do you want to save this edit?"),
+                                actions: <Widget>[
+                                  new FlatButton(
+                                    child: new Text("Yes"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  new FlatButton(
+                                    child: new Text("No"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
                       ),
                       SubmitButtons(
                         text: "Delete this course",
-                        onpressed: () {},
+                        onpressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: new Text("Delete the course"),
+                                content: new Text(
+                                    "Are you sure you want to delete this course?"),
+                                actions: <Widget>[
+                                  new FlatButton(
+                                    child: new Text("Yes, Delete"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  new FlatButton(
+                                    child: new Text("No"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
                       ),
                     ],
                   ),
