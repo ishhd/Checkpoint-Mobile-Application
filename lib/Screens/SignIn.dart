@@ -95,7 +95,8 @@ class _SignInState extends State<SignIn> {
                         child: TextButton(
                           child: Text("Forget my password"),
                           onPressed: () {
-                            //runApp(ResetPass());
+                            // User().Activate();
+                            //   runApp(ResetPass());
                           },
                         ),
                       ),
@@ -105,7 +106,6 @@ class _SignInState extends State<SignIn> {
                             if (_formkey.currentState.validate()) {
                               dynamic result =
                                   await _auth.SignInProcess(email, password);
-
                               if (result == null) {
                                 setState(
                                     () => error = 'Check Your Input Agean');

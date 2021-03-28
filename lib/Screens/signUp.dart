@@ -1,11 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tester/Screens/SignIn.dart';
-import 'package:tester/Screens/model/User.dart';
-import 'package:tester/Screens/model/student.dart';
-import 'package:tester/Screens/services/api.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -218,6 +213,7 @@ class _SignUpState extends State<SignUp> {
   void creatUserAcademicStaff() async {
     dynamic result = await _auth.registerProcessAcademicStaff(
         email, password, name, id, position, activate);
+        
     if (result == null) {
       setState(() => error = 'Check Your Input Agean');
     } else {
@@ -228,8 +224,6 @@ class _SignUpState extends State<SignUp> {
   void creatUserStudent() async {
     dynamic result = await _auth.registerProcessStudent(
         email, password, name, id, position, activate);
-
-
     if (result == null) {
       setState(() => error = 'Check Your Input Agean');
     } else {
