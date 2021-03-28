@@ -50,7 +50,24 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                 color: Colors.grey[300]),
             SubmitButtons(
               text: "Download Image",
-              onpressed: () {},
+              onpressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: new Text("It downloaded successfully"),
+                      actions: <Widget>[
+                        new FlatButton(
+                          child: new Text("OK"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             ),
           ]),
         ));
