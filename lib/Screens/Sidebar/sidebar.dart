@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:tester/Screens/services/auth.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
 
@@ -51,6 +52,8 @@ class _SideBarState extends State<SideBar>
 
   @override
   Widget build(BuildContext context) {
+    final AuthService _auth = AuthService();
+
     final screenWidth = MediaQuery.of(context).size.width;
 
     return StreamBuilder<bool>(
@@ -147,6 +150,9 @@ class _SideBarState extends State<SideBar>
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",
+                        onTap: () async {
+                          await _auth.signOut();
+                        },
                       ),
                     ],
                   ),

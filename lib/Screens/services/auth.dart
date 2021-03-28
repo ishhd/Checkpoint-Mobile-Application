@@ -108,13 +108,21 @@ class AuthService {
   }
 
   // send Active id
-  Future ActivateSt(String uid) async {
+  Future ActivateSt() async {
     try {
       FirebaseUser user;
-      await User().Activate(uid);
+      await User().Activate(user.uid);
       return user;
     } catch (e) {
       print(e.toString());
+      return null;
+    }
+  }
+
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
       return null;
     }
   }

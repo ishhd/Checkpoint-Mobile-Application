@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
+import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
 
 class EFAdmin extends StatefulWidget {
@@ -222,6 +223,8 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       groupValue: group1,
                       onChanged: (T) {
                         setState(() {
+                          evaluationform()
+                              .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                           group1 = T;
                         });
                       },
@@ -235,6 +238,8 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       groupValue: group1,
                       onChanged: (T) {
                         setState(() {
+                          evaluationform()
+                              .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '2');
                           group1 = T;
                         });
                       },
