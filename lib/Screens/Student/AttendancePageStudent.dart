@@ -95,7 +95,24 @@ class AttendancePageStudentState extends State<AttendancePageStudent> {
             //Back button
             SubmitButtons(
               text: "Download",
-              onpressed: () {},
+              onpressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: new Text("It downloaded successfully"),
+                      actions: <Widget>[
+                        new FlatButton(
+                          child: new Text("OK"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             )
           ]),
         )));
