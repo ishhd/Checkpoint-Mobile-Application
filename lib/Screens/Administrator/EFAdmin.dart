@@ -187,7 +187,32 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                   ),
                   SubmitButtons(
                     text: "Save",
-                    onpressed: () {},
+                    onpressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: new Text("Save answers"),
+                            content:
+                                new Text("Do you want to save these answers?"),
+                            actions: <Widget>[
+                              new FlatButton(
+                                child: new Text("Yes"),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              new FlatButton(
+                                child: new Text("No"),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
                 ],
               ),

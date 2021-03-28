@@ -20,6 +20,23 @@ class ScanQRState extends State<ScanQR> {
       setState(() {
         result = qrResult;
       });
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Name of Student"),
+            content: new Text("Do you want to save these information"),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("Yes"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {

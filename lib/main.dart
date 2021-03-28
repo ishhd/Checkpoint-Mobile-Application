@@ -7,6 +7,12 @@ import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'Screens/ResetPass.dart';
 import 'Screens/SignIn.dart';
+
+import 'package:tester/Screens/Administrator/CourseInfo.dart';
+import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+
+import 'package:tester/Screens/SignIn.dart';
+
 import 'package:tester/Screens/model/student.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'Screens/signUp.dart';
