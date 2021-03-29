@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 import 'package:tester/Screens/Administrator/Requests.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
@@ -28,7 +29,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
   }
 
   */
-  NavigationStates get initialState => homePageAdministrator();
+  NavigationStates get initialState => CourseAS();
 
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
@@ -36,10 +37,13 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.HomePageClickedEvent:
         /* if (user == "administrator") {
           yield homePageAdministrator();
+          break;
         } else if (user == "AcademicStaff") {
           yield CourseAS();
+          break;
         } else {
           yield HomePageStudent();
+          break;
         }
         */
         yield homePageAdministrator();
