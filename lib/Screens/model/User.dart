@@ -129,4 +129,13 @@ class User {
       }
     });
   }
+
+  Stream<QuerySnapshot> get user {
+    Firestore.instance.collection('user').document(uid).get().then((value) {
+      var activate = (value.data)['activate'];
+      if (activate == 0) {
+        return UserNew.snapshots();
+      }
+    });
+  }
 }

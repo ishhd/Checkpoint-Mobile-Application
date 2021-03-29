@@ -52,14 +52,15 @@ class homePageAdministratorState extends State<homePageAdministrator> {
             ),
             MenuButtons(
               label: "Evaluation Forms",
-              onpressed: () {
-                runApp(EFAdmin());
+              onpressed: () async{
+                // runApp(EFAdmin());
+               await _auth.signOut();
               },
             ),
             MenuButtons(
               label: "Schedules",
-              onpressed: () async {               
-                _auth.RequstsActivate();
+              onpressed: () async {
+                //  _auth.RequstsActivate();
               },
             ),
           ])),

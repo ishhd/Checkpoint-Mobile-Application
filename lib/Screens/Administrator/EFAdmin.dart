@@ -52,6 +52,8 @@ class EFAdminState extends State<EFAdmin> {
                 color: Color(0xFF98D1D4),
                 onpressed: () {
                   runApp(EvaluationFormInfo());
+                  //evaluationform()
+                  //.Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                 },
               ),
               CoursesButtons(
@@ -247,9 +249,9 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       value: 1,
                       groupValue: group1,
                       onChanged: (T) {
+                        evaluationform()
+                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                         setState(() {
-                          evaluationform()
-                              .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                           group1 = T;
                         });
                       },
@@ -262,9 +264,9 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       value: 2,
                       groupValue: group1,
                       onChanged: (T) {
+                        evaluationform()
+                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '2');
                         setState(() {
-                          evaluationform()
-                              .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '2');
                           group1 = T;
                         });
                       },
@@ -303,6 +305,8 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       value: 1,
                       groupValue: group2,
                       onChanged: (T) {
+                        evaluationform()
+                            .Appropriate('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                         setState(() {
                           group2 = T;
                         });
@@ -353,6 +357,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       value: 2,
                       groupValue: group3,
                       onChanged: (T) {
+                       
                         setState(() {
                           group3 = T;
                         });
@@ -399,6 +404,9 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
             Container(
               margin: EdgeInsets.only(top: 20),
               child: TextFormField(
+                onChanged: (val) {
+                  evaluationform().feedback('07Pgmy307rU1i1SpzQGh053TtTB3', val);
+                },
                 maxLines: 8,
                 decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -436,6 +444,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
               validator: (value) =>
                   value.isEmpty ? 'Choose the Position Please' : null,
               onChanged: (value) {
+                 evaluationform().feedback('07Pgmy307rU1i1SpzQGh053TtTB3', value);
                 setState(() {
                   selfAssessment = value;
                 });

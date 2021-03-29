@@ -96,7 +96,7 @@ class _SignInState extends State<SignIn> {
                           child: Text("Forget my password"),
                           onPressed: () {
                             // User().Activate();
-                            //   runApp(ResetPass());
+                            //runApp(ResetPass());
                           },
                         ),
                       ),
