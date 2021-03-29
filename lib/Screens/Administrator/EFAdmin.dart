@@ -238,7 +238,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             Container(
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(top: 20),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -294,7 +294,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             Container(
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(top: 20),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -331,7 +331,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             Container(
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(top: 20),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(

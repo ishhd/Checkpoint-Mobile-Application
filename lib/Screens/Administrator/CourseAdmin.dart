@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/CourseInfo.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
-import 'package:tester/Screens/Sidebar/SidebarHome.dart';
+import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 
 import '../style.dart';
 
@@ -28,7 +27,7 @@ class CourseAdminState extends State<CourseAdmin> {
         ),
         home: Scaffold(
             drawerEnableOpenDragGesture: true,
-            drawer: SidebarHome(),
+            drawer: SideBarLayout(),
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Color(0xFFD9D9D9),
