@@ -5,12 +5,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
-            .updateData({'Punctuality': '1'});
+            .updateData({'Punctuality': 1});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Punctuality': '2'});
       }
@@ -23,11 +23,17 @@ class evaluationform {
   Future Appropriate(String uid, String value) async {
     try {
       if (value == '1') {
-        Firestore.instance.collection('Student').document(uid).updateData(
-            {'Appropriate attire as described in ‘Critical PPM’': '1'});
+        Firestore.instance
+            .collection('evaluationForm')
+            .document(uid)
+            .updateData(
+                {'Appropriate attire as described in ‘Critical PPM’': '1'});
       } else if (value == '2') {
-        Firestore.instance.collection('Student').document(uid).updateData(
-            {'Appropriate attire as described in ‘Critical PPM’': '2'});
+        Firestore.instance
+            .collection('evaluationForm')
+            .document(uid)
+            .updateData(
+                {'Appropriate attire as described in ‘Critical PPM’': '2'});
       }
     } catch (e) {
       print(e.toString());
@@ -39,12 +45,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Proper bench cleanliness': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Proper bench cleanliness': '2'});
       }
@@ -58,12 +64,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'bility to assess success of anesthesia': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'bility to assess success of anesthesia': '2'});
       }
@@ -77,12 +83,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Anatomy & injection procedure': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Anatomy & injection procedure': '2'});
       }
@@ -96,12 +102,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Needle insertion point': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Needle insertion point': '2'});
       }
@@ -115,12 +121,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Operator & Manikin positions': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Operator & Manikin positions': '2'});
       }
@@ -132,16 +138,28 @@ class evaluationform {
 
   Future Preparation(String uid, String value) async {
     try {
-      if (value == '1') {
+      if (value == '0') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
+            .document(uid)
+            .updateData({'Preparation of armamentarium': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Preparation of armamentarium': '1'});
-      } else if (value == '2') {
+      }
+      else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Preparation of armamentarium': '2'});
+      }
+      else if (value == 'NA') {
+        Firestore.instance
+            .collection('evaluationForm')
+            .document(uid)
+            .updateData({'Preparation of armamentarium': 'NA'});
       }
     } catch (e) {
       print(e.toString());
@@ -153,12 +171,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Syringe assembly for injection and aspiration': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Syringe assembly for injection and aspiration': '2'});
       }
@@ -172,12 +190,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Identification soft and hard tissue landmarks': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Identification soft and hard tissue landmarks': '2'});
       }
@@ -191,12 +209,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Student is defensive': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Student is defensive': '2'});
       }
@@ -208,17 +226,12 @@ class evaluationform {
 
   Future feedback(String uid, String value) async {
     try {
-      if (value == '1') {
+     
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
-            .updateData({'Student is receptive	to	 feedback': '1'});
-      } else if (value == '2') {
-        Firestore.instance
-            .collection('Student')
-            .document(uid)
-            .updateData({'Student is receptive	to	 feedback': '2'});
-      }
+            .updateData({'Student is receptive	to	 feedback': value});
+      
     } catch (e) {
       print(e.toString());
       return null;
@@ -229,12 +242,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Above Expectation': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Above Expectation': '2'});
       }
@@ -248,12 +261,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Competent': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Competent': '2'});
       }
@@ -267,12 +280,12 @@ class evaluationform {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Needs improvement': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('Student')
+            .collection('evaluationForm')
             .document(uid)
             .updateData({'Needs improvement': '2'});
       }
