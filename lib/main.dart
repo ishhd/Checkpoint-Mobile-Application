@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/EFAdmin.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: SignIn(),
+          home: CourseAS(),
         ));
   }
 }
