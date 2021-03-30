@@ -108,7 +108,7 @@ class _SignInState extends State<SignIn> {
                                   await _auth.SignInProcess(email, password);
                               if (result == null) {
                                 setState(
-                                    () => error = 'Check Your Input Agean');
+                                    () => error = 'Check Your Input Again');
                               } else {
                                 _auth.p();
                               }
