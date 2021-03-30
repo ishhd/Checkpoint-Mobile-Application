@@ -34,6 +34,7 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       await User().AuthPage(user.uid);
+      
       return _userFromFire(user);
     } catch (e) {
       print(e.toString());
