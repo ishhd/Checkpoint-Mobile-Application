@@ -86,12 +86,30 @@ class User {
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
           runApp(homepageAS());
+          Bar('  Academic Staff');
         } else if (userType == '  Student' && activate == 1) {
           runApp(HomePageStudent());
+          Bar('  Student');
         } else if (userType == 'Admin') {
           runApp(homePageAdministrator());
+          Bar('Admin');
         }
       });
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future Bar(String Type) async {
+    try {
+      if (Type == '  Academic Staff') {
+        // BarPage('  Academic Staff');
+      } else if (Type == '  Student') {
+        // BarPage('  Academic Staff');
+      } else if (Type == 'Admin') {
+        // BarPage('  Academic Staff');
+      }
     } catch (e) {
       print(e.toString());
       return null;
