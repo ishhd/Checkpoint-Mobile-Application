@@ -16,7 +16,7 @@ class Requests2State extends State<Requests2> {
   List fullNames = [
     "Shahad Harith",
     "Rewaa Alalawi",
-    "Ameera Alofi",
+    "Ameera Aloufi",
   ];
 
   List idNumbers = [
