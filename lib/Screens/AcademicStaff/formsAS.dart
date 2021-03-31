@@ -69,6 +69,14 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 35,
                   ),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Student Name"),
+                      )),
                   Text("Section I",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
@@ -101,35 +109,72 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 35,
                   ),
-                  SubmitButtons(
-                    text: "Save",
-                    onpressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: new Text("Save answers"),
-                            content:
-                                new Text("Do you want to save these answers?"),
-                            actions: <Widget>[
-                              new FlatButton(
-                                child: new Text("Yes"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              new FlatButton(
-                                child: new Text("No"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SubmitButtons(
+                        text: "Save",
+                        onpressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: new Text("Save answers"),
+                                content: new Text(
+                                    "Do you want to save these answers?"),
+                                actions: <Widget>[
+                                  new FlatButton(
+                                    child: new Text("Yes"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  new FlatButton(
+                                    child: new Text("No"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
                           );
                         },
-                      );
-                    },
+                      ),
+                      SubmitButtons(
+                        text: "Export",
+                        onpressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: new Text("Export.."),
+                                content: new Text(
+                                    "Do you want to export this form to:"),
+                                actions: <Widget>[
+                                  new FlatButton(
+                                    child: new Text("Excel Sheet"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  new FlatButton(
+                                    child: new Text("Back"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
                   ),
+                  SizedBox(
+                    height: 30,
+                  )
                 ],
               ),
             ),
