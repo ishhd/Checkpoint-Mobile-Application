@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
@@ -7,6 +8,10 @@ import 'package:tester/Screens/Student/homePageStudent.dart';
 class User {
   String error = '';
   String uid;
+  String name;
+  String id;
+  String activate;
+  var vv = [];
   final CollectionReference Student = Firestore.instance.collection('student');
   final CollectionReference AcademicStaff =
       Firestore.instance.collection('academicStaff');
@@ -14,7 +19,7 @@ class User {
   final CollectionReference evaluationForm =
       Firestore.instance.collection('evaluationForm');
 
-  User({this.uid});
+  User({this.uid, this.name, this.id, this.activate});
   /*Future<void> NewUser(
       String email, String password, String name, String id, String uid) async {
     return await ref.document(uid).setData(
@@ -129,9 +134,9 @@ class User {
     }
   }
 
-  Stream<QuerySnapshot> get ActUser {
-    return UserNew.snapshots();
-  }
+  //Stream<QuerySnapshot> get ActUser {
+  //  return UserNew.snapshots();
+  //}
 
 // print user for activate
   Future PrintUs() async {
@@ -140,20 +145,28 @@ class User {
       var id = (value.data)['id'];
       var Activ = (value.data)['activate'];
       if (Activ == 0) {
-        print(Name && id);
-        return Name && id;
+        for (var i in vv) {
+          print(Name && id);
+        }
       } else {
         return 'There is no one';
       }
     });
   }
 
-  Stream<QuerySnapshot> get user {
+  /*List<User> _userList(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return User(
+          name: doc.data['name'] ?? ' ',
+          id: doc.data[id] ?? '',
+          activate: doc.data['activate']);
+    }).toList();
+  }*/
+
+  /* Stream<List<User>> get user {
     Firestore.instance.collection('user').document(uid).get().then((value) {
       var activate = (value.data)['activate'];
       if (activate == 0) {
-        return UserNew.snapshots();
-      }
-    });
-  }
+    return UserNew.snapshots().map(_userList);
+  }*/
 }
