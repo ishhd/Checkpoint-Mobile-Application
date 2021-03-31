@@ -68,7 +68,8 @@ class _ProfileState extends State<Profile> {
               SubmitButtons(
                 text: "Add another admin",
                 onpressed: () {
-                  runApp(AddAdmin());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: AddAdmin()));
                 },
               ),
               SizedBox(

@@ -1,6 +1,7 @@
 // Pacages
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 
 //Pages
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
@@ -18,7 +19,7 @@ import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/SignIn.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

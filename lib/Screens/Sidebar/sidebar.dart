@@ -2,9 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:tester/Screens/Administrator/Requests.dart';
+import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
+import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
+import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/services/auth.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
-import '../sidebar/menu_item.dart';
+import '../Sidebar/menu_item.dart';
 
 class SideBar extends StatefulWidget {
   @override
@@ -112,8 +117,16 @@ class _SideBarState extends State<SideBar>
                         title: "Home",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.HomePageClickedEvent);
+                          // BlocProvider.of<NavigationBloc>(context)
+                          //     .add(NavigationEvents.HomePageClickedEvent);
+
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(widget: homePageAdministrator()),
+                              ),
+                              (Route<dynamic> route) => false);
                         },
                       ),
                       MenuItem(
@@ -121,8 +134,16 @@ class _SideBarState extends State<SideBar>
                         title: "My Profile",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.MyProfileClickedEvent);
+                          // BlocProvider.of<NavigationBloc>(context)
+                          //     .add(NavigationEvents.MyProfileClickedEvent);
+
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(widget: Profile()),
+                              ),
+                              (Route<dynamic> route) => false);
                         },
                       ),
                       MenuItem(
@@ -130,8 +151,15 @@ class _SideBarState extends State<SideBar>
                         title: "Requests",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.RequestClickedEvent);
+                          // BlocProvider.of<NavigationBloc>(context)
+                          //     .add(NavigationEvents.RequestClickedEvent);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(widget: Requests()),
+                              ),
+                              (Route<dynamic> route) => false);
                         },
                       ),
                       MenuItem(
@@ -139,8 +167,15 @@ class _SideBarState extends State<SideBar>
                         title: "Schedule",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.ScheduleClickedEvent);
+                          // BlocProvider.of<NavigationBloc>(context)
+                          //     .add(NavigationEvents.ScheduleClickedEvent);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(widget: SchedulesAdmin()),
+                              ),
+                              (Route<dynamic> route) => false);
                         },
                       ),
                       MenuItem(

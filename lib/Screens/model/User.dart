@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 
 class User {
@@ -90,13 +91,13 @@ class User {
         var userType = (value.data)['position'];
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
-          runApp(homepageAS());
+          runApp(HomeScreen(widget: homepageAS()));
           Bar('  Academic Staff');
         } else if (userType == '  Student' && activate == 1) {
-          runApp(HomePageStudent());
+          runApp(HomeScreen(widget: HomePageStudent()));
           Bar('  Student');
         } else if (userType == 'Admin') {
-          runApp(homePageAdministrator());
+          runApp(HomeScreen(widget: homePageAdministrator()));
           Bar('Admin');
         }
       });

@@ -48,28 +48,32 @@ class EvaluationFormsASState extends State<EvaluationFormsAS> {
                 label: "Infiltration",
                 color: Colors.red,
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               CoursesButtons(
                 label: "INAB",
                 color: Color(0xFF98D1D4),
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               CoursesButtons(
                 label: "Suturing",
                 color: Color(0xFF98D1D4),
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               CoursesButtons(
                 label: "Biopsy",
                 color: Color(0xFF98D1D4),
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               //تكملة الفورم من الداتا بيس
