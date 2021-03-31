@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/style.dart';
@@ -28,7 +29,7 @@ class _CourseInfoState extends State<CourseInfo> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(CourseAdmin());
+                runApp(HomeScreen(widget: CourseAdmin()));
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -216,7 +217,7 @@ class _NewCourseState extends State<NewCourse> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(CourseAdmin());
+                runApp(HomeScreen(widget: CourseAdmin()));
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -250,7 +251,32 @@ class _NewCourseState extends State<NewCourse> {
             ),
             SubmitButtons(
               text: "Save",
-              onpressed: () {},
+              onpressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: new Text("Add new course"),
+                      content:
+                          new Text("Are you sure you want to add this course?"),
+                      actions: <Widget>[
+                        new FlatButton(
+                          child: new Text("Yes"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        new FlatButton(
+                          child: new Text("No"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             ),
             SizedBox(
               height: 35,

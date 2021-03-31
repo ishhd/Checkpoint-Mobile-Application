@@ -4,6 +4,7 @@ import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/AcademicStaff/ReportAS.dart';
 import 'package:tester/Screens/AcademicStaff/ScanQR.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/style.dart';
 
 class homepageAS extends StatefulWidget {
@@ -36,8 +37,7 @@ class homepageASState extends State<homepageAS> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(MaterialApp(
-                    debugShowCheckedModeBanner: false, home: CourseAS()));
+                runApp(HomeScreen(widget: CourseAS()));
               },
               color: Color(0xFF525151),
               iconSize: 20,

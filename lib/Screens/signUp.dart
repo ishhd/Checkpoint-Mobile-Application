@@ -182,12 +182,10 @@ class _SignUpState extends State<SignUp> {
                         }
                       }),
                   Container(
-                    child: SizedBox(
-                      height: 12,
-                      child: Text(
-                        error,
-                        style: TextStyle(color: Colors.red),
-                      ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      error,
+                      style: TextStyle(color: Colors.red),
                     ),
                   ),
                   Container(
@@ -213,9 +211,9 @@ class _SignUpState extends State<SignUp> {
   void creatUserAcademicStaff() async {
     dynamic result = await _auth.registerProcessAcademicStaff(
         email, password, name, id, position, activate);
-        
+
     if (result == null) {
-      setState(() => error = 'Check Your Input Agean');
+      setState(() => error = 'Check Your Input Again');
     } else {
       runApp(SignIn());
     }
@@ -225,7 +223,7 @@ class _SignUpState extends State<SignUp> {
     dynamic result = await _auth.registerProcessStudent(
         email, password, name, id, position, activate);
     if (result == null) {
-      setState(() => error = 'Check Your Input Agean');
+      setState(() => error = 'Check Your Input Again');
     } else {
       runApp(SignIn());
     }

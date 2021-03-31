@@ -47,7 +47,10 @@ class HomePageStudentState extends State<HomePageStudent> {
                 MenuButtons(
                   label: "QR Code",
                   onpressed: () {
-                    runApp(HomeScreen(widget: QRCodePageStudent()));
+                    runApp(HomeScreen(
+                        widget: MaterialApp(
+                            debugShowCheckedModeBanner: false,
+                            home: QRCodePageStudent())));
                   },
                 ),
                 MenuButtons(

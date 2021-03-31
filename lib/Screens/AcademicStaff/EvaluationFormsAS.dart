@@ -50,8 +50,7 @@ class EvaluationFormsASState extends State<EvaluationFormsAS> {
                 color: Colors.red,
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               CoursesButtons(
@@ -59,8 +58,7 @@ class EvaluationFormsASState extends State<EvaluationFormsAS> {
                 color: Color(0xFF98D1D4),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               CoursesButtons(
@@ -68,8 +66,7 @@ class EvaluationFormsASState extends State<EvaluationFormsAS> {
                 color: Color(0xFF98D1D4),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               CoursesButtons(
@@ -77,8 +74,7 @@ class EvaluationFormsASState extends State<EvaluationFormsAS> {
                 color: Color(0xFF98D1D4),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
+                      debugShowCheckedModeBanner: false, home: FormsAS()));
                 },
               ),
               //تكملة الفورم من الداتا بيس

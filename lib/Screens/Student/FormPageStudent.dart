@@ -4,13 +4,13 @@ import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
 
-class FormsAS extends StatefulWidget {
+class FormPageStudent extends StatefulWidget {
   State<StatefulWidget> createState() {
-    return FormsASState();
+    return FormPageStudentState();
   }
 }
 
-class FormsASState extends State<FormsAS> {
+class FormPageStudentState extends State<FormPageStudent> {
   // This widget is the root of your application.
   int group1 = -1;
   int group2 = -1;
