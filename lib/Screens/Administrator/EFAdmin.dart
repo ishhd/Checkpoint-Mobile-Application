@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -135,7 +134,6 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
               padding: EdgeInsets.only(left: 20),
             ),
           ),
-          drawer: SideBarLayout(),
           body: Container(
             padding: EdgeInsets.only(left: 16, top: 25, right: 16),
             child: GestureDetector(

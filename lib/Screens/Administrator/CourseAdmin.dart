@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseInfo.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 
 import '../style.dart';
 

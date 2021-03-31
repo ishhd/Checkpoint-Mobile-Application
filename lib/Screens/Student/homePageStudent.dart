@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/Student/AttendancePageStudent.dart';
 import 'package:tester/Screens/Student/CoursePageStudent.dart';
 import 'package:tester/Screens/Student/QRCodePageStudent.dart';

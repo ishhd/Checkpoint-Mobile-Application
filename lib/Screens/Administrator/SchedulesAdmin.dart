@@ -30,6 +30,7 @@ class SchedulesAdminState extends State<SchedulesAdmin> {
                   color: Color(0xFF525151),
                 ),
               ),
+              centerTitle: true,
             )));
   }
 }

@@ -6,6 +6,8 @@ import 'package:tester/Screens/Administrator/Requests.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
+import 'package:tester/Screens/SignIn.dart';
+import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/services/auth.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
@@ -117,8 +119,6 @@ class _SideBarState extends State<SideBar>
                         title: "Home",
                         onTap: () {
                           onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.HomePageClickedEvent);
 
                           Navigator.pushAndRemoveUntil(
                               context,
@@ -126,7 +126,7 @@ class _SideBarState extends State<SideBar>
                                 builder: (context) =>
                                     HomeScreen(widget: homePageAdministrator()),
                               ),
-                              (Route<dynamic> route) => false);
+                              (Route<dynamic> route) => true);
                         },
                       ),
                       MenuItem(
@@ -134,8 +134,6 @@ class _SideBarState extends State<SideBar>
                         title: "My Profile",
                         onTap: () {
                           onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.MyProfileClickedEvent);
 
                           Navigator.pushAndRemoveUntil(
                               context,
@@ -151,8 +149,7 @@ class _SideBarState extends State<SideBar>
                         title: "Requests",
                         onTap: () {
                           onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.RequestClickedEvent);
+
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
@@ -167,8 +164,7 @@ class _SideBarState extends State<SideBar>
                         title: "Schedule",
                         onTap: () {
                           onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.ScheduleClickedEvent);
+
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
@@ -187,6 +183,7 @@ class _SideBarState extends State<SideBar>
                         title: "Logout",
                         onTap: () async {
                           await _auth.signOut();
+                          runApp(SignIn());
                         },
                       ),
                     ],

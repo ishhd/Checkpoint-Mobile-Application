@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/EFAdmin.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -21,6 +22,17 @@ class CoursPageStudentState extends State<CoursPageStudent> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Color(0xFFD9D9D9),
+              title: Text(
+                "Courses",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Color(0xFF525151),
+                ),
+              ),
+              centerTitle: true,
+            ),
             backgroundColor: Colors.white,
             body: ListView(children: [
               Align(
@@ -94,7 +106,7 @@ class CoursStudentState extends State<CoursStudent> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
                 onPressed: () {
-                  runApp(CoursPageStudent());
+                  runApp(HomeScreen(widget: CoursPageStudent()));
                 },
                 color: Color(0xFF525151),
                 iconSize: 20,

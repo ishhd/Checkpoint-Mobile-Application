@@ -35,39 +35,42 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Scaffold(
-          backgroundColor: Colors.white,
-          body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Align(alignment: Alignment.center),
-            _contentWidget(),
-            /*Container(
+            backgroundColor: Colors.white,
+            body: Expanded(
+              child: ListView(
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(alignment: Alignment.center),
+                    _contentWidget(),
+                    /*Container(
                 margin: EdgeInsets.only(bottom: 60),
                 child: Image.asset(''), //student qr code
                 width: 300,
                 height: 300,
                 color: Colors.grey[300]),*/
-            SubmitButtons(
-              text: "Download Image",
-              onpressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: new Text("It downloaded successfully"),
-                      actions: <Widget>[
-                        new FlatButton(
-                          child: new Text("OK"),
-                          onPressed: () {
-                            Navigator.of(context).pop();
+                    SubmitButtons(
+                      text: "Download Image",
+                      onpressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: new Text("It downloaded successfully"),
+                              actions: <Widget>[
+                                new FlatButton(
+                                  child: new Text("OK"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
                           },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-          ]),
-        ));
+                        );
+                      },
+                    ),
+                  ]),
+            )));
   }
 
   Future<void> _captureAndSharePng() async {

@@ -116,9 +116,12 @@ class _SignInState extends State<SignIn> {
                           }),
                       Container(
                         alignment: Alignment.center,
-                        child: Text(
-                          error,
-                          style: TextStyle(color: Colors.red),
+                        child: SizedBox(
+                          height: 12,
+                          child: Text(
+                            error,
+                            style: TextStyle(color: Colors.red),
+                          ),
                         ),
                       ),
                       Container(

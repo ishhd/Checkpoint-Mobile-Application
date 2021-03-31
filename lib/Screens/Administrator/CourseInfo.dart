@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -36,7 +35,6 @@ class _CourseInfoState extends State<CourseInfo> {
               padding: EdgeInsets.only(left: 20),
             ),
           ),
-          drawer: SideBarLayout(),
           body: Container(
             padding: EdgeInsets.only(left: 16, top: 25, right: 16),
             child: GestureDetector(
