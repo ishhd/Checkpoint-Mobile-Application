@@ -51,7 +51,9 @@ class EFAdminState extends State<EFAdmin> {
                 label: "Infiltration",
                 color: Color(0xFF98D1D4),
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      home: EvaluationFormInfo()));
                   //evaluationform()
                   //.Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                 },
@@ -60,21 +62,27 @@ class EFAdminState extends State<EFAdmin> {
                 label: "INAB",
                 color: Color(0xFF98D1D4),
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      home: EvaluationFormInfo()));
                 },
               ),
               CoursesButtons(
                 label: "Suturing",
                 color: Color(0xFF98D1D4),
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      home: EvaluationFormInfo()));
                 },
               ),
               CoursesButtons(
                 label: "Biopsy",
                 color: Color(0xFF98D1D4),
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      home: EvaluationFormInfo()));
                 },
               ),
 

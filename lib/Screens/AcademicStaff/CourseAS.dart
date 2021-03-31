@@ -54,28 +54,32 @@ class CourseASState extends State<CourseAS> {
                 label: "OMR 312",
                 color: Color(0xFF92D050),
                 onpressed: () {
-                  runApp(homepageAS());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: homepageAS()));
                 },
               ),
               CoursesButtons(
                 label: "OMR 511",
                 color: Color(0xFFC697F6),
                 onpressed: () {
-                  runApp(homepageAS());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: homepageAS()));
                 },
               ),
               CoursesButtons(
                 label: "OMR 611",
                 color: Color(0xFFB4C6E7),
                 onpressed: () {
-                  runApp(homepageAS());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: homepageAS()));
                 },
               ),
               CoursesButtons(
                 label: "SURD 401",
                 color: Color(0xFFF6CAAC),
                 onpressed: () {
-                  runApp(homepageAS());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: homepageAS()));
                 },
               )
             ],

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
 import 'package:tester/Screens/Administrator/EFAdmin.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/services/auth.dart';
@@ -45,22 +46,22 @@ class homePageAdministratorState extends State<homePageAdministrator> {
             MenuButtons(
               label: "Courses",
               onpressed: () {
-                runApp(CourseAdmin());
+                runApp(HomeScreen(
+                  widget: CourseAdmin(),
+                ));
               },
             ),
             MenuButtons(
               label: "Evaluation Forms",
-              onpressed: () async{
+              onpressed: () async {
                 // runApp(EFAdmin());
-               await _auth.signOut();
+                await _auth.signOut();
               },
             ),
             MenuButtons(
               label: "Schedules",
               onpressed: () async {
-
-                  _auth.RequstsActivate();
-
+                _auth.RequstsActivate();
               },
             ),
           ])),

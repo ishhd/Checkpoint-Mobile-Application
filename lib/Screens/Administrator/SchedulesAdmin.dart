@@ -30,15 +30,6 @@ class SchedulesAdminState extends State<SchedulesAdmin> {
                   color: Color(0xFF525151),
                 ),
               ),
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
-                onPressed: () {
-                  runApp(homePageAdministrator());
-                },
-                color: Color(0xFF525151),
-                iconSize: 20,
-                padding: EdgeInsets.only(left: 20),
-              ),
             )));
   }
 }

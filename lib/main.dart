@@ -18,7 +18,7 @@ import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/SignIn.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: homePageAdministrator(),
+      home: SignIn(),
     );
   }
 }

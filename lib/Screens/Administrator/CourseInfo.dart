@@ -153,6 +153,24 @@ class _CourseInfoState extends State<CourseInfo> {
         ));
   }
 
+  Widget submitButtons({Null Function() onpressed, String text}) {
+    return Container(
+        width: 150,
+        height: 40,
+        margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+        alignment: Alignment.center,
+        child: RaisedButton(
+            color: Color(0xFF98D1D4),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(6))),
+            child: Text(
+              text,
+              style: TextStyle(color: Colors.white, fontSize: 15),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: onpressed));
+  }
+
   Widget buildTextField(String labelText, String placeholder) {
     return Container(
       margin: EdgeInsets.only(left: 30, right: 30),

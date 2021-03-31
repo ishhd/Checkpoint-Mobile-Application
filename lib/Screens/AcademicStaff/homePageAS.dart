@@ -36,7 +36,8 @@ class homepageASState extends State<homepageAS> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(CourseAS());
+                runApp(MaterialApp(
+                    debugShowCheckedModeBanner: false, home: CourseAS()));
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -50,19 +51,23 @@ class homepageASState extends State<homepageAS> {
               MenuButtons(
                 label: "Register Attendance",
                 onpressed: () {
-                  runApp(ScanQR());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: ScanQR()));
                 },
               ),
               MenuButtons(
                 label: "Evaluation Forms",
                 onpressed: () {
-                  runApp(EvaluationFormsAS());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      home: EvaluationFormsAS()));
                 },
               ),
               MenuButtons(
                 label: "Courses Report",
                 onpressed: () {
-                  runApp(ReportAS());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: ReportAS()));
                 },
               )
             ],
