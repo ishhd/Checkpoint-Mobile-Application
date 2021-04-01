@@ -8,7 +8,7 @@ import 'package:tester/Screens/ResetPass.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/services/auth.dart';
-import 'package:tester/Screens/signUp.dart';
+import 'package:tester/Screens/SignUp.dart';
 import 'package:tester/Screens/style.dart';
 
 class SignIn extends StatefulWidget {
@@ -96,7 +96,7 @@ class _SignInState extends State<SignIn> {
                           child: Text("Forget my password"),
                           onPressed: () {
                             // User().Activate();
-                            //   runApp(ResetPass());
+                            //runApp(ResetPass());
                           },
                         ),
                       ),
@@ -108,19 +108,17 @@ class _SignInState extends State<SignIn> {
                                   await _auth.SignInProcess(email, password);
                               if (result == null) {
                                 setState(
-                                    () => error = 'Check Your Input Agean');
+                                    () => error = 'Check Your Input Again');
                               } else {
                                 _auth.p();
                               }
                             }
                           }),
                       Container(
-                        child: SizedBox(
-                          height: 12,
-                          child: Text(
-                            error,
-                            style: TextStyle(color: Colors.red),
-                          ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          error,
+                          style: TextStyle(color: Colors.red),
                         ),
                       ),
                       Container(

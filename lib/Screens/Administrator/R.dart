@@ -1,18 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:tester/Screens/model/User.dart';
 
-class Requests extends StatefulWidget with NavigationStates {
+class Requests2 extends StatefulWidget with NavigationStates {
   State<StatefulWidget> createState() {
-    return RequestsState();
+    return Requests2State();
   }
 }
 
-class RequestsState extends State<Requests> {
+class Requests2State extends State<Requests2> {
   List fullNames = [
     "Shahad Harith",
     "Rewaa Alalawi",
-    "Ameera Aluofi",
+    "Ameera Aloufi",
   ];
 
   List idNumbers = [
@@ -23,25 +26,15 @@ class RequestsState extends State<Requests> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+    return StreamProvider<QuerySnapshot>.value(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          backgroundColor: Colors.white),
-      home: Scaffold(
-        body: requestList(),
-        appBar: AppBar(
-          backgroundColor: Color(0xFFD9D9D9),
-          title: Text(
-            "Requests",
-            style: TextStyle(
-              fontSize: 30,
-              color: Color(0xFF525151),
-            ),
-          ),
-          centerTitle: true,
         ),
+        home: requestList(),
+        //drawer: SideBarLayout(),
       ),
     );
   }
@@ -54,7 +47,12 @@ class RequestsState extends State<Requests> {
   }
 
   Widget requestList() {
-    if (fullNames.isEmpty) {
+    final ActUser = Provider.of<QuerySnapshot>(context);
+    for (var doc in ActUser.documents) {
+      print(doc.data);
+    }
+
+    /* if (fullNames.isEmpty) {
       return Container(
         alignment: Alignment.center,
         child: Text(
@@ -62,7 +60,7 @@ class RequestsState extends State<Requests> {
           style: TextStyle(fontSize: 17, color: Colors.grey),
         ),
       );
-    }
+    } */
 
     return ListView.builder(
       shrinkWrap: true,

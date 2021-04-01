@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:async';
 
@@ -78,15 +77,7 @@ class ScanQRState extends State<ScanQR> {
                 color: Color(0xFF525151),
               ),
             ),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                runApp(homepageAS());
-              },
-              color: Color(0xFF525151),
-              iconSize: 20,
-              padding: EdgeInsets.only(left: 20),
-            ),
+            centerTitle: true,
           ),
           body: Center(
             child: Text(

@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/style.dart';
 
 class AddAdmin extends StatefulWidget with NavigationStates {
@@ -15,7 +16,25 @@ class _AddAdminState extends State<AddAdmin> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          drawer: SideBarLayout(),
+          appBar: AppBar(
+            backgroundColor: Color(0xFFD9D9D9),
+            title: Text(
+              "New Admin",
+              style: TextStyle(
+                fontSize: 30,
+                color: Color(0xFF525151),
+              ),
+            ),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                runApp(HomeScreen(widget: Profile()));
+              },
+              color: Color(0xFF525151),
+              iconSize: 20,
+              padding: EdgeInsets.only(left: 20),
+            ),
+          ),
           body: Container(
             padding: EdgeInsets.only(left: 16, top: 25, right: 16),
             child: GestureDetector(

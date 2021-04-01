@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -28,14 +28,13 @@ class _CourseInfoState extends State<CourseInfo> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(CourseAdmin());
+                runApp(HomeScreen(widget: CourseAdmin()));
               },
               color: Color(0xFF525151),
               iconSize: 20,
               padding: EdgeInsets.only(left: 20),
             ),
           ),
-          drawer: SideBarLayout(),
           body: Container(
             padding: EdgeInsets.only(left: 16, top: 25, right: 16),
             child: GestureDetector(
@@ -153,6 +152,24 @@ class _CourseInfoState extends State<CourseInfo> {
         ));
   }
 
+  Widget submitButtons({Null Function() onpressed, String text}) {
+    return Container(
+        width: 150,
+        height: 40,
+        margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+        alignment: Alignment.center,
+        child: RaisedButton(
+            color: Color(0xFF98D1D4),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(6))),
+            child: Text(
+              text,
+              style: TextStyle(color: Colors.white, fontSize: 15),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: onpressed));
+  }
+
   Widget buildTextField(String labelText, String placeholder) {
     return Container(
       margin: EdgeInsets.only(left: 30, right: 30),
@@ -198,7 +215,7 @@ class _NewCourseState extends State<NewCourse> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(CourseAdmin());
+                runApp(HomeScreen(widget: CourseAdmin()));
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -232,7 +249,32 @@ class _NewCourseState extends State<NewCourse> {
             ),
             SubmitButtons(
               text: "Save",
-              onpressed: () {},
+              onpressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: new Text("Add new course"),
+                      content:
+                          new Text("Are you sure you want to add this course?"),
+                      actions: <Widget>[
+                        new FlatButton(
+                          child: new Text("Yes"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        new FlatButton(
+                          child: new Text("No"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             ),
             SizedBox(
               height: 35,

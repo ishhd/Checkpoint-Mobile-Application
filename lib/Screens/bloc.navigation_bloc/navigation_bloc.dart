@@ -35,6 +35,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
     switch (event) {
       case NavigationEvents.HomePageClickedEvent:
+
         /* if (user == "administrator") {
           yield homePageAdministrator();
           break;

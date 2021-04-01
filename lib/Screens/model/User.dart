@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 
 class User {
@@ -85,13 +86,31 @@ class User {
         var userType = (value.data)['position'];
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
-          runApp(homepageAS());
+          runApp(HomeScreen(widget: homepageAS()));
+          Bar('  Academic Staff');
         } else if (userType == '  Student' && activate == 1) {
-          runApp(HomePageStudent());
+          runApp(HomeScreen(widget: HomePageStudent()));
+          Bar('  Student');
         } else if (userType == 'Admin') {
-          runApp(homePageAdministrator());
+          runApp(HomeScreen(widget: homePageAdministrator()));
+          Bar('Admin');
         }
       });
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future Bar(String Type) async {
+    try {
+      if (Type == '  Academic Staff') {
+        // BarPage('  Academic Staff');
+      } else if (Type == '  Student') {
+        // BarPage('  Academic Staff');
+      } else if (Type == 'Admin') {
+        // BarPage('  Academic Staff');
+      }
     } catch (e) {
       print(e.toString());
       return null;
@@ -126,6 +145,15 @@ class User {
         return Name && id;
       } else {
         return 'There is no one';
+      }
+    });
+  }
+
+  Stream<QuerySnapshot> get user {
+    Firestore.instance.collection('user').document(uid).get().then((value) {
+      var activate = (value.data)['activate'];
+      if (activate == 0) {
+        return UserNew.snapshots();
       }
     });
   }

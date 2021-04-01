@@ -1,109 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
-import 'package:tester/Screens/style.dart';
 
-class EFAdmin extends StatefulWidget {
+class FormPageStudent extends StatefulWidget {
   State<StatefulWidget> createState() {
-    return EFAdminState();
+    return FormPageStudentState();
   }
 }
 
-class EFAdminState extends State<EFAdmin> {
+class FormPageStudentState extends State<FormPageStudent> {
   // This widget is the root of your application.
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Color(0xFFD9D9D9),
-            title: Text(
-              "Evaluation Forms",
-              style: TextStyle(
-                fontSize: 30,
-                color: Color(0xFF525151),
-              ),
-            ),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                runApp(homePageAdministrator());
-              },
-              color: Color(0xFF525151),
-              iconSize: 20,
-              padding: EdgeInsets.only(left: 20),
-            ),
-          ),
-          body: ListView(
-            children: [
-              Align(alignment: Alignment.center),
-              SizedBox(height: 40),
-              CoursesButtons(
-                label: "Infiltration",
-                color: Color(0xFF98D1D4),
-                onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
-                  //evaluationform()
-                  //.Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
-                },
-              ),
-              CoursesButtons(
-                label: "INAB",
-                color: Color(0xFF98D1D4),
-                onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
-                },
-              ),
-              CoursesButtons(
-                label: "Suturing",
-                color: Color(0xFF98D1D4),
-                onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
-                },
-              ),
-              CoursesButtons(
-                label: "Biopsy",
-                color: Color(0xFF98D1D4),
-                onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: EvaluationFormInfo()));
-                },
-              ),
-
-              //تكملة الفورم من الداتا بيس
-
-              SizedBox(
-                height: 20,
-              ),
-              //SubmitButtons(text: "Add New Evaluation Form", onpressed: () {}),
-            ],
-          ),
-        ));
-  }
-}
-
-class EvaluationFormInfo extends StatefulWidget {
-  State<StatefulWidget> createState() {
-    return EvaluationFormInfoState();
-  }
-}
-
-class EvaluationFormInfoState extends State<EvaluationFormInfo> {
   int group1 = -1;
   int group2 = -1;
   int group3 = -1;
@@ -127,7 +34,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(EFAdmin());
+                runApp(EvaluationFormsAS());
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -192,35 +99,6 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       "Student’s overall ability to perform the protective"),
                   SizedBox(
                     height: 35,
-                  ),
-                  SubmitButtons(
-                    text: "Save",
-                    onpressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: new Text("Save answers"),
-                            content:
-                                new Text("Do you want to save these answers?"),
-                            actions: <Widget>[
-                              new FlatButton(
-                                child: new Text("Yes"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              new FlatButton(
-                                child: new Text("No"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
                   ),
                 ],
               ),

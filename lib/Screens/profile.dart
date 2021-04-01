@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/style.dart';
@@ -15,7 +14,17 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideBarLayout(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFD9D9D9),
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            fontSize: 30,
+            color: Color(0xFF525151),
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
@@ -68,7 +77,8 @@ class _ProfileState extends State<Profile> {
               SubmitButtons(
                 text: "Add another admin",
                 onpressed: () {
-                  runApp(AddAdmin());
+                  runApp(MaterialApp(
+                      debugShowCheckedModeBanner: false, home: AddAdmin()));
                 },
               ),
               SizedBox(

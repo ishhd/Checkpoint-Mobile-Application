@@ -2,20 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/SignIn.dart';
 import 'package:tester/Screens/model/User.dart';
-import 'package:tester/Screens/model/student.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //creat user object
-  Student _userFromFire(FirebaseUser user) {
-    return user != null ? Student(uid: user.uid) : null;
+  User _userFromFire(FirebaseUser user) {
+    return user != null ? User(uid: user.uid) : null;
   }
 
-// auth change user strem
-  Stream<Student> get user {
-    return _auth.onAuthStateChanged.map(_userFromFire);
-  }
 
   Future signInAnon() async {
     try {
@@ -39,6 +34,7 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       await User().AuthPage(user.uid);
+      
       return _userFromFire(user);
     } catch (e) {
       print(e.toString());

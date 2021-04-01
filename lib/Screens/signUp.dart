@@ -68,8 +68,7 @@ class _SignUpState extends State<SignUp> {
                   ),
 //................................ Name Container.....................................
                   Container(
-                      height: 45,
-                      margin: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+                      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
                       child: TextFormField(
                           decoration: InputDecoration(
                             hintText: 'Name',
@@ -86,8 +85,7 @@ class _SignUpState extends State<SignUp> {
                               : null)),
 //................................ Email Container.....................................
                   Container(
-                      height: 45,
-                      margin: EdgeInsets.symmetric(horizontal: 70, vertical: 9),
+                      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 9),
                       child: TextFormField(
                           decoration: InputDecoration(
                             hintText: 'Email',
@@ -103,8 +101,7 @@ class _SignUpState extends State<SignUp> {
                               value.isEmpty ? 'Enter the Email Please' : null)),
                   //................................ Id Number Container.....................................
                   Container(
-                      height: 45,
-                      margin: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+                      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Id Number',
@@ -122,8 +119,7 @@ class _SignUpState extends State<SignUp> {
                       )),
 //................................ Position Container.....................................
                   Container(
-                    height: 45,
-                    margin: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+                    margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(4)),
@@ -152,8 +148,7 @@ class _SignUpState extends State<SignUp> {
                   ),
 //................................ Password Container.....................................
                   Container(
-                      height: 45,
-                      margin: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+                      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 5),
                       child: TextFormField(
                         obscureText: true,
                         decoration: InputDecoration(
@@ -182,14 +177,13 @@ class _SignUpState extends State<SignUp> {
                         }
                       }),
                   Container(
-                    child: SizedBox(
-                      height: 12,
-                      child: Text(
-                        error,
-                        style: TextStyle(color: Colors.red),
-                      ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      error,
+                      style: TextStyle(color: Colors.red),
                     ),
                   ),
+
                   Container(
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -213,9 +207,9 @@ class _SignUpState extends State<SignUp> {
   void creatUserAcademicStaff() async {
     dynamic result = await _auth.registerProcessAcademicStaff(
         email, password, name, id, position, activate);
-        
+
     if (result == null) {
-      setState(() => error = 'Check Your Input Agean');
+      setState(() => error = 'Check Your Input Again');
     } else {
       runApp(SignIn());
     }
@@ -225,7 +219,7 @@ class _SignUpState extends State<SignUp> {
     dynamic result = await _auth.registerProcessStudent(
         email, password, name, id, position, activate);
     if (result == null) {
-      setState(() => error = 'Check Your Input Agean');
+      setState(() => error = 'Check Your Input Again');
     } else {
       runApp(SignIn());
     }
