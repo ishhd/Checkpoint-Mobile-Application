@@ -52,7 +52,8 @@ class homepageASState extends State<homepageAS> {
                 label: "Register Attendance",
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: ScanQR()));
+                      debugShowCheckedModeBanner: false,
+                      home: HomeScreen(widget: ScanQR())));
                 },
               ),
               MenuButtons(
@@ -60,14 +61,15 @@ class homepageASState extends State<homepageAS> {
                 onpressed: () {
                   runApp(MaterialApp(
                       debugShowCheckedModeBanner: false,
-                      home: EvaluationFormsAS()));
+                      home: HomeScreen(widget: EvaluationFormsAS())));
                 },
               ),
               MenuButtons(
                 label: "Courses Report",
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: ReportAS()));
+                      debugShowCheckedModeBanner: false,
+                      home: HomeScreen(widget: ReportAS())));
                 },
               )
             ],
