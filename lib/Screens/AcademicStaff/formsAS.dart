@@ -1,8 +1,14 @@
+import 'dart:io';
+
+import 'package:excel/excel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
+import 'package:path/path.dart';
 
 class FormsAS extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -16,6 +22,12 @@ class FormsASState extends State<FormsAS> {
   int group2 = -1;
   int group3 = -1;
   int group = -1;
+  String name = '';
+  String selfAssessmentP = '';
+  String instructorEvaluationP = '';
+  String selfAssessmentS = '';
+  String instructorEvaluationS = '';
+  String aplity = '';
 
   // This widget is the root of your application.
   @override
@@ -73,6 +85,9 @@ class FormsASState extends State<FormsAS> {
                       height: 40,
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: "Student Name"),
@@ -154,7 +169,10 @@ class FormsASState extends State<FormsAS> {
                                 actions: <Widget>[
                                   new FlatButton(
                                     child: new Text("Excel Sheet"),
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      await http.get(
+                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=&&name5=&&name6=&&name7=&&name8=&&name9=$aplity&&name10=");
+
                                       Navigator.of(context).pop();
                                     },
                                   ),
@@ -408,6 +426,11 @@ class FormsASState extends State<FormsAS> {
                 setState(() {
                   selfAssessment = value;
                 });
+                if (question.contains("Preparation")) {
+                  selfAssessmentP = value;
+                } else {
+                  selfAssessmentS = value;
+                }
               },
               items: ['  0', '  1', '  2', '  NA'].map((value) {
                 return DropdownMenuItem(
@@ -435,6 +458,11 @@ class FormsASState extends State<FormsAS> {
               setState(() {
                 instructorEvaluation = value;
               });
+              if (question.contains("Preparation")) {
+                instructorEvaluationP = value;
+              } else {
+                instructorEvaluationS = value;
+              }
             },
             items: ['  0', '  1', '  2', '  NA'].map((value) {
               return DropdownMenuItem(
@@ -472,6 +500,7 @@ class FormsASState extends State<FormsAS> {
                     setState(() {
                       group = T;
                     });
+                    aplity = "Needs Improvement";
                   },
                 ),
                 Text("Needs Improvement"),
@@ -485,6 +514,7 @@ class FormsASState extends State<FormsAS> {
                     setState(() {
                       group = T;
                     });
+                    aplity = "Competent";
                   },
                 ),
                 Text("Competent"),
@@ -498,6 +528,7 @@ class FormsASState extends State<FormsAS> {
                     setState(() {
                       group = T;
                     });
+                    aplity = "Above Expectation";
                   },
                 ),
                 Text("Above Expectation"),
