@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -21,6 +22,26 @@ class AttendancePageStudentState extends State<AttendancePageStudent> {
         ),
         home: (Scaffold(
           backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Color(0xFFD9D9D9),
+            title: Text(
+              "Report",
+              style: TextStyle(
+                fontSize: 30,
+                color: Color(0xFF525151),
+              ),
+            ),
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                runApp(HomeScreen(widget: HomePageStudent()));
+              },
+              color: Color(0xFF525151),
+              iconSize: 20,
+              padding: EdgeInsets.only(left: 20),
+            ),
+          ),
 
           //body
           body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [

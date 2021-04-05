@@ -1,14 +1,9 @@
-import 'dart:io';
-
-import 'package:excel/excel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
-import 'package:path/path.dart';
 
 class FormsAS extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -116,6 +111,11 @@ class FormsASState extends State<FormsAS> {
                   ),
                   sectionII("Preparation of armamentarium"),
                   sectionII("Syringe assembly for injection and aspiration"),
+                  sectionII("Operator & Manikin positions"),
+                  sectionII("Identification soft and hard tissue landmarks"),
+                  sectionII("Needle insertion point"),
+                  sectionII("Anatomy & injection procedure"),
+                  sectionII("Ability to assess success of anesthesia"),
                   SizedBox(
                     height: 5,
                   ),

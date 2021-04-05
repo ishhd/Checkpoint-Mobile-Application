@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/DoctorsCourse.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 
 class SchedulesAdmin extends StatefulWidget with NavigationStates {
@@ -35,7 +36,7 @@ class SchedulesAdminState extends State<SchedulesAdmin> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             onPressed: () {
-              runApp(homePageAdministrator());
+              runApp(HomeScreen(widget: homePageAdministrator()));
             },
             color: Color(0xFF525151),
             iconSize: 20,
