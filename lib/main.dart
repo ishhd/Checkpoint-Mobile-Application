@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Screens/Administrator/homepage_administrator.dart';
 import 'Screens/SignIn.dart';
 import 'package:tester/Screens/SignIn.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignIn(),
+      home: homePageAdministrator(),
     );
   }
 }

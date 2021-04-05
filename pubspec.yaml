@@ -36,6 +36,9 @@ dependencies:
   cloud_firestore: ^0.12.11 
   provider: ^4.3.3
   firebase_core: ^0.4.0+1
+  auto_size_text: ^2.1.0
+  excel: ^1.1.5
+  path: ^1.8.0
 
 dev_dependencies:
   flutter_test:

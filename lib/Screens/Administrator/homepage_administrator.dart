@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
+import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/services/auth.dart';
@@ -56,8 +57,7 @@ class homePageAdministratorState extends State<homePageAdministrator> {
             MenuButtons(
               label: "Schedules",
               onpressed: () async {
-                //runApp(HomeScreen(widget: SchedulesAdmin()));
-                _auth.RequstsActivate();
+                runApp(SchedulesAdmin());
               },
             ),
           ])),
