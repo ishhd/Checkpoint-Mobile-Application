@@ -8,7 +8,7 @@ import 'package:tester/Screens/ResetPass.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/services/auth.dart';
-import 'package:tester/Screens/signUp.dart';
+import 'package:tester/Screens/SignUp.dart';
 import 'package:tester/Screens/style.dart';
 
 class SignIn extends StatefulWidget {

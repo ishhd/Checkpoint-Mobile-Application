@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
@@ -16,6 +17,12 @@ class FormsASState extends State<FormsAS> {
   int group2 = -1;
   int group3 = -1;
   int group = -1;
+  String name = '';
+  String selfAssessmentP = '';
+  String instructorEvaluationP = '';
+  String selfAssessmentS = '';
+  String instructorEvaluationS = '';
+  String aplity = '';
 
   // This widget is the root of your application.
   @override
@@ -69,6 +76,17 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 35,
                   ),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Student Name"),
+                      )),
                   Text("Section I",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
@@ -93,6 +111,11 @@ class FormsASState extends State<FormsAS> {
                   ),
                   sectionII("Preparation of armamentarium"),
                   sectionII("Syringe assembly for injection and aspiration"),
+                  sectionII("Operator & Manikin positions"),
+                  sectionII("Identification soft and hard tissue landmarks"),
+                  sectionII("Needle insertion point"),
+                  sectionII("Anatomy & injection procedure"),
+                  sectionII("Ability to assess success of anesthesia"),
                   SizedBox(
                     height: 5,
                   ),
@@ -101,35 +124,75 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 35,
                   ),
-                  SubmitButtons(
-                    text: "Save",
-                    onpressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: new Text("Save answers"),
-                            content:
-                                new Text("Do you want to save these answers?"),
-                            actions: <Widget>[
-                              new FlatButton(
-                                child: new Text("Yes"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              new FlatButton(
-                                child: new Text("No"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SubmitButtons(
+                        text: "Save",
+                        onpressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: new Text("Save answers"),
+                                content: new Text(
+                                    "Do you want to save these answers?"),
+                                actions: <Widget>[
+                                  new FlatButton(
+                                    child: new Text("Yes"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  new FlatButton(
+                                    child: new Text("No"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
                           );
                         },
-                      );
-                    },
+                      ),
+                      SubmitButtons(
+                        text: "Export",
+                        onpressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: new Text("Export.."),
+                                content: new Text(
+                                    "Do you want to export this form to:"),
+                                actions: <Widget>[
+                                  new FlatButton(
+                                    child: new Text("Excel Sheet"),
+                                    onPressed: () async {
+                                      await http.get(
+                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=&&name5=&&name6=&&name7=&&name8=&&name9=$aplity&&name10=");
+
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  new FlatButton(
+                                    child: new Text("Back"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
                   ),
+                  SizedBox(
+                    height: 30,
+                  )
                 ],
               ),
             ),
@@ -363,6 +426,11 @@ class FormsASState extends State<FormsAS> {
                 setState(() {
                   selfAssessment = value;
                 });
+                if (question.contains("Preparation")) {
+                  selfAssessmentP = value;
+                } else {
+                  selfAssessmentS = value;
+                }
               },
               items: ['  0', '  1', '  2', '  NA'].map((value) {
                 return DropdownMenuItem(
@@ -390,6 +458,11 @@ class FormsASState extends State<FormsAS> {
               setState(() {
                 instructorEvaluation = value;
               });
+              if (question.contains("Preparation")) {
+                instructorEvaluationP = value;
+              } else {
+                instructorEvaluationS = value;
+              }
             },
             items: ['  0', '  1', '  2', '  NA'].map((value) {
               return DropdownMenuItem(
@@ -427,6 +500,7 @@ class FormsASState extends State<FormsAS> {
                     setState(() {
                       group = T;
                     });
+                    aplity = "Needs Improvement";
                   },
                 ),
                 Text("Needs Improvement"),
@@ -440,6 +514,7 @@ class FormsASState extends State<FormsAS> {
                     setState(() {
                       group = T;
                     });
+                    aplity = "Competent";
                   },
                 ),
                 Text("Competent"),
@@ -453,6 +528,7 @@ class FormsASState extends State<FormsAS> {
                     setState(() {
                       group = T;
                     });
+                    aplity = "Above Expectation";
                   },
                 ),
                 Text("Above Expectation"),

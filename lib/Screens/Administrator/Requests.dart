@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 
 class Requests extends StatefulWidget with NavigationStates {
@@ -13,7 +12,7 @@ class RequestsState extends State<Requests> {
   List fullNames = [
     "Shahad Harith",
     "Rewaa Alalawi",
-    "Ameera Alofi",
+    "Ameera Aluofi",
   ];
 
   List idNumbers = [
@@ -21,7 +20,7 @@ class RequestsState extends State<Requests> {
     "1234567",
     "1234567",
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +31,17 @@ class RequestsState extends State<Requests> {
           backgroundColor: Colors.white),
       home: Scaffold(
         body: requestList(),
-        drawer: SideBarLayout(),
+        appBar: AppBar(
+          backgroundColor: Color(0xFFD9D9D9),
+          title: Text(
+            "Requests",
+            style: TextStyle(
+              fontSize: 30,
+              color: Color(0xFF525151),
+            ),
+          ),
+          centerTitle: true,
+        ),
       ),
     );
   }

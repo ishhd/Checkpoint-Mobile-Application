@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -36,7 +36,7 @@ class EFAdminState extends State<EFAdmin> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(homePageAdministrator());
+                runApp(HomeScreen(widget: homePageAdministrator()));
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -135,7 +135,6 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
               padding: EdgeInsets.only(left: 20),
             ),
           ),
-          drawer: SideBarLayout(),
           body: Container(
             padding: EdgeInsets.only(left: 16, top: 25, right: 16),
             child: GestureDetector(
@@ -187,6 +186,11 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                   ),
                   sectionII("Preparation of armamentarium"),
                   sectionII("Syringe assembly for injection and aspiration"),
+                  sectionII("Operator & Manikin positions"),
+                  sectionII("Identification soft and hard tissue landmarks"),
+                  sectionII("Needle insertion point"),
+                  sectionII("Anatomy & injection procedure"),
+                  sectionII("Ability to assess success of anesthesia"),
                   SizedBox(
                     height: 5,
                   ),
@@ -194,35 +198,6 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       "Student’s overall ability to perform the protective"),
                   SizedBox(
                     height: 35,
-                  ),
-                  SubmitButtons(
-                    text: "Save",
-                    onpressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: new Text("Save answers"),
-                            content:
-                                new Text("Do you want to save these answers?"),
-                            actions: <Widget>[
-                              new FlatButton(
-                                child: new Text("Yes"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              new FlatButton(
-                                child: new Text("No"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
                   ),
                 ],
               ),
