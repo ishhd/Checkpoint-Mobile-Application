@@ -148,14 +148,12 @@ class evaluationform {
             .collection('evaluationForm')
             .document(uid)
             .updateData({'Preparation of armamentarium': '1'});
-      }
-      else if (value == '2') {
+      } else if (value == '2') {
         Firestore.instance
             .collection('evaluationForm')
             .document(uid)
             .updateData({'Preparation of armamentarium': '2'});
-      }
-      else if (value == 'NA') {
+      } else if (value == 'NA') {
         Firestore.instance
             .collection('evaluationForm')
             .document(uid)
@@ -226,12 +224,10 @@ class evaluationform {
 
   Future feedback(String uid, String value) async {
     try {
-     
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Student is receptive	to	 feedback': value});
-      
+      Firestore.instance
+          .collection('evaluationForm')
+          .document(uid)
+          .updateData({'Student is receptive	to	 feedback': value});
     } catch (e) {
       print(e.toString());
       return null;

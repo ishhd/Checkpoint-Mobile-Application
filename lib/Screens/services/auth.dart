@@ -11,7 +11,6 @@ class AuthService {
     return user != null ? User(uid: user.uid) : null;
   }
 
-
   Future signInAnon() async {
     try {
       AuthResult result = await _auth.signInAnonymously();
@@ -34,8 +33,8 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       await User().AuthPage(user.uid);
-      
-      return _userFromFire(user);
+
+      //return _userFromFire(user);
     } catch (e) {
       print(e.toString());
       return null;

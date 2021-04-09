@@ -11,6 +11,7 @@ import 'package:tester/Screens/Administrator/Requests.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/model/User.dart';
+import 'package:tester/Screens/model/evaluationforms/evaluationform.dart';
 import 'package:tester/Screens/signUp.dart';
 import 'Screens/ResetPass.dart';
 import 'Screens/SignIn.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUp(),
+      home: EFAdmin(),
     );
   }
 }

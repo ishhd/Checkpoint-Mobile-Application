@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
@@ -18,7 +17,7 @@ class User {
       Firestore.instance.collection('academicStaff');
   final CollectionReference UserNew = Firestore.instance.collection('user');
   final CollectionReference evaluationForm =
-      Firestore.instance.collection('evaluationForm');
+      Firestore.instance.collection('omr312 PreClinc');
 
   User({this.uid, this.name, this.id, this.activate});
   /*Future<void> NewUser(
@@ -92,13 +91,10 @@ class User {
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
           runApp(HomeScreen(widget: homepageAS()));
-          Bar('  Academic Staff');
         } else if (userType == '  Student' && activate == 1) {
           runApp(HomeScreen(widget: HomePageStudent()));
-          Bar('  Student');
         } else if (userType == 'Admin') {
           runApp(HomeScreen(widget: homePageAdministrator()));
-          Bar('Admin');
         }
       });
     } catch (e) {
