@@ -1,4 +1,3 @@
-// Pacages
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
@@ -15,8 +14,6 @@ import 'package:tester/Screens/model/evaluationforms/evaluationform.dart';
 import 'package:tester/Screens/signUp.dart';
 import 'Screens/ResetPass.dart';
 import 'Screens/SignIn.dart';
-import 'package:tester/Screens/Administrator/CourseInfo.dart';
-import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/SignIn.dart';
 
 void main() {

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationforms/evaluationform.dart';
-import 'package:tester/Screens/style.dart';
 
 class FormPageStudent extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -93,6 +92,11 @@ class FormPageStudentState extends State<FormPageStudent> {
                   ),
                   sectionII("Preparation of armamentarium"),
                   sectionII("Syringe assembly for injection and aspiration"),
+                  sectionII("Operator & Manikin positions"),
+                  sectionII("Identification soft and hard tissue landmarks"),
+                  sectionII("Needle insertion point"),
+                  sectionII("Anatomy & injection procedure"),
+                  sectionII("Ability to assess success of anesthesia"),
                   SizedBox(
                     height: 5,
                   ),
@@ -100,35 +104,6 @@ class FormPageStudentState extends State<FormPageStudent> {
                       "Student’s overall ability to perform the protective"),
                   SizedBox(
                     height: 35,
-                  ),
-                  SubmitButtons(
-                    text: "Save",
-                    onpressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: new Text("Save answers"),
-                            content:
-                                new Text("Do you want to save these answers?"),
-                            actions: <Widget>[
-                              new FlatButton(
-                                child: new Text("Yes"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                              new FlatButton(
-                                child: new Text("No"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
                   ),
                 ],
               ),

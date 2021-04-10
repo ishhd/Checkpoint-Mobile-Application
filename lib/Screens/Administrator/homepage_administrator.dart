@@ -4,7 +4,6 @@ import 'package:tester/Screens/Administrator/CourseAdmin.dart';
 import 'package:tester/Screens/Administrator/EFAdmin.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/style.dart';
@@ -29,7 +28,6 @@ class homePageAdministratorState extends State<homePageAdministrator> {
       ),
       home: Scaffold(
           drawerEnableOpenDragGesture: true,
-          drawer: SideBarLayout(),
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -47,21 +45,20 @@ class homePageAdministratorState extends State<homePageAdministrator> {
             MenuButtons(
               label: "Courses",
               onpressed: () {
-                runApp(HomeScreen(widget: CourseAdmin()));
+                runApp(CourseAdmin());
               },
             ),
             MenuButtons(
               label: "Evaluation Forms",
               onpressed: () async {
-                // runApp(HomeScreen(widget: EFAdmin()));
-                await _auth.signOut();
+                runApp(EFAdmin());
+                //await _auth.signOut();
               },
             ),
             MenuButtons(
               label: "Schedules",
               onpressed: () async {
-                //runApp(HomeScreen(widget: SchedulesAdmin()));
-                _auth.RequstsActivate();
+                runApp(SchedulesAdmin());
               },
             ),
           ])),

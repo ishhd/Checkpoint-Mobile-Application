@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
-import 'package:tester/Screens/Sidebar/sidebar_layout.dart';
 import 'package:tester/Screens/Student/AttendancePageStudent.dart';
 import 'package:tester/Screens/Student/CoursePageStudent.dart';
 import 'package:tester/Screens/Student/QRCodePageStudent.dart';
@@ -41,22 +39,21 @@ class HomePageStudentState extends State<HomePageStudent> {
                 MenuButtons(
                   label: "Courses",
                   onpressed: () {
-                    runApp(HomeScreen(widget: CoursPageStudent()));
+                    runApp(CoursPageStudent());
                   },
                 ),
                 MenuButtons(
                   label: "QR Code",
                   onpressed: () {
-                    runApp(HomeScreen(
-                        widget: MaterialApp(
-                            debugShowCheckedModeBanner: false,
-                            home: QRCodePageStudent())));
+                    runApp(MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        home: QRCodePageStudent()));
                   },
                 ),
                 MenuButtons(
                   label: "Attendance Report",
                   onpressed: () {
-                    runApp(HomeScreen(widget: AttendancePageStudent()));
+                    runApp(AttendancePageStudent());
                   },
                 ),
               ],

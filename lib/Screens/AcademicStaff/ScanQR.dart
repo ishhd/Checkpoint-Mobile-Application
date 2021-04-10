@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:async';
+
+import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 
 class ScanQR extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -71,13 +72,6 @@ class ScanQRState extends State<ScanQR> {
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Color(0xFFD9D9D9),
-            title: Text(
-              "Scanner",
-              style: TextStyle(
-                fontSize: 30,
-                color: Color(0xFF525151),
-              ),
-            ),
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
@@ -87,6 +81,14 @@ class ScanQRState extends State<ScanQR> {
               iconSize: 20,
               padding: EdgeInsets.only(left: 20),
             ),
+            title: Text(
+              "Scanner",
+              style: TextStyle(
+                fontSize: 30,
+                color: Color(0xFF525151),
+              ),
+            ),
+            centerTitle: true,
           ),
           body: Center(
             child: Text(

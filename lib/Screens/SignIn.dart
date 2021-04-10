@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/services/auth.dart';
-import 'package:tester/Screens/signUp.dart';
+import 'package:tester/Screens/SignUp.dart';
 import 'package:tester/Screens/style.dart';
 
 class SignIn extends StatefulWidget {
