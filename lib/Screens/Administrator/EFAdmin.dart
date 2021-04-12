@@ -149,7 +149,7 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       children: [
                         Container(
                           child: Text(
-                            "Name of the form",
+                            "Infiltration",
                             style: TextStyle(
                                 fontSize: 30,
                                 color: Color(0xFF98D1D4),
@@ -172,8 +172,14 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                   questionType(
                       2, "Appropriate attire as described in Critical PPM"),
                   questionType(2, "Proper bench cleanliness"),
+                  questionType(1, "Tray organization"),
+                  questionType(1,
+                      "Understanding the indications, relevant anatomy, material selection, technique of procedure"),
+                  questionType(1, "With Staff"),
                   questionType(3,
                       "Benches & instrument cleanliness and waste disposals"),
+                  questionType(2,
+                      "Adherence to school’s ‘Code of Professional Conduct’"),
                   questionType(4, "Feedback"),
                   SizedBox(
                     height: 35,
