@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:async';
 
+import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
+
 class ScanQR extends StatefulWidget {
   State<StatefulWidget> createState() {
     return ScanQRState();
@@ -70,6 +72,15 @@ class ScanQRState extends State<ScanQR> {
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Color(0xFFD9D9D9),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                runApp(homepageAS());
+              },
+              color: Color(0xFF525151),
+              iconSize: 20,
+              padding: EdgeInsets.only(left: 20),
+            ),
             title: Text(
               "Scanner",
               style: TextStyle(

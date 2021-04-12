@@ -1,14 +1,9 @@
-import 'dart:io';
-
-import 'package:excel/excel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationform.dart';
 import 'package:tester/Screens/style.dart';
-import 'package:path/path.dart';
 
 class FormsAS extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -68,7 +63,7 @@ class FormsASState extends State<FormsAS> {
                       children: [
                         Container(
                           child: Text(
-                            "Name of the form",
+                            "Infiltration",
                             style: TextStyle(
                                 fontSize: 30,
                                 color: Color(0xFF98D1D4),
@@ -90,7 +85,29 @@ class FormsASState extends State<FormsAS> {
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
+                            labelText: "Evaluator Name"),
+                      )),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
                             labelText: "Student Name"),
+                      )),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Student ID"),
                       )),
                   Text("Section I",
                       style:
@@ -102,8 +119,14 @@ class FormsASState extends State<FormsAS> {
                   questionType(
                       2, "Appropriate attire as described in Critical PPM"),
                   questionType(2, "Proper bench cleanliness"),
+                  questionType(1, "Tray organization"),
+                  questionType(1,
+                      "Understanding the indications, relevant anatomy, material selection, technique of procedure"),
+                  questionType(1, "With Staff"),
                   questionType(3,
                       "Benches & instrument cleanliness and waste disposals"),
+                  questionType(2,
+                      "Adherence to school’s ‘Code of Professional Conduct’"),
                   questionType(4, "Feedback"),
                   SizedBox(
                     height: 35,
@@ -116,6 +139,11 @@ class FormsASState extends State<FormsAS> {
                   ),
                   sectionII("Preparation of armamentarium"),
                   sectionII("Syringe assembly for injection and aspiration"),
+                  sectionII("Operator & Manikin positions"),
+                  sectionII("Identification soft and hard tissue landmarks"),
+                  sectionII("Needle insertion point"),
+                  sectionII("Anatomy & injection procedure"),
+                  sectionII("Ability to assess success of anesthesia"),
                   SizedBox(
                     height: 5,
                   ),

@@ -45,9 +45,12 @@ class EvaluationFormsASState extends State<EvaluationFormsAS> {
           body: ListView(
             children: [
               Align(alignment: Alignment.center),
+              SizedBox(
+                height: 40,
+              ),
               CoursesButtons(
                 label: "Infiltration",
-                color: Colors.red,
+                color: Color(0xFF98D1D4),
                 onpressed: () {
                   runApp(MaterialApp(
                       debugShowCheckedModeBanner: false, home: FormsAS()));
@@ -78,48 +81,6 @@ class EvaluationFormsASState extends State<EvaluationFormsAS> {
                 },
               ),
               //تكملة الفورم من الداتا بيس
-              Container(
-                child: Row(
-                  children: [
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      child: Icon(
-                        Icons.circle,
-                        color: Color(0xFF98D1D4),
-                        size: 15,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Accomplished form",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                child: Row(
-                  children: [
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      child: Icon(
-                        Icons.circle,
-                        color: Colors.red,
-                        size: 15,
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Unaccomplished form",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    )
-                  ],
-                ),
-              ),
             ],
           ),
         ));

@@ -32,6 +32,15 @@ class CoursPageStudentState extends State<CoursPageStudent> {
                 ),
               ),
               centerTitle: true,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  runApp(HomeScreen(widget: HomePageStudent()));
+                },
+                color: Color(0xFF525151),
+                iconSize: 20,
+                padding: EdgeInsets.only(left: 20),
+              ),
             ),
             backgroundColor: Colors.white,
             body: ListView(children: [
@@ -106,7 +115,7 @@ class CoursStudentState extends State<CoursStudent> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
                 onPressed: () {
-                  runApp(HomeScreen(widget: CoursPageStudent()));
+                  runApp(CoursPageStudent());
                 },
                 color: Color(0xFF525151),
                 iconSize: 20,
