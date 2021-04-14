@@ -106,7 +106,7 @@ class CoursStudentState extends State<CoursStudent> {
             appBar: AppBar(
               backgroundColor: Color(0xFFD9D9D9),
               title: Text(
-                "Name of the course#",
+                "OMR 311",
                 style: TextStyle(
                   fontSize: 30,
                   color: Color(0xFF525151),
@@ -129,7 +129,7 @@ class CoursStudentState extends State<CoursStudent> {
               SizedBox(height: 50),
               Container(
                 child: Text(
-                  "Lab No.  ## ",
+                  "Lab No.  02 ",
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.grey,
@@ -140,7 +140,7 @@ class CoursStudentState extends State<CoursStudent> {
               SizedBox(height: 20),
               Container(
                 child: Text(
-                  "Clinc No.  ## ",
+                  "Clinc No.  01 ",
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.grey,

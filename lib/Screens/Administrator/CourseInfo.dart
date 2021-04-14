@@ -215,7 +215,7 @@ class _NewCourseState extends State<NewCourse> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(HomeScreen(widget: CourseAdmin()));
+                runApp(CourseAdmin());
               },
               color: Color(0xFF525151),
               iconSize: 20,
