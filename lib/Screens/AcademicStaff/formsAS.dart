@@ -63,7 +63,7 @@ class FormsASState extends State<FormsAS> {
                       children: [
                         Container(
                           child: Text(
-                            "Name of the form",
+                            "Infiltration",
                             style: TextStyle(
                                 fontSize: 30,
                                 color: Color(0xFF98D1D4),
@@ -85,7 +85,29 @@ class FormsASState extends State<FormsAS> {
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
+                            labelText: "Evaluator Name"),
+                      )),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
                             labelText: "Student Name"),
+                      )),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Student ID"),
                       )),
                   Text("Section I",
                       style:
@@ -97,8 +119,14 @@ class FormsASState extends State<FormsAS> {
                   questionType(
                       2, "Appropriate attire as described in Critical PPM"),
                   questionType(2, "Proper bench cleanliness"),
+                  questionType(1, "Tray organization"),
+                  questionType(1,
+                      "Understanding the indications, relevant anatomy, material selection, technique of procedure"),
+                  questionType(1, "With Staff"),
                   questionType(3,
                       "Benches & instrument cleanliness and waste disposals"),
+                  questionType(2,
+                      "Adherence to school’s ‘Code of Professional Conduct’"),
                   questionType(4, "Feedback"),
                   SizedBox(
                     height: 35,

@@ -16,9 +16,9 @@ class RequestsState extends State<Requests> {
   ];
 
   List idNumbers = [
-    "1234567",
-    "1234567",
-    "1234567",
+    "1707861",
+    "1708664",
+    "1708103",
   ];
 
   @override
@@ -90,8 +90,7 @@ class RequestsState extends State<Requests> {
                         Text(fullNames[index],
                             style:
                                 TextStyle(color: Colors.black, fontSize: 18)),
-                        Text("Student or Academic Staff",
-                            style: TextStyle(color: Colors.grey)),
+                        Text("Student", style: TextStyle(color: Colors.grey)),
                         Text(idNumbers[index],
                             style: TextStyle(color: Colors.grey)),
                       ],
