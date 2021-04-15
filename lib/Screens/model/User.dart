@@ -16,7 +16,7 @@ class User {
   final CollectionReference AcademicStaff =
       Firestore.instance.collection('academicStaff');
   final CollectionReference UserNew = Firestore.instance.collection('user');
-  final CollectionReference evaluationForm =
+  final CollectionReference evaluationForm1 =
       Firestore.instance.collection('omr312 PreClinc');
 
   User({this.uid, this.name, this.id, this.activate});
@@ -36,7 +36,7 @@ class User {
       'activate': 0,
       'position': position
     }));
-    await evaluationForm.document(uid).setData(({
+    await evaluationForm1.document(uid).setData(({
           'OMR312': 'OMR312',
           'Punctuality': 0,
           'Appropriate attire as described in ‘Critical PPM’': 0,
@@ -84,6 +84,7 @@ class User {
     });
   }
 
+  // ignore: non_constant_identifier_names
   Future AuthPage(String uid) async {
     try {
       Firestore.instance.collection('user').document(uid).get().then((value) {
@@ -106,11 +107,8 @@ class User {
   Future Bar(String Type) async {
     try {
       if (Type == '  Academic Staff') {
-        // BarPage('  Academic Staff');
       } else if (Type == '  Student') {
-        // BarPage('  Academic Staff');
       } else if (Type == 'Admin') {
-        // BarPage('  Academic Staff');
       }
     } catch (e) {
       print(e.toString());
@@ -119,6 +117,7 @@ class User {
   }
 
 // Change the active to 1
+  // ignore: non_constant_identifier_names
   Future Activate(String uid) async {
     try {
       Firestore.instance
@@ -130,6 +129,7 @@ class User {
       return null;
     }
   }
+
 
   //Stream<QuerySnapshot> get ActUser {
   //  return UserNew.snapshots();
@@ -150,6 +150,7 @@ class User {
       }
     });
   }
+
 
   /*List<User> _userList(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {

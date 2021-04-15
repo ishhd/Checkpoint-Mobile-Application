@@ -27,6 +27,7 @@ class AuthService {
   }
 
   //Sign in
+  // ignore: non_constant_identifier_names
   Future SignInProcess(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
