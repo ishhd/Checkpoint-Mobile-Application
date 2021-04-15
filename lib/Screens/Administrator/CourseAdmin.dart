@@ -60,7 +60,10 @@ class CourseAdminState extends State<CourseAdmin> {
                 color: Color(0xFF92D050),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CourseInfo()));
+                      debugShowCheckedModeBanner: false,
+                      home: CourseInfo(
+                        uid: '1TE8kE3GYaxKtJsFgSdR',
+                      )));
                 },
               ),
               CoursesButtons(
@@ -86,7 +89,8 @@ class CourseAdminState extends State<CourseAdmin> {
                 color: Color(0xFFF6CAAC),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CourseInfo()));
+                      debugShowCheckedModeBanner: false,
+                      home: CourseInfo(uid: '2IJMCEPsz6rUv1GtHi2q')));
                   // runApp(CourseInfo());
                 },
               ),

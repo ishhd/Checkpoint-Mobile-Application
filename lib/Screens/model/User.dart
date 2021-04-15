@@ -8,14 +8,18 @@ import 'package:tester/Screens/Student/homePageStudent.dart';
 class User {
   String error = '';
   String uid;
+  String name;
+  String id;
+  String activate;
+  var vv = [];
   final CollectionReference Student = Firestore.instance.collection('student');
   final CollectionReference AcademicStaff =
       Firestore.instance.collection('academicStaff');
   final CollectionReference UserNew = Firestore.instance.collection('user');
-  final CollectionReference evaluationForm =
-      Firestore.instance.collection('evaluationForm');
+  final CollectionReference evaluationForm1 =
+      Firestore.instance.collection('omr312 PreClinc');
 
-  User({this.uid});
+  User({this.uid, this.name, this.id, this.activate});
   /*Future<void> NewUser(
       String email, String password, String name, String id, String uid) async {
     return await ref.document(uid).setData(
@@ -32,7 +36,7 @@ class User {
       'activate': 0,
       'position': position
     }));
-    await evaluationForm.document(uid).setData(({
+    await evaluationForm1.document(uid).setData(({
           'OMR312': 'OMR312',
           'Punctuality': 0,
           'Appropriate attire as described in ‘Critical PPM’': 0,
@@ -80,6 +84,7 @@ class User {
     });
   }
 
+  // ignore: non_constant_identifier_names
   Future AuthPage(String uid) async {
     try {
       Firestore.instance.collection('user').document(uid).get().then((value) {
@@ -87,13 +92,10 @@ class User {
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
           runApp(HomeScreen(widget: homepageAS()));
-          Bar('  Academic Staff');
         } else if (userType == '  Student' && activate == 1) {
           runApp(HomeScreen(widget: HomePageStudent()));
-          Bar('  Student');
         } else if (userType == 'Admin') {
           runApp(HomeScreen(widget: homePageAdministrator()));
-          Bar('Admin');
         }
       });
     } catch (e) {
@@ -105,11 +107,8 @@ class User {
   Future Bar(String Type) async {
     try {
       if (Type == '  Academic Staff') {
-        // BarPage('  Academic Staff');
       } else if (Type == '  Student') {
-        // BarPage('  Academic Staff');
       } else if (Type == 'Admin') {
-        // BarPage('  Academic Staff');
       }
     } catch (e) {
       print(e.toString());
@@ -118,6 +117,7 @@ class User {
   }
 
 // Change the active to 1
+  // ignore: non_constant_identifier_names
   Future Activate(String uid) async {
     try {
       Firestore.instance
@@ -130,9 +130,10 @@ class User {
     }
   }
 
-  Stream<QuerySnapshot> get ActUser {
-    return UserNew.snapshots();
-  }
+
+  //Stream<QuerySnapshot> get ActUser {
+  //  return UserNew.snapshots();
+  //}
 
 // print user for activate
   Future PrintUs() async {
@@ -141,20 +142,29 @@ class User {
       var id = (value.data)['id'];
       var Activ = (value.data)['activate'];
       if (Activ == 0) {
-        print(Name && id);
-        return Name && id;
+        for (var i in vv) {
+          print(Name && id);
+        }
       } else {
         return 'There is no one';
       }
     });
   }
 
-  Stream<QuerySnapshot> get user {
+
+  /*List<User> _userList(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return User(
+          name: doc.data['name'] ?? ' ',
+          id: doc.data[id] ?? '',
+          activate: doc.data['activate']);
+    }).toList();
+  }*/
+
+  /* Stream<List<User>> get user {
     Firestore.instance.collection('user').document(uid).get().then((value) {
       var activate = (value.data)['activate'];
       if (activate == 0) {
-        return UserNew.snapshots();
-      }
-    });
-  }
+    return UserNew.snapshots().map(_userList);
+  }*/
 }
