@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseInfo.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 
 import '../style.dart';
 
@@ -25,6 +26,26 @@ class CourseAdminState extends State<CourseAdmin> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Color(0xFFD9D9D9),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  runApp(HomeScreen(widget: homePageAdministrator()));
+                },
+                color: Color(0xFF525151),
+                iconSize: 20,
+                padding: EdgeInsets.only(left: 20),
+              ),
+              title: Text(
+                "Courses",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Color(0xFF525151),
+                ),
+              ),
+              centerTitle: true,
+            ),
             drawerEnableOpenDragGesture: true,
             backgroundColor: Colors.white,
             body: ListView(key: _formkey, children: [
@@ -39,7 +60,10 @@ class CourseAdminState extends State<CourseAdmin> {
                 color: Color(0xFF92D050),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CourseInfo()));
+                      debugShowCheckedModeBanner: false,
+                      home: CourseInfo(
+                        uid: '1TE8kE3GYaxKtJsFgSdR',
+                      )));
                 },
               ),
               CoursesButtons(
@@ -65,7 +89,8 @@ class CourseAdminState extends State<CourseAdmin> {
                 color: Color(0xFFF6CAAC),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CourseInfo()));
+                      debugShowCheckedModeBanner: false,
+                      home: CourseInfo(uid: '2IJMCEPsz6rUv1GtHi2q')));
                   // runApp(CourseInfo());
                 },
               ),

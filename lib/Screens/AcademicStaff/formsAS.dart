@@ -1,14 +1,9 @@
-import 'dart:io';
-
-import 'package:excel/excel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
-import 'package:tester/Screens/model/evaluationform.dart';
+import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
 import 'package:tester/Screens/style.dart';
-import 'package:path/path.dart';
 
 class FormsAS extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -23,7 +18,13 @@ class FormsASState extends State<FormsAS> {
   int group3 = -1;
   int group = -1;
   String name = '';
+  String iname = '';
   String selfAssessmentP = '';
+  String selfAssessmentO = '';
+  String selfAssessmentI = '';
+  String selfAssessmentN = '';
+  String selfAssessmentA = '';
+  String selfAssessmentB = '';
   String instructorEvaluationP = '';
   String selfAssessmentS = '';
   String instructorEvaluationS = '';
@@ -68,7 +69,7 @@ class FormsASState extends State<FormsAS> {
                       children: [
                         Container(
                           child: Text(
-                            "Name of the form",
+                            "Infiltration",
                             style: TextStyle(
                                 fontSize: 30,
                                 color: Color(0xFF98D1D4),
@@ -86,11 +87,33 @@ class FormsASState extends State<FormsAS> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         onChanged: (val) {
+                          iname = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Evaluator Name"),
+                      )),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
                           name = val;
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: "Student Name"),
+                      )),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Student ID"),
                       )),
                   Text("Section I",
                       style:
@@ -102,8 +125,14 @@ class FormsASState extends State<FormsAS> {
                   questionType(
                       2, "Appropriate attire as described in Critical PPM"),
                   questionType(2, "Proper bench cleanliness"),
+                  questionType(1, "Tray organization"),
+                  questionType(1,
+                      "Understanding the indications, relevant anatomy, material selection, technique of procedure"),
+                  questionType(1, "With Staff"),
                   questionType(3,
                       "Benches & instrument cleanliness and waste disposals"),
+                  questionType(2,
+                      "Adherence to school’s ‘Code of Professional Conduct’"),
                   questionType(4, "Feedback"),
                   SizedBox(
                     height: 35,
@@ -116,6 +145,11 @@ class FormsASState extends State<FormsAS> {
                   ),
                   sectionII("Preparation of armamentarium"),
                   sectionII("Syringe assembly for injection and aspiration"),
+                  sectionII("Operator & Manikin positions"),
+                  sectionII("Identification soft and hard tissue landmarks"),
+                  sectionII("Needle insertion point"),
+                  sectionII("Anatomy & injection procedure"),
+                  sectionII("Ability to assess success of anesthesia"),
                   SizedBox(
                     height: 5,
                   ),
@@ -171,7 +205,7 @@ class FormsASState extends State<FormsAS> {
                                     child: new Text("Excel Sheet"),
                                     onPressed: () async {
                                       await http.get(
-                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=&&name5=&&name6=&&name7=&&name8=&&name9=$aplity&&name10=");
+                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=$selfAssessmentO&&name5=$selfAssessmentI&&name6=$selfAssessmentN&&name7=$selfAssessmentA&&name8=$selfAssessmentB&&name9=$aplity&&name10=$iname");
 
                                       Navigator.of(context).pop();
                                     },
@@ -227,7 +261,7 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group1,
                       onChanged: (T) {
                         evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                            .Punctuality('pPPyWG67qcg30OGyFb0nn4AiJ6X2', '1');
                         setState(() {
                           group1 = T;
                         });
@@ -428,8 +462,18 @@ class FormsASState extends State<FormsAS> {
                 });
                 if (question.contains("Preparation")) {
                   selfAssessmentP = value;
-                } else {
+                } else if (question.contains("Syringe")) {
                   selfAssessmentS = value;
+                } else if (question.contains("Operator")) {
+                  selfAssessmentO = value;
+                } else if (question.contains("Identification")) {
+                  selfAssessmentI = value;
+                } else if (question.contains("Needle")) {
+                  selfAssessmentN = value;
+                } else if (question.contains("Anatomy")) {
+                  selfAssessmentA = value;
+                } else {
+                  selfAssessmentB = value;
                 }
               },
               items: ['  0', '  1', '  2', '  NA'].map((value) {

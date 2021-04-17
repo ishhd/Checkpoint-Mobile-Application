@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -35,42 +36,64 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Scaffold(
-            backgroundColor: Colors.white,
-            body: Expanded(
-              child: ListView(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(alignment: Alignment.center),
-                    _contentWidget(),
-                    /*Container(
-                margin: EdgeInsets.only(bottom: 60),
-                child: Image.asset(''), //student qr code
-                width: 300,
-                height: 300,
-                color: Colors.grey[300]),*/
-                    SubmitButtons(
-                      text: "Download Image",
-                      onpressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: new Text("It downloaded successfully"),
-                              actions: <Widget>[
-                                new FlatButton(
-                                  child: new Text("OK"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+          appBar: AppBar(
+            backgroundColor: Color(0xFFD9D9D9),
+            title: Text(
+              "QR code",
+              style: TextStyle(
+                fontSize: 30,
+                color: Color(0xFF525151),
+              ),
+            ),
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                runApp(HomeScreen(widget: HomePageStudent()));
+              },
+              color: Color(0xFF525151),
+              iconSize: 20,
+              padding: EdgeInsets.only(left: 20),
+            ),
+          ),
+          backgroundColor: Colors.white,
+          body: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(alignment: Alignment.center),
+                //_contentWidget(),
+                SizedBox(
+                  height: 100,
+                ),
+                QrImage(
+                  data: "",
+                  size: 200,
+                ),
+
+                SubmitButtons(
+                  text: "Download Image",
+                  onpressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: new Text("Download QR code"),
+                          content: new Text("It has successfully downloaded"),
+                          actions: <Widget>[
+                            new FlatButton(
+                              child: new Text("Ok"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
                         );
                       },
-                    ),
-                  ]),
-            )));
+                    );
+                  },
+                ),
+              ]),
+        ));
   }
 
   Future<void> _captureAndSharePng() async {

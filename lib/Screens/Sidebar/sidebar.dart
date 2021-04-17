@@ -86,14 +86,14 @@ class _SideBarState extends State<SideBar>
                       ),
                       ListTile(
                         title: Text(
-                          "Name",
+                          "Hind",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                               fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          "Position",
+                          "Student",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -144,7 +144,7 @@ class _SideBarState extends State<SideBar>
                               (Route<dynamic> route) => false);
                         },
                       ),
-                      MenuItem(
+                      /*  MenuItem(
                         icon: Icons.archive,
                         title: "Requests",
                         onTap: () {
@@ -159,6 +159,7 @@ class _SideBarState extends State<SideBar>
                               (Route<dynamic> route) => false);
                         },
                       ),
+                      */
                       MenuItem(
                         icon: Icons.table_chart_sharp,
                         title: "Schedule",
@@ -173,10 +174,6 @@ class _SideBarState extends State<SideBar>
                               ),
                               (Route<dynamic> route) => false);
                         },
-                      ),
-                      MenuItem(
-                        icon: Icons.settings,
-                        title: "Settings",
                       ),
                       MenuItem(
                         icon: Icons.exit_to_app,

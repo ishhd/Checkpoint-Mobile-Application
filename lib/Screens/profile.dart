@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
@@ -5,12 +6,37 @@ import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/style.dart';
 
+final userRef = Firestore.instance.collection('user');
+
 class Profile extends StatefulWidget with NavigationStates {
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  String name = '';
+  String id = '';
+  String email = '';
+  String Position = '';
+
+  @override
+  void initState() {
+    getUser();
+    super.initState();
+  }
+
+  getUser() async {
+    final String uid = '4L4GSLTUJvPjZGiM8sN4JXh0qOt2';
+    final DocumentSnapshot doc =
+        await userRef.document(uid).get().then((value) {
+      name = (value.data)['name'];
+      id = (value.data)['id'];
+      email = (value.data)['email'];
+      Position = (value.data)['position'];
+    });
+    //name = doc.data as String;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,10 +92,10 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Maysaa "),
-              buildTextField("Id", "000012702"),
-              buildTextField("E-mail", "admin@gmail.com"),
-              buildTextField("Position", "Administarator"),
+              buildTextField("Full Name", name),
+              buildTextField("Id", id),
+              buildTextField("E-mail", email),
+              buildTextField("Position", Position),
               SizedBox(
                 height: 35,
               ),
@@ -96,6 +122,21 @@ class _ProfileState extends State<Profile> {
       margin: EdgeInsets.only(left: 30, right: 30),
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
+        onChanged: (val) {
+          setState(() => placeholder = val);
+          if (labelText == "Full Name") {
+            name = placeholder;
+          }
+          if (labelText == "Id") {
+            id = placeholder;
+          }
+          if (labelText == "E-mail") {
+            email = placeholder;
+          }
+          if (labelText == "Position") {
+            Position = placeholder;
+          }
+        },
         readOnly: true,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(bottom: 3),

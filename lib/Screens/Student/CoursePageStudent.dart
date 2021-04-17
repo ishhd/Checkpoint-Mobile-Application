@@ -32,6 +32,15 @@ class CoursPageStudentState extends State<CoursPageStudent> {
                 ),
               ),
               centerTitle: true,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  runApp(HomeScreen(widget: HomePageStudent()));
+                },
+                color: Color(0xFF525151),
+                iconSize: 20,
+                padding: EdgeInsets.only(left: 20),
+              ),
             ),
             backgroundColor: Colors.white,
             body: ListView(children: [
@@ -97,7 +106,7 @@ class CoursStudentState extends State<CoursStudent> {
             appBar: AppBar(
               backgroundColor: Color(0xFFD9D9D9),
               title: Text(
-                "Name of the course#",
+                "OMR 311",
                 style: TextStyle(
                   fontSize: 30,
                   color: Color(0xFF525151),
@@ -106,7 +115,7 @@ class CoursStudentState extends State<CoursStudent> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
                 onPressed: () {
-                  runApp(HomeScreen(widget: CoursPageStudent()));
+                  runApp(CoursPageStudent());
                 },
                 color: Color(0xFF525151),
                 iconSize: 20,
@@ -120,7 +129,7 @@ class CoursStudentState extends State<CoursStudent> {
               SizedBox(height: 50),
               Container(
                 child: Text(
-                  "Lab No.  ## ",
+                  "Lab No.  02 ",
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.grey,
@@ -131,7 +140,7 @@ class CoursStudentState extends State<CoursStudent> {
               SizedBox(height: 20),
               Container(
                 child: Text(
-                  "Clinc No.  ## ",
+                  "Clinc No.  01 ",
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.grey,
