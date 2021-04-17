@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
 import 'package:tester/Screens/Administrator/EFAdmin.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -45,7 +47,10 @@ class homePageAdministratorState extends State<homePageAdministrator> {
             MenuButtons(
               label: "Courses",
               onpressed: () {
-                runApp(CourseAdmin());
+                 runApp(CourseAdmin());
+                // runApp(Profile());
+               // runApp(Profile());
+                // _auth.prof();
               },
             ),
             MenuButtons(

@@ -4,6 +4,7 @@ import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 
 //Pages
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
+import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
 import 'package:tester/Screens/Administrator/EFAdmin.dart';
 import 'package:tester/Screens/Administrator/R.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Profile(),
+      home: SignIn(),
     );
   }
 }
