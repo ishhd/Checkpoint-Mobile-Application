@@ -105,7 +105,7 @@ class _SignInState extends State<SignIn> {
                                 setState(
                                     () => error = 'Check Your Input Again');
                               } else {
-                                //_auth.p();
+                                _auth.p();
                               }
                             }
                           }),
