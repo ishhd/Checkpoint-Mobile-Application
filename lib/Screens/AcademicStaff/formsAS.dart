@@ -102,6 +102,17 @@ class FormsASState extends State<FormsAS> {
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
+                            labelText: "Evaluator Name"),
+                      )),
+                  Container(
+                      height: 40,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        onChanged: (val) {
+                          name = val;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
                             labelText: "Student Name"),
                       )),
                   Container(
