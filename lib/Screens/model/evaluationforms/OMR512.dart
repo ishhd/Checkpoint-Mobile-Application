@@ -1,18 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class evaluationform {
+  //Q1
   Future Punctuality(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Punctuality': 1});
+            .updateData({'punctuality': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Punctuality': '2'});
+            .updateData({'punctuality': '2'});
       }
     } catch (e) {
       print(e.toString());
@@ -20,20 +21,15 @@ class evaluationform {
     }
   }
 
+  //Q2
   Future Appropriate(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
             .updateData(
-                {'Appropriate attire as described in ‘Critical PPM’': '1'});
-      } else if (value == '2') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData(
-                {'Appropriate attire as described in ‘Critical PPM’': '2'});
+                {'appropriate attire as described in ‘Critical PPM’': '1'});
       }
     } catch (e) {
       print(e.toString());
@@ -41,18 +37,14 @@ class evaluationform {
     }
   }
 
+  //Q3
   Future Proper(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Proper bench cleanliness': '1'});
-      } else if (value == '2') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Proper bench cleanliness': '2'});
+            .updateData({'proper bench cleanliness': '1'});
       }
     } catch (e) {
       print(e.toString());
@@ -60,18 +52,19 @@ class evaluationform {
     }
   }
 
-  Future bility(String uid, String value) async {
+  //Q4
+  Future Tray(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'bility to assess success of anesthesia': '1'});
+            .updateData({'tray organization': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'bility to assess success of anesthesia': '2'});
+            .updateData({'tray organization': '2'});
       }
     } catch (e) {
       print(e.toString());
@@ -79,18 +72,25 @@ class evaluationform {
     }
   }
 
-  Future Anatomy(String uid, String value) async {
+  //Q5
+  Future Understanding(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Anatomy & injection procedure': '1'});
+            .updateData({
+          'understanding the indications, relevant anatomy, material selection, technique of procedure':
+              '1'
+        });
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Anatomy & injection procedure': '2'});
+            .updateData({
+          'understanding the indications, relevant anatomy, material selection, technique of procedure':
+              '2'
+        });
       }
     } catch (e) {
       print(e.toString());
@@ -98,18 +98,19 @@ class evaluationform {
     }
   }
 
-  Future Needle(String uid, String value) async {
+  //Q6
+  Future WithStaff(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Needle insertion point': '1'});
+            .updateData({'with Staff': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Needle insertion point': '2'});
+            .updateData({'with Staff': '2'});
       }
     } catch (e) {
       print(e.toString());
@@ -117,18 +118,28 @@ class evaluationform {
     }
   }
 
-  Future Operator(String uid, String value) async {
+  //Q7
+  Future Benches(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Operator & Manikin positions': '1'});
+            .updateData(
+                {'benches & instrument cleanliness and waste disposals': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Operator & Manikin positions': '2'});
+            .updateData(
+                {'benches & instrument cleanliness and waste disposals': '2'});
+      } else if (value == 'NA/NO') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'benches & instrument cleanliness and waste disposals': 'NA/NO'
+        });
       }
     } catch (e) {
       print(e.toString());
@@ -136,47 +147,15 @@ class evaluationform {
     }
   }
 
-  Future Preparation(String uid, String value) async {
-    try {
-      if (value == '0') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Preparation of armamentarium': '0'});
-      } else if (value == '1') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Preparation of armamentarium': '1'});
-      } else if (value == '2') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Preparation of armamentarium': '2'});
-      } else if (value == 'NA') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Preparation of armamentarium': 'NA'});
-      }
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
-
-  Future Syringe(String uid, String value) async {
+  //Q8
+  Future Adherence(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Syringe assembly for injection and aspiration': '1'});
-      } else if (value == '2') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Syringe assembly for injection and aspiration': '2'});
+            .updateData(
+                {'adherence to school’s ‘Code of Professional Conduct’': '1'});
       }
     } catch (e) {
       print(e.toString());
@@ -184,68 +163,48 @@ class evaluationform {
     }
   }
 
-  Future Identification(String uid, String value) async {
-    try {
-      if (value == '1') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Identification soft and hard tissue landmarks': '1'});
-      } else if (value == '2') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Identification soft and hard tissue landmarks': '2'});
-      }
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
-
-  Future Student(String uid, String value) async {
-    try {
-      if (value == '1') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Student is defensive': '1'});
-      } else if (value == '2') {
-        Firestore.instance
-            .collection('evaluationForm')
-            .document(uid)
-            .updateData({'Student is defensive': '2'});
-      }
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
-
+  //Q9
   Future feedback(String uid, String value) async {
     try {
       Firestore.instance
-          .collection('evaluationForm')
+          .collection('omr312PreClinc')
           .document(uid)
-          .updateData({'Student is receptive	to	 feedback': value});
+          .updateData({'feedback': value});
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-  Future Above(String uid, String value) async {
+// II
+// Self Assessment
+// Q1
+  Future PreparationSA(String uid, String value) async {
     try {
-      if (value == '1') {
+      if (value == '0') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Above Expectation': '1'});
+            .updateData(
+                {'preparation of armamentarium / Self Assessment': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'preparation of armamentarium / Self Assessment': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Above Expectation': '2'});
+            .updateData(
+                {'preparation of armamentarium / Self Assessment': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'preparation of armamentarium / Self Assessment': 'NA'});
       }
     } catch (e) {
       print(e.toString());
@@ -253,18 +212,38 @@ class evaluationform {
     }
   }
 
-  Future Competent(String uid, String value) async {
+  //Q2
+  Future SyringeSA(String uid, String value) async {
     try {
-      if (value == '1') {
+      if (value == '0') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Competent': '1'});
+            .updateData({
+          'syringe assembly for injection and aspiration / Self Assessment': '0'
+        });
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'syringe assembly for injection and aspiration / Self Assessment': '1'
+        });
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Competent': '2'});
+            .updateData({
+          'syringe assembly for injection and aspiration / Self Assessment': '2'
+        });
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'syringe assembly for injection and aspiration / Self Assessment':
+              'NA'
+        });
       }
     } catch (e) {
       print(e.toString());
@@ -272,18 +251,463 @@ class evaluationform {
     }
   }
 
-  Future Needs(String uid, String value) async {
+//Q3
+  Future OperatorSA(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Self Assessment': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Self Assessment': '1'});
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Self Assessment': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Self Assessment': 'NA'});
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q4
+  Future IdentificationSA(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Self Assessment': '0'
+        });
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Self Assessment': '1'
+        });
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Self Assessment': '2'
+        });
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Self Assessment':
+              'NA'
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q5
+  Future NeedleSA(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({'needle insertion point / Self Assessment': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({'needle insertion point / Self Assessment': '1'});
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({'needle insertion point / Self Assessment': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({'needle insertion point / Self Assessment': 'NA'});
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q6
+  Future AnatomySA(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'anatomy & injection procedure / Self Assessment': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'anatomy & injection procedure / Self Assessment': '1'});
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'anatomy & injection procedure / Self Assessment': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'anatomy & injection procedure / Self Assessment': 'NA'});
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q7
+  Future abilitySA(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Self Assessment': '0'
+        });
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Self Assessment': '1'
+        });
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Self Assessment': '2'
+        });
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Self Assessment': 'NA'
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  // Instructor Evaluation
+// Q1
+  Future PreparationIE(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'preparation of armamentarium / Instructor Evaluation': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'preparation of armamentarium / Instructor Evaluation': '1'});
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'preparation of armamentarium / Instructor Evaluation': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'preparation of armamentarium / Instructor Evaluation': 'NA'});
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //Q2
+  Future SyringeIE(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'syringe assembly for injection and aspiration / Instructor Evaluation':
+              '0'
+        });
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'syringe assembly for injection and aspiration / Instructor Evaluation':
+              '1'
+        });
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'syringe assembly for injection and aspiration / Instructor Evaluation':
+              '2'
+        });
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'syringe assembly for injection and aspiration / Instructor Evaluation':
+              'NA'
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q3
+  Future OperatorIE(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Instructor Evaluation': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Instructor Evaluation': '1'});
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Instructor Evaluation': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'operator & Manikin positions / Instructor Evaluation': 'NA'});
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q4
+  Future IdentificationIE(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Instructor Evaluation':
+              '0'
+        });
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Instructor Evaluation':
+              '1'
+        });
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Instructor Evaluation':
+              '2'
+        });
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'identification soft and hard tissue landmarks / Instructor Evaluation':
+              'NA'
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q5
+  Future NeedleIE(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'needle insertion point / Instructor Evaluation': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'needle insertion point / Instructor Evaluation': '1'});
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'needle insertion point / Instructor Evaluation': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'needle insertion point / Instructor Evaluation': 'NA'});
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q6
+  Future AnatomyIE(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'anatomy & injection procedure / Instructor Evaluation': '0'});
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'anatomy & injection procedure / Instructor Evaluation': '1'});
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'anatomy & injection procedure / Instructor Evaluation': '2'});
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'anatomy & injection procedure / Instructor Evaluation': 'NA'
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//Q7
+  Future abilityIE(String uid, String value) async {
+    try {
+      if (value == '0') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Instructor Evaluation': '0'
+        });
+      } else if (value == '1') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Instructor Evaluation': '1'
+        });
+      } else if (value == '2') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Instructor Evaluation': '2'
+        });
+      } else if (value == 'NA') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData({
+          'ability to assess success of anesthesia / Instructor Evaluation':
+              'NA'
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //IV
+  Future overall(String uid, String value) async {
     try {
       if (value == '1') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Needs improvement': '1'});
+            .updateData(
+                {'student’s overall ability to perform the protective': '1'});
       } else if (value == '2') {
         Firestore.instance
-            .collection('evaluationForm')
+            .collection('omr312PreClinc')
             .document(uid)
-            .updateData({'Needs improvement': '2'});
+            .updateData(
+                {'student’s overall ability to perform the protective': '2'});
+      } else if (value == '3') {
+        Firestore.instance
+            .collection('omr312PreClinc')
+            .document(uid)
+            .updateData(
+                {'student’s overall ability to perform the protective': '3'});
       }
     } catch (e) {
       print(e.toString());

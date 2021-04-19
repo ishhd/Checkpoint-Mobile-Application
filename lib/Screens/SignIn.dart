@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/Administrator/AddAdmin.dart';
+import 'package:tester/Screens/model/User.dart';
+import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/SignUp.dart';
 import 'package:tester/Screens/style.dart';
@@ -18,13 +21,27 @@ class _SignInState extends State<SignIn> {
     super.initState();
   }
 
+  getUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await userRef.document(user.uid).get().then((value) {
+      var state = (value.data)['activate'];
+      if (state == 0) {
+        n = 1;
+      } else {
+        n = 0;
+      }
+    });
+  }
+
   final AuthService _auth = AuthService();
   final _formkey = GlobalKey<FormState>();
-
+  int n;
   String email = '';
   String password = '';
   String error = '';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -98,15 +115,23 @@ class _SignInState extends State<SignIn> {
                       SubmitButtons(
                           text: "Sign In",
                           onpressed: () async {
+                            getUser();
                             if (_formkey.currentState.validate()) {
                               dynamic result =
                                   await _auth.SignInProcess(email, password);
-                              if (result == null) {
+                              if (n == 1) {
+                                setState(() => error = 'Your Account on Hold');
+                              } else {
+                                setState(
+                                    () => error = 'Check Your Input Again');
+                              }
+                              /*  if (result == null) {
                                 setState(
                                     () => error = 'Check Your Input Again');
                               } else {
-                                _auth.p();
-                              }
+                                String n = User().state;
+                                setState(() => error = n);
+                              }*/
                             }
                           }),
                       Container(

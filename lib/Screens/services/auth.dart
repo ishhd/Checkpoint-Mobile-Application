@@ -93,7 +93,7 @@ class AuthService {
   }
 
   // get the information
-  Future RequstsActivate() async {
+ /* Future RequstsActivate() async {
     try {
       await User().PrintUs();
       return;
@@ -113,7 +113,7 @@ class AuthService {
       print(e.toString());
       return null;
     }
-  }
+  }*/
 
   Future signOut() async {
     try {
