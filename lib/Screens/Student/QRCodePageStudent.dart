@@ -57,41 +57,42 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
             ),
           ),
           backgroundColor: Colors.white,
-          /*body: Expanded(
-              child: ListView(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(alignment: Alignment.center),
-                    _contentWidget(),
-                    /*Container(
-                margin: EdgeInsets.only(bottom: 60),
-                child: Image.asset(''), //student qr code
-                width: 300,
-                height: 300,
-                color: Colors.grey[300]),*/
-                    SubmitButtons(
-                      text: "Download Image",
-                      onpressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: new Text("It downloaded successfully"),
-                              actions: <Widget>[
-                                new FlatButton(
-                                  child: new Text("OK"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+          body: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(alignment: Alignment.center),
+                //_contentWidget(),
+                SizedBox(
+                  height: 100,
+                ),
+                QrImage(
+                  data: "",
+                  size: 200,
+                ),
+
+                SubmitButtons(
+                  text: "Download Image",
+                  onpressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: new Text("Download QR code"),
+                          content: new Text("It has successfully downloaded"),
+                          actions: <Widget>[
+                            new FlatButton(
+                              child: new Text("Ok"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
                         );
                       },
-                    ),
-                  ]),
-            )*/
+                    );
+                  },
+                ),
+              ]),
         ));
   }
 

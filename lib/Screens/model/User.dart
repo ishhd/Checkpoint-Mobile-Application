@@ -85,23 +85,9 @@ class User {
   }
 
   // ignore: non_constant_identifier_names
-  Future<void> NewAdmin(
-      String email, String password, String name, String id, String uid) async {
-    await UserNew.document(uid).setData(({
-      'email': email,
-      'password': password,
-      'name': name,
-      'id': id,
-      'activate': 1,
-      'position': 'Admin'
-    }));
-  }
-
-  // ignore: non_constant_identifier_names
-  Future AuthPage(String uiid) async {
+  Future AuthPage(String uid) async {
     try {
-      uid = uiid;
-      Firestore.instance.collection('user').document(uiid).get().then((value) {
+      Firestore.instance.collection('user').document(uid).get().then((value) {
         var userType = (value.data)['position'];
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
@@ -118,9 +104,16 @@ class User {
     }
   }
 
-  Future Bar(String uid) async {
-   
-
+  Future Bar(String Type) async {
+    try {
+      if (Type == '  Academic Staff') {
+      } else if (Type == '  Student') {
+      } else if (Type == 'Admin') {
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 
 // Change the active to 1
@@ -136,6 +129,7 @@ class User {
       return null;
     }
   }
+
 
   //Stream<QuerySnapshot> get ActUser {
   //  return UserNew.snapshots();
@@ -157,6 +151,7 @@ class User {
     });
   }
 
+
   /*List<User> _userList(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return User(
@@ -172,18 +167,4 @@ class User {
       if (activate == 0) {
     return UserNew.snapshots().map(_userList);
   }*/
-
-  // ignore: non_constant_identifier_names
-  Future<void> UpdateAdmin(
-    String name,
-    String id,
-  ) async {
-    await Firestore.instance
-        .collection('user')
-        .document('4L4GSLTUJvPjZGiM8sN4JXh0qOt2')
-        .updateData({
-      'name': name,
-      'id': id,
-    });
-  }
 }
