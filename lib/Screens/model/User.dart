@@ -11,13 +11,18 @@ class User {
   String name;
   String id;
   String activate;
+  String state;
   var vv = [];
   final CollectionReference Student = Firestore.instance.collection('student');
   final CollectionReference AcademicStaff =
       Firestore.instance.collection('academicStaff');
   final CollectionReference UserNew = Firestore.instance.collection('user');
+  final CollectionReference Attendance =
+      Firestore.instance.collection('attendance');
+  final CollectionReference Delay = Firestore.instance.collection('Delay');
+
   final CollectionReference evaluationForm1 =
-      Firestore.instance.collection('omr312 PreClinc');
+      Firestore.instance.collection('omr312PreClinc');
 
   User({this.uid, this.name, this.id, this.activate});
   /*Future<void> NewUser(
@@ -28,6 +33,14 @@ class User {
 
   Future<void> NewStudent(String email, String password, String name, String id,
       String uid, int activate, String position) async {
+    await Attendance.document(uid).setData(({
+      'Name': 0,
+      'Absent': 0,
+    }));
+    await Delay.document(uid).setData(({
+      'Name': 0,
+      'Delayed': 0,
+    }));
     await UserNew.document(uid).setData(({
       'email': email,
       'password': password,
@@ -37,22 +50,37 @@ class User {
       'position': position
     }));
     await evaluationForm1.document(uid).setData(({
-          'OMR312': 'OMR312',
-          'Punctuality': 0,
-          'Appropriate attire as described in ‘Critical PPM’': 0,
-          'Proper bench cleanliness': 0,
-          'Ability to assess success of anesthesia': 0,
-          'Anatomy & injection procedure': 0,
-          'Needle insertion point': 0,
-          'Operator & Manikin positions': 0,
-          'Preparation of armamentarium': 0,
-          'Syringe assembly for injection and aspiration': 0,
-          'Identification soft and hard tissue landmarks': 0,
-          'Student is defensive': 0,
-          'Student is receptive	to	 feedback': 0,
-          'Above Expectation': 0,
-          'Competent': 0,
-          'Needs improvement': 0,
+          'courseName': 'OMR312',
+          'punctuality': 'Null',
+          'appropriate attire as described in ‘Critical PPM’': 'Null',
+          'proper bench cleanliness': 'Null',
+          'tray organization': 'Null',
+          'understanding the indications, relevant anatomy, material selection, technique of procedure':
+              'Null',
+          'with Staff': 'Null',
+          'benches & instrument cleanliness and waste disposals': 'Null',
+          'adherence to school’s ‘Code of Professional Conduct’': 'Null',
+          'feedback': 'Null',
+          'preparation of armamentarium / Self Assessment': 'Null',
+          'syringe assembly for injection and aspiration / Self Assessment':
+              'Null',
+          'operator & Manikin positions / Self Assessment': 'Null',
+          'identification soft and hard tissue landmarks / Self Assessment':
+              'Null',
+          'needle insertion point / Self Assessment': 'Null',
+          'anatomy & injection procedure / Self Assessment': 'Null',
+          'ability to assess success of anesthesia / Self Assessment': 'Null',
+          'preparation of armamentarium / Instructor Evaluation': 'Null',
+          'syringe assembly for injection and aspiration / Instructor Evaluation':
+              'Null',
+          'operator & Manikin positions / Instructor Evaluation': 'Null',
+          'identification soft and hard tissue landmarks / Instructor Evaluation':
+              'Null',
+          'needle insertion point / Instructor Evaluation': 'Null',
+          'anatomy & injection procedure / Instructor Evaluation': 'Null',
+          'ability to assess success of anesthesia / Instructor Evaluation':
+              'Null',
+          'student’s overall ability to perform the protective': 'Null',
         }));
     return await Student.document(uid).setData(({
       'email': email,
@@ -101,7 +129,11 @@ class User {
   Future AuthPage(String uiid) async {
     try {
       uid = uiid;
-      Firestore.instance.collection('user').document(uiid).get().then((value) {
+      await Firestore.instance
+          .collection('user')
+          .document(uiid)
+          .get()
+          .then((value) {
         var userType = (value.data)['position'];
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
@@ -110,6 +142,8 @@ class User {
           runApp(HomeScreen(widget: HomePageStudent()));
         } else if (userType == 'Admin') {
           runApp(HomeScreen(widget: homePageAdministrator()));
+        } else if (activate == 0) {
+          state = '1';
         }
       });
     } catch (e) {
@@ -118,9 +152,9 @@ class User {
     }
   }
 
-  Future Bar(String uid) async {
-   
-
+  Future status() async {
+    state = 'Your acccount into hold';
+    return state;
   }
 
 // Change the active to 1

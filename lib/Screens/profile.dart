@@ -22,7 +22,6 @@ class Profile extends StatefulWidget with NavigationStates {
 }
 
 class _ProfileState extends State<Profile> {
- 
   String name = '';
   String id = '';
   String email = '';

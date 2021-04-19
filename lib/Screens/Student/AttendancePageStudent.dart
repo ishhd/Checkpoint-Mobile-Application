@@ -1,8 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
+
+final AbsentRef = Firestore.instance.collection('absent');
+final DelayedRef = Firestore.instance.collection('delayed');
+
 
 class AttendancePageStudent extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -11,6 +18,29 @@ class AttendancePageStudent extends StatefulWidget {
 }
 
 class AttendancePageStudentState extends State<AttendancePageStudent> {
+  int Absent = 0;
+  int  Delayed= 0 ;
+  String name;
+  getAbsent( String coursName) async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await AbsentRef.document(user.uid).get().then((value) {
+      Absent = (value.data)[coursName];
+    });
+    //name = doc.data as String;
+  }
+
+  getDelayed(String coursName) async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await userRef.document(user.uid).get().then((value) {
+      Delayed = (value.data)[coursName];
+    });
+    //name = doc.data as String;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -74,7 +104,7 @@ class AttendancePageStudentState extends State<AttendancePageStudent> {
                   cells: <DataCell>[
                     DataCell(Text('OMR 312')),
                     DataCell(Text('')),
-                    DataCell(Text('')),
+                    DataCell(Text('') ),
                   ],
                 ),
                 DataRow(

@@ -5,6 +5,8 @@ import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
 import 'package:tester/Screens/style.dart';
 
+String uid = 'NtQTZ2dZp4e8WSZ9J1rYW1ugvyC3';
+
 class FormsAS extends StatefulWidget {
   State<StatefulWidget> createState() {
     return FormsASState();
@@ -115,19 +117,25 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 5,
                   ),
-                  questionType(1, "Punctuality"),
+                  questionType(1, "Punctuality", 1),
                   questionType(
-                      2, "Appropriate attire as described in Critical PPM"),
-                  questionType(2, "Proper bench cleanliness"),
-                  questionType(1, "Tray organization"),
-                  questionType(1,
-                      "Understanding the indications, relevant anatomy, material selection, technique of procedure"),
-                  questionType(1, "With Staff"),
-                  questionType(3,
-                      "Benches & instrument cleanliness and waste disposals"),
-                  questionType(2,
-                      "Adherence to school’s ‘Code of Professional Conduct’"),
-                  questionType(4, "Feedback"),
+                      2, "Appropriate attire as described in Critical PPM", 2),
+                  questionType(2, "Proper bench cleanliness", 3),
+                  questionType(1, "Tray organization", 4),
+                  questionType(
+                      1,
+                      "Understanding the indications, relevant anatomy, material selection, technique of procedure",
+                      5),
+                  questionType(1, "With Staff", 6),
+                  questionType(
+                      3,
+                      "Benches & instrument cleanliness and waste disposals",
+                      7),
+                  questionType(
+                      2,
+                      "Adherence to school’s ‘Code of Professional Conduct’",
+                      8),
+                  questionType(4, "Feedback", 9),
                   SizedBox(
                     height: 35,
                   ),
@@ -137,13 +145,13 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 5,
                   ),
-                  sectionII("Preparation of armamentarium"),
-                  sectionII("Syringe assembly for injection and aspiration"),
-                  sectionII("Operator & Manikin positions"),
-                  sectionII("Identification soft and hard tissue landmarks"),
-                  sectionII("Needle insertion point"),
-                  sectionII("Anatomy & injection procedure"),
-                  sectionII("Ability to assess success of anesthesia"),
+                  sectionII("Preparation of armamentarium", 1),
+                  sectionII("Syringe assembly for injection and aspiration", 2),
+                  sectionII("Operator & Manikin positions", 3),
+                  sectionII("Identification soft and hard tissue landmarks", 4),
+                  sectionII("Needle insertion point", 5),
+                  sectionII("Anatomy & injection procedure", 6),
+                  sectionII("Ability to assess success of anesthesia", 7),
                   SizedBox(
                     height: 5,
                   ),
@@ -228,7 +236,7 @@ class FormsASState extends State<FormsAS> {
         ));
   }
 
-  Widget questionType(int questiontype, String question) {
+  Widget questionType(int questiontype, String question, int questionNumber) {
     String questionStr = question;
     int questiontypeint = questiontype;
 
@@ -254,8 +262,15 @@ class FormsASState extends State<FormsAS> {
                       value: 1,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('pPPyWG67qcg30OGyFb0nn4AiJ6X2', '1');
+                        if (questionNumber == 1) {
+                          evaluationform().Punctuality(uid, '1');
+                        } else if (questionNumber == 4) {
+                          evaluationform().Tray(uid, '1');
+                        } else if (questionNumber == 5) {
+                          evaluationform().Understanding(uid, '1');
+                        } else if (questionNumber == 6) {
+                          evaluationform().WithStaff(uid, '1');
+                        }
                         setState(() {
                           group1 = T;
                         });
@@ -269,8 +284,15 @@ class FormsASState extends State<FormsAS> {
                       value: 2,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '2');
+                        if (questionNumber == 1) {
+                          evaluationform().Punctuality(uid, '2');
+                        } else if (questionNumber == 4) {
+                          evaluationform().Tray(uid, '2');
+                        } else if (questionNumber == 5) {
+                          evaluationform().Understanding(uid, '2');
+                        } else if (questionNumber == 6) {
+                          evaluationform().WithStaff(uid, '2');
+                        }
                         setState(() {
                           group1 = T;
                         });
@@ -310,8 +332,13 @@ class FormsASState extends State<FormsAS> {
                       value: 1,
                       groupValue: group2,
                       onChanged: (T) {
-                        evaluationform()
-                            .Appropriate('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                        if (questionNumber == 2) {
+                          evaluationform().Appropriate(uid, '1');
+                        } else if (questionNumber == 3) {
+                          evaluationform().Proper(uid, '1');
+                        } else if (questionNumber == 3) {
+                          evaluationform().Adherence(uid, '1');
+                        }
                         setState(() {
                           group2 = T;
                         });
@@ -349,6 +376,9 @@ class FormsASState extends State<FormsAS> {
                       value: 1,
                       groupValue: group3,
                       onChanged: (T) {
+                        if (questionNumber == 7) {
+                          evaluationform().Benches(uid, '1');
+                        }
                         setState(() {
                           group3 = T;
                         });
@@ -363,6 +393,9 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group3,
                       onChanged: (T) {
                         setState(() {
+                          if (questionNumber == 7) {
+                            evaluationform().Benches(uid, '2');
+                          }
                           group3 = T;
                         });
                       },
@@ -376,6 +409,9 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group3,
                       onChanged: (T) {
                         setState(() {
+                          if (questionNumber == 7) {
+                            evaluationform().Benches(uid, 'NA/NO');
+                          }
                           group3 = T;
                         });
                       },
@@ -409,8 +445,7 @@ class FormsASState extends State<FormsAS> {
               margin: EdgeInsets.only(top: 20),
               child: TextFormField(
                 onChanged: (val) {
-                  evaluationform()
-                      .feedback('07Pgmy307rU1i1SpzQGh053TtTB3', val);
+                  evaluationform().feedback(uid, val);
                 },
                 maxLines: 8,
                 decoration: InputDecoration(
@@ -426,7 +461,7 @@ class FormsASState extends State<FormsAS> {
     }
   }
 
-  Widget sectionII(String question) {
+  Widget sectionII(String question, int questionNumber) {
     String selfAssessment;
     String instructorEvaluation;
 
@@ -449,11 +484,24 @@ class FormsASState extends State<FormsAS> {
               validator: (value) =>
                   value.isEmpty ? 'Choose the Position Please' : null,
               onChanged: (value) {
-                evaluationform()
-                    .feedback('07Pgmy307rU1i1SpzQGh053TtTB3', value);
                 setState(() {
                   selfAssessment = value;
                 });
+                if (questionNumber == 1) {
+                  evaluationform().PreparationSA(uid, selfAssessment);
+                } else if (questionNumber == 2) {
+                  evaluationform().SyringeSA(uid, selfAssessment);
+                } else if (questionNumber == 3) {
+                  evaluationform().OperatorSA(uid, selfAssessment);
+                } else if (questionNumber == 4) {
+                  evaluationform().IdentificationSA(uid, selfAssessment);
+                } else if (questionNumber == 5) {
+                  evaluationform().NeedleSA(uid, selfAssessment);
+                } else if (questionNumber == 6) {
+                  evaluationform().AnatomySA(uid, selfAssessment);
+                } else if (questionNumber == 7) {
+                  evaluationform().abilitySA(uid, selfAssessment);
+                }
                 if (question.contains("Preparation")) {
                   selfAssessmentP = value;
                 } else {
@@ -486,6 +534,21 @@ class FormsASState extends State<FormsAS> {
               setState(() {
                 instructorEvaluation = value;
               });
+              if (questionNumber == 1) {
+                evaluationform().PreparationIE(uid, value);
+              } else if (questionNumber == 2) {
+                evaluationform().SyringeIE(uid, value);
+              } else if (questionNumber == 3) {
+                evaluationform().OperatorIE(uid, value);
+              } else if (questionNumber == 4) {
+                evaluationform().IdentificationIE(uid, value);
+              } else if (questionNumber == 5) {
+                evaluationform().NeedleIE(uid, value);
+              } else if (questionNumber == 6) {
+                evaluationform().AnatomyIE(uid, value);
+              } else if (questionNumber == 7) {
+                evaluationform().abilityIE(uid, value);
+              }
               if (question.contains("Preparation")) {
                 instructorEvaluationP = value;
               } else {
@@ -525,6 +588,7 @@ class FormsASState extends State<FormsAS> {
                   value: 1,
                   groupValue: group,
                   onChanged: (T) {
+                    evaluationform().overall(uid, '1');
                     setState(() {
                       group = T;
                     });
@@ -539,6 +603,8 @@ class FormsASState extends State<FormsAS> {
                   value: 2,
                   groupValue: group,
                   onChanged: (T) {
+                    evaluationform().overall(uid, '2');
+
                     setState(() {
                       group = T;
                     });
@@ -553,6 +619,7 @@ class FormsASState extends State<FormsAS> {
                   value: 3,
                   groupValue: group,
                   onChanged: (T) {
+                    evaluationform().overall(uid, '3');
                     setState(() {
                       group = T;
                     });

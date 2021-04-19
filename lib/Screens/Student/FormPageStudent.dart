@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
+import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
+
+final EFRef = Firestore.instance.collection('omr312 PreClinc');
+String uid = 'NtQTZ2dZp4e8WSZ9J1rYW1ugvyC3';
 
 class FormPageStudent extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -10,6 +16,22 @@ class FormPageStudent extends StatefulWidget {
 }
 
 class FormPageStudentState extends State<FormPageStudent> {
+  String name;
+  String id;
+  String Q1;
+
+  getUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await EFRef.document(user.uid).get().then((value) {
+      name = (value.data)['name'];
+      id = (value.data)['id'];
+    });
+    //name = doc.data as String;
+  }
+
   // This widget is the root of your application.
   int group1 = -1;
   int group2 = -1;
@@ -74,19 +96,25 @@ class FormPageStudentState extends State<FormPageStudent> {
                   SizedBox(
                     height: 5,
                   ),
-                  questionType(1, "Punctuality"),
+                  questionType(1, "Punctuality", 1),
                   questionType(
-                      2, "Appropriate attire as described in Critical PPM"),
-                  questionType(2, "Proper bench cleanliness"),
-                  questionType(1, "Tray organization"),
-                  questionType(1,
-                      "Understanding the indications, relevant anatomy, material selection, technique of procedure"),
-                  questionType(1, "With Staff"),
-                  questionType(3,
-                      "Benches & instrument cleanliness and waste disposals"),
-                  questionType(2,
-                      "Adherence to school’s ‘Code of Professional Conduct’"),
-                  questionType(4, "Feedback"),
+                      2, "Appropriate attire as described in Critical PPM", 2),
+                  questionType(2, "Proper bench cleanliness", 3),
+                  questionType(1, "Tray organization", 4),
+                  questionType(
+                      1,
+                      "Understanding the indications, relevant anatomy, material selection, technique of procedure",
+                      5),
+                  questionType(1, "With Staff", 6),
+                  questionType(
+                      3,
+                      "Benches & instrument cleanliness and waste disposals",
+                      7),
+                  questionType(
+                      2,
+                      "Adherence to school’s ‘Code of Professional Conduct’",
+                      8),
+                  questionType(4, "Feedback", 9),
                   SizedBox(
                     height: 35,
                   ),
@@ -118,7 +146,7 @@ class FormPageStudentState extends State<FormPageStudent> {
         ));
   }
 
-  Widget questionType(int questiontype, String question) {
+  Widget questionType(int questiontype, String question, int questionNumber) {
     String questionStr = question;
     int questiontypeint = questiontype;
 
@@ -144,8 +172,16 @@ class FormPageStudentState extends State<FormPageStudent> {
                       value: 1,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                        if (questionNumber == 2) {
+                          evaluationform()
+                              .Appropriate('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                        } else if (questionNumber == 3) {
+                          evaluationform()
+                              .Proper('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                        } else if (questionNumber == 3) {
+                          evaluationform()
+                              .Adherence('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                        }
                         setState(() {
                           group1 = T;
                         });
@@ -159,8 +195,6 @@ class FormPageStudentState extends State<FormPageStudent> {
                       value: 2,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '2');
                         setState(() {
                           group1 = T;
                         });
@@ -201,7 +235,7 @@ class FormPageStudentState extends State<FormPageStudent> {
                       groupValue: group2,
                       onChanged: (T) {
                         evaluationform()
-                            .Appropriate('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                            .Appropriate(uid, '1');
                         setState(() {
                           group2 = T;
                         });
