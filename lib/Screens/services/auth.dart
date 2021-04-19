@@ -1,25 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tester/Screens/Administrator/AddAdmin.dart';
-import 'package:tester/Screens/Sidebar/sidebar.dart';
 import 'package:tester/Screens/SignIn.dart';
 import 'package:tester/Screens/model/User.dart';
-import 'package:tester/Screens/profile.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   //creat user object
   User _userFromFire(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
-  }
-
-  Future getCurrent() async {
-    FirebaseUser result = (await _auth.currentUser());
-    return result.uid;
-    //  String uid = user.uid;
-    // return uid;
-    //return currentUser.uid;
-    //return (await _auth.currentUser()).uid;
   }
 
   Future signInAnon() async {
@@ -44,9 +33,6 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
-      //await Profile(
-      // uid: user.uid,
-      //);
       await User().AuthPage(user.uid);
 
       //return _userFromFire(user);
@@ -94,31 +80,20 @@ class AuthService {
     }
   }
 
-  // ignore: non_constant_identifier_names
-  Future AddNewAdmin(
-    String email,
-    String password,
-    String name,
-    String id,
-  ) async {
+  Future p() async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      FirebaseUser user = result.user;
-      await User().NewAdmin(email, password, name, id, user.uid);
+      FirebaseUser user;
+      await User().AuthPage(user.uid);
+      print(user);
+      return user;
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-  Future prof() {
-    FirebaseUser user;
-    // runApp(Profile(uid: user.uid));
-  }
-
   // get the information
-  Future RequstsActivate() async {
+ /* Future RequstsActivate() async {
     try {
       await User().PrintUs();
       return;
@@ -138,7 +113,7 @@ class AuthService {
       print(e.toString());
       return null;
     }
-  }
+  }*/
 
   Future signOut() async {
     try {

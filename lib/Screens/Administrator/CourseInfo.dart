@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
@@ -7,34 +6,16 @@ import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/model/Courses.dart';
 import 'package:tester/Screens/style.dart';
 
-final coursRef = Firestore.instance.collection('courses');
-
 class CourseInfo extends StatefulWidget with NavigationStates {
-  final String uid;
+ final String uid;
   const CourseInfo({this.uid});
   @override
   _CourseInfoState createState() => _CourseInfoState();
 }
 
 class _CourseInfoState extends State<CourseInfo> {
-  Future getCourse() async {
-    final DocumentSnapshot doc =
-        // ignore: missing_return
-        await coursRef.document(widget.uid).get().then((value) {
-      courseCode = (value.data)['courseCode'];
-      courseName = (value.data)['courseName'];
-      credietHours = (value.data)['credietHours'];
-      examFormCE = (value.data)['examFormCE'];
-      practical = (value.data)['practical'];
-      no = (value.data)['no'];
-      semester = (value.data)['semester'];
-      year = (value.data)['year'];
-      evaluationFormMPE = (value.data)['evaluationFormMPE'];
-    });
-    //name = doc.data as String;
-  }
-
-  /*String courseCode = 'OMR 312';
+ 
+  String courseCode = 'OMR 312';
   String courseName = "Pain Control";
   String credietHours = '';
   String evaluationFormMPE =
@@ -43,21 +24,9 @@ class _CourseInfoState extends State<CourseInfo> {
   String practical = "1st Semester: Phantom Lab";
   String no = "2";
   String semester = "One year (1st/2nd)";
-  String year = "3";*/
-
-  String courseCode = '';
-  String courseName = "";
-  String credietHours = '';
-  String evaluationFormMPE = "";
-  String examFormCE = "";
-  String practical = "";
-  String no = "";
-  String semester = "";
-  String year = "";
-
+  String year = "3";
   @override
   Widget build(BuildContext context) {
-    getCourse();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -94,7 +63,7 @@ class _CourseInfoState extends State<CourseInfo> {
                       children: [
                         Container(
                           child: Text(
-                            courseCode,
+                            "OMR 312",
                             style: TextStyle(
                                 fontSize: 30,
                                 color: Color(0xFF98D1D4),
@@ -128,17 +97,6 @@ class _CourseInfoState extends State<CourseInfo> {
                       SubmitButtons(
                         text: "Save",
                         onpressed: () {
-                          UpdateCourses().EditCoursDB(
-                              widget.uid,
-                              courseCode,
-                              courseName,
-                              credietHours,
-                              evaluationFormMPE,
-                              examFormCE,
-                              practical,
-                              no,
-                              semester,
-                              year);
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -151,7 +109,7 @@ class _CourseInfoState extends State<CourseInfo> {
                                     child: new Text("Yes"),
                                     onPressed: () {
                                       Navigator.of(context).pop();
-                                      //UpdateCourseInfo();
+                                      UpdateCourseInfo();
                                     },
                                   ),
                                   new FlatButton(
@@ -210,7 +168,7 @@ class _CourseInfoState extends State<CourseInfo> {
 
   UpdateCourseInfo() {
     UpdateCourses().EditCoursDB(
-        widget.uid,
+        'ed18v5ilOAKxrZGqSSZF',
         courseCode,
         courseName,
         credietHours,
@@ -324,7 +282,7 @@ class _NewCourseState extends State<NewCourse> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(HomeScreen(widget: CourseAdmin()));
+                runApp(CourseAdmin());
               },
               color: Color(0xFF525151),
               iconSize: 20,

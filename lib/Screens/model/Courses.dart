@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UpdateCourses {
+
+
   // ignore: non_constant_identifier_names
   Future EditCoursDB(
       String uid,

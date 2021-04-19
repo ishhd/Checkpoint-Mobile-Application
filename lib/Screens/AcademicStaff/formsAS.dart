@@ -20,7 +20,13 @@ class FormsASState extends State<FormsAS> {
   int group3 = -1;
   int group = -1;
   String name = '';
+  String iname = '';
   String selfAssessmentP = '';
+  String selfAssessmentO = '';
+  String selfAssessmentI = '';
+  String selfAssessmentN = '';
+  String selfAssessmentA = '';
+  String selfAssessmentB = '';
   String instructorEvaluationP = '';
   String selfAssessmentS = '';
   String instructorEvaluationS = '';
@@ -83,7 +89,7 @@ class FormsASState extends State<FormsAS> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         onChanged: (val) {
-                          name = val;
+                          iname = val;
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -207,7 +213,7 @@ class FormsASState extends State<FormsAS> {
                                     child: new Text("Excel Sheet"),
                                     onPressed: () async {
                                       await http.get(
-                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=&&name5=&&name6=&&name7=&&name8=&&name9=$aplity&&name10=");
+                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=$selfAssessmentO&&name5=$selfAssessmentI&&name6=$selfAssessmentN&&name7=$selfAssessmentA&&name8=$selfAssessmentB&&name9=$aplity&&name10=$iname");
 
                                       Navigator.of(context).pop();
                                     },
@@ -504,8 +510,18 @@ class FormsASState extends State<FormsAS> {
                 }
                 if (question.contains("Preparation")) {
                   selfAssessmentP = value;
-                } else {
+                } else if (question.contains("Syringe")) {
                   selfAssessmentS = value;
+                } else if (question.contains("Operator")) {
+                  selfAssessmentO = value;
+                } else if (question.contains("Identification")) {
+                  selfAssessmentI = value;
+                } else if (question.contains("Needle")) {
+                  selfAssessmentN = value;
+                } else if (question.contains("Anatomy")) {
+                  selfAssessmentA = value;
+                } else {
+                  selfAssessmentB = value;
                 }
               },
               items: ['  0', '  1', '  2', '  NA'].map((value) {

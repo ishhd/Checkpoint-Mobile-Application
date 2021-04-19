@@ -1,28 +1,17 @@
 import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/Requests.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/SignIn.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
-import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/services/auth.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import '../Sidebar/menu_item.dart';
-
-final AuthService _auth = AuthService();
-String position;
-String name;
-
-//User currentUser;
-//String uid = currentUser.uid;
 
 class SideBar extends StatefulWidget {
   @override
@@ -45,17 +34,6 @@ class _SideBarState extends State<SideBar>
     isSidebarOpenedStreamController = PublishSubject<bool>();
     isSidebarOpenedStream = isSidebarOpenedStreamController.stream;
     isSidebarOpenedSink = isSidebarOpenedStreamController.sink;
-  }
-
-  getUser() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-
-    final DocumentSnapshot doc =
-        // ignore: missing_return
-        await userRef.document(user.uid).get().then((value) {
-      position = (value.data)['position'];
-      name = (value.data)['name'];
-    });
   }
 
   @override
@@ -81,7 +59,6 @@ class _SideBarState extends State<SideBar>
 
   @override
   Widget build(BuildContext context) {
-    getUser();
     final AuthService _auth = AuthService();
 
     final screenWidth = MediaQuery.of(context).size.width;
@@ -109,14 +86,14 @@ class _SideBarState extends State<SideBar>
                       ),
                       ListTile(
                         title: Text(
-                          name,
+                          "Hind",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                               fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          position,
+                          "Student",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -141,38 +118,15 @@ class _SideBarState extends State<SideBar>
                         icon: Icons.home,
                         title: "Home",
                         onTap: () {
-                          getUser();
-                          if (position == 'Admin') {
-                            onIconPressed();
+                          onIconPressed();
 
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeScreen(
-                                      widget: homePageAdministrator()),
-                                ),
-                                (Route<dynamic> route) => true);
-                          } else if (position == '  Academic Staff') {
-                            onIconPressed();
-
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreen(widget: homepageAS()),
-                                ),
-                                (Route<dynamic> route) => true);
-                          } else if (position == '  Student') {
-                            onIconPressed();
-
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreen(widget: HomePageStudent()),
-                                ),
-                                (Route<dynamic> route) => true);
-                          }
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(widget: homePageAdministrator()),
+                              ),
+                              (Route<dynamic> route) => true);
                         },
                       ),
                       MenuItem(
@@ -190,22 +144,22 @@ class _SideBarState extends State<SideBar>
                               (Route<dynamic> route) => false);
                         },
                       ),
-                      if (position == 'Admin')
-                        MenuItem(
-                          icon: Icons.archive,
-                          title: "Requests",
-                          onTap: () {
-                            onIconPressed();
+                      /*  MenuItem(
+                        icon: Icons.archive,
+                        title: "Requests",
+                        onTap: () {
+                          onIconPressed();
 
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreen(widget: Requests()),
-                                ),
-                                (Route<dynamic> route) => false);
-                          },
-                        ),
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(widget: Requests()),
+                              ),
+                              (Route<dynamic> route) => false);
+                        },
+                      ),
+                      */
                       MenuItem(
                         icon: Icons.table_chart_sharp,
                         title: "Schedule",

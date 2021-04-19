@@ -6,6 +6,7 @@ import 'package:tester/Screens/AcademicStaff/ReportAS.dart';
 import 'package:tester/Screens/AcademicStaff/ScanQR.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/style.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class homepageAS extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -65,9 +66,13 @@ class homepageASState extends State<homepageAS> {
               ),
               MenuButtons(
                 label: "Courses Report",
-                onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: ReportAS()));
+                onpressed: () async {
+                  const url =
+                      "https://docs.google.com/spreadsheets/d/1dW6QVkpNbP7shsWW4OKKIw2LD4Dw_9JRNAScTLyZ4lw/edit#gid=0";
+                  if (await canLaunch(url))
+                    await launch(url);
+                  else
+                    await launch(url, forceWebView: true);
                 },
               )
             ],
