@@ -1,14 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
+import 'package:tester/Screens/Sidebar/sidebar.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/model/User.dart';
+import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/style.dart';
 
 final userRef = Firestore.instance.collection('user');
+//FirebaseUser user;
+final AuthService _auth = AuthService();
 
 class Profile extends StatefulWidget with NavigationStates {
+  //final String uid;
+  //const Profile({this.uid});
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -18,17 +26,26 @@ class _ProfileState extends State<Profile> {
   String id = '';
   String email = '';
   String Position = '';
-
+  //String uid = _auth.getCurrent()
   @override
-  void initState() {
+  /*void initState() {
     getUser();
     super.initState();
-  }
+  }*/
 
   getUser() async {
-    final String uid = '4L4GSLTUJvPjZGiM8sN4JXh0qOt2';
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    /*FutureBuilder(
+        future: Provider.of(context).noSuchMethod(_auth.getCurrent()),
+        builder: (context, snapshot) {
+          return Text("${snapshot.data}");
+        }); */
+    // String uid = _auth.getCurrent() as String;
+    //  print(uid);
+    //String uid = user.uid;
     final DocumentSnapshot doc =
-        await userRef.document(uid).get().then((value) {
+        // ignore: missing_return
+        await userRef.document(user.uid).get().then((value) {
       name = (value.data)['name'];
       id = (value.data)['id'];
       email = (value.data)['email'];
@@ -39,6 +56,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    getUser();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFD9D9D9),
@@ -99,14 +117,14 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: 35,
               ),
-              //if (User== admin)
-              SubmitButtons(
-                text: "Add another admin",
-                onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: AddAdmin()));
-                },
-              ),
+              if (Position == 'Admin')
+                SubmitButtons(
+                  text: "Add another admin",
+                  onpressed: () {
+                    runApp(MaterialApp(
+                        debugShowCheckedModeBanner: false, home: AddAdmin()));
+                  },
+                ),
               SizedBox(
                 height: 35,
               ),

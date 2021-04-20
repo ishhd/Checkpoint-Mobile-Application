@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:tester/Screens/profile.dart';
+import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/style.dart';
+
+final userRef = Firestore.instance.collection('user');
 
 class AddAdmin extends StatefulWidget with NavigationStates {
   @override
@@ -11,6 +15,13 @@ class AddAdmin extends StatefulWidget with NavigationStates {
 }
 
 class _AddAdminState extends State<AddAdmin> {
+  String name = '';
+  String id = '';
+  String email = '';
+  String password = '';
+  final AuthService _auth = AuthService();
+  String error = '';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -76,9 +87,10 @@ class _AddAdminState extends State<AddAdmin> {
                   SizedBox(
                     height: 35,
                   ),
-                  buildTextField("Full Name", ""),
-                  buildTextField("Id", ""),
-                  buildTextField("E-mail", ""),
+                  buildTextField("Full Name", name),
+                  buildTextField("Id", id),
+                  buildTextField("E-mail", email),
+                  buildTextField("Password", password),
                   SizedBox(
                     height: 35,
                   ),
@@ -97,6 +109,7 @@ class _AddAdminState extends State<AddAdmin> {
                                 child: new Text("Yes"),
                                 onPressed: () {
                                   Navigator.of(context).pop();
+                                  creatUserAdmin();
                                 },
                               ),
                               new FlatButton(
@@ -118,11 +131,34 @@ class _AddAdminState extends State<AddAdmin> {
         ));
   }
 
+  void creatUserAdmin() async {
+    dynamic result = await _auth.AddNewAdmin(email, password, name, id);
+
+    if (result == null) {
+      setState(() => error = 'Check Your Input Again');
+    } else {}
+  }
+
   Widget buildTextField(String labelText, String placeholder) {
     return Container(
       margin: EdgeInsets.only(left: 30, right: 30),
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
+        onChanged: (val) {
+          setState(() => placeholder = val);
+          if (labelText == "Full Name") {
+            name = placeholder;
+          }
+          if (labelText == "Id") {
+            id = placeholder;
+          }
+          if (labelText == "E-mail") {
+            email = placeholder;
+          }
+          if (labelText == "Password") {
+            password = placeholder;
+          }
+        },
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,

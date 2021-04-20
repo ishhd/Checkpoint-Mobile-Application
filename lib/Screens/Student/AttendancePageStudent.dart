@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
-import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/style.dart';
 
 final AbsentRef = Firestore.instance.collection('absent');

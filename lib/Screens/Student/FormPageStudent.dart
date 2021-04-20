@@ -234,8 +234,7 @@ class FormPageStudentState extends State<FormPageStudent> {
                       value: 1,
                       groupValue: group2,
                       onChanged: (T) {
-                        evaluationform()
-                            .Appropriate(uid, '1');
+                        evaluationform().Appropriate(uid, '1');
                         setState(() {
                           group2 = T;
                         });

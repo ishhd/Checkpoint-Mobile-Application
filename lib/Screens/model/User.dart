@@ -113,12 +113,25 @@ class User {
   }
 
   // ignore: non_constant_identifier_names
-  Future AuthPage(String uid) async {
+  Future<void> NewAdmin(
+      String email, String password, String name, String id, String uid) async {
+    await UserNew.document(uid).setData(({
+      'email': email,
+      'password': password,
+      'name': name,
+      'id': id,
+      'activate': 1,
+      'position': 'Admin'
+    }));
+  }
+
+  // ignore: non_constant_identifier_names
+  Future AuthPage(String uiid) async {
     try {
-      uid = uid;
+      uid = uiid;
       await Firestore.instance
           .collection('user')
-          .document(uid)
+          .document(uiid)
           .get()
           .then((value) {
         var userType = (value.data)['position'];
@@ -193,4 +206,18 @@ class User {
       if (activate == 0) {
     return UserNew.snapshots().map(_userList);
   }*/
+
+  // ignore: non_constant_identifier_names
+  Future<void> UpdateAdmin(
+    String name,
+    String id,
+  ) async {
+    await Firestore.instance
+        .collection('user')
+        .document('4L4GSLTUJvPjZGiM8sN4JXh0qOt2')
+        .updateData({
+      'name': name,
+      'id': id,
+    });
+  }
 }

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/model/User.dart';
-import 'package:tester/Screens/profile.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/SignUp.dart';
 import 'package:tester/Screens/style.dart';
@@ -120,7 +119,8 @@ class _SignInState extends State<SignIn> {
                               dynamic result =
                                   await _auth.SignInProcess(email, password);
                               if (n == 1) {
-                                setState(() => error = 'Your Account on Hold');
+                                setState(
+                                    () => error = 'Soory Your Account on Hold');
                               } else {
                                 setState(
                                     () => error = 'Check Your Input Again');
