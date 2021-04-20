@@ -139,7 +139,7 @@ class _CourseInfoState extends State<CourseInfo> {
                                     child: new Text("Yes, Delete"),
                                     onPressed: () {
                                       Navigator.of(context).pop();
-                                      Deletcourse('ed18v5ilOAKxrZGqSSZF');
+                                      Deletcourse(widget.uid);
                                     },
                                   ),
                                   new FlatButton(
