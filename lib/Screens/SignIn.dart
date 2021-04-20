@@ -120,7 +120,8 @@ class _SignInState extends State<SignIn> {
                               dynamic result =
                                   await _auth.SignInProcess(email, password);
                               if (n == 1) {
-                                setState(() => error = 'Your Account on Hold');
+                                setState(
+                                    () => error = 'Soory Your Account on Hold');
                               } else {
                                 setState(
                                     () => error = 'Check Your Input Again');
