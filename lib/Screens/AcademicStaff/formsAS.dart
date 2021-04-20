@@ -488,19 +488,19 @@ class FormsASState extends State<FormsAS> {
                   selfAssessment = value;
                 });
                 if (questionNumber == 1) {
-                  evaluationform().PreparationSA(uid, selfAssessment);
+                  evaluationform().PreparationSA(uid, value);
                 } else if (questionNumber == 2) {
-                  evaluationform().SyringeSA(uid, selfAssessment);
+                  evaluationform().SyringeSA(uid, value);
                 } else if (questionNumber == 3) {
-                  evaluationform().OperatorSA(uid, selfAssessment);
+                  evaluationform().OperatorSA(uid, value);
                 } else if (questionNumber == 4) {
-                  evaluationform().IdentificationSA(uid, selfAssessment);
+                  evaluationform().IdentificationSA(uid, value);
                 } else if (questionNumber == 5) {
-                  evaluationform().NeedleSA(uid, selfAssessment);
+                  evaluationform().NeedleSA(uid, value);
                 } else if (questionNumber == 6) {
-                  evaluationform().AnatomySA(uid, selfAssessment);
+                  evaluationform().AnatomySA(uid, value);
                 } else if (questionNumber == 7) {
-                  evaluationform().abilitySA(uid, selfAssessment);
+                  evaluationform().abilitySA(uid, value);
                 }
                 if (question.contains("Preparation")) {
                   selfAssessmentP = value;

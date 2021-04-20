@@ -97,7 +97,6 @@ class _AddAdminState extends State<AddAdmin> {
                   SubmitButtons(
                     text: "Save",
                     onpressed: () {
-                      creatUserAdmin();
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
