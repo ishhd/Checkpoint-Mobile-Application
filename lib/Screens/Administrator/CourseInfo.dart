@@ -151,7 +151,7 @@ class _CourseInfoState extends State<CourseInfo> {
                                     child: new Text("Yes"),
                                     onPressed: () {
                                       Navigator.of(context).pop();
-                                      //UpdateCourseInfo();
+                                      UpdateCourseInfo();
                                     },
                                   ),
                                   new FlatButton(
