@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/Requests.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
@@ -159,7 +160,7 @@ class _SideBarState extends State<SideBar>
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      HomeScreen(widget: homepageAS()),
+                                      HomeScreen(widget: CourseAS()),
                                 ),
                                 (Route<dynamic> route) => true);
                           } else if (position == '  Student') {

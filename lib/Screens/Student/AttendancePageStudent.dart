@@ -10,7 +10,6 @@ import 'package:tester/Screens/style.dart';
 final AbsentRef = Firestore.instance.collection('absent');
 final DelayedRef = Firestore.instance.collection('delayed');
 
-
 class AttendancePageStudent extends StatefulWidget {
   State<StatefulWidget> createState() {
     return AttendancePageStudentState();
@@ -19,9 +18,9 @@ class AttendancePageStudent extends StatefulWidget {
 
 class AttendancePageStudentState extends State<AttendancePageStudent> {
   int Absent = 0;
-  int  Delayed= 0 ;
+  int Delayed = 0;
   String name;
-  getAbsent( String coursName) async {
+  getAbsent(String coursName) async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     final DocumentSnapshot doc =
         // ignore: missing_return
@@ -104,7 +103,7 @@ class AttendancePageStudentState extends State<AttendancePageStudent> {
                   cells: <DataCell>[
                     DataCell(Text('OMR 312')),
                     DataCell(Text('')),
-                    DataCell(Text('') ),
+                    DataCell(Text('')),
                   ],
                 ),
                 DataRow(
