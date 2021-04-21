@@ -18,7 +18,7 @@ class FormPageStudent extends StatefulWidget {
 class FormPageStudentState extends State<FormPageStudent> {
   String name;
   String id;
-  String Q1;
+  String Q1 = '  Instructor Evaluation';
 
   getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -233,10 +233,15 @@ class FormPageStudentState extends State<FormPageStudent> {
                     Radio(
                       value: 1,
                       groupValue: group2,
+
+                      onChanged: (value) {
+
                       onChanged: (T) {
+
                         evaluationform().Appropriate(uid, '1');
                         setState(() {
-                          group2 = T;
+                          Q1 = value;
+                          // group2 = T;
                         });
                       },
                     ),
@@ -375,6 +380,7 @@ class FormPageStudentState extends State<FormPageStudent> {
                 evaluationform()
                     .feedback('07Pgmy307rU1i1SpzQGh053TtTB3', value);
                 setState(() {
+                  Q1 = value;
                   selfAssessment = value;
                 });
               },

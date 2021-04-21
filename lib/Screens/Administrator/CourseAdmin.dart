@@ -105,4 +105,17 @@ class CourseAdminState extends State<CourseAdmin> {
                   }),
             ])));
   }
+
+  AddCourseButton( String name , String uid) {
+
+    CoursesButtons(
+      label: name,
+      color: Color(0xFFF6CAAC),
+      onpressed: () {
+        runApp(MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: CourseInfo(uid: uid)));
+      },
+    );
+  }
 }
