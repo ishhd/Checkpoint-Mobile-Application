@@ -17,6 +17,16 @@ class CourseInfo extends StatefulWidget with NavigationStates {
 }
 
 class _CourseInfoState extends State<CourseInfo> {
+   String courseCode = '';
+  String courseName = "";
+  String credietHours = '';
+  String evaluationFormMPE = "";
+  String examFormCE = "";
+  String practical = "";
+  String no = "";
+  String semester = "";
+  String year = "";
+
   Future getCourse() async {
     final DocumentSnapshot doc =
         // ignore: missing_return
@@ -45,16 +55,7 @@ class _CourseInfoState extends State<CourseInfo> {
   String semester = "One year (1st/2nd)";
   String year = "3";*/
 
-  String courseCode = '';
-  String courseName = "";
-  String credietHours = '';
-  String evaluationFormMPE = "";
-  String examFormCE = "";
-  String practical = "";
-  String no = "";
-  String semester = "";
-  String year = "";
-
+ 
   @override
   Widget build(BuildContext context) {
     getCourse();
