@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UpdateCourses {
-
-
   // ignore: non_constant_identifier_names
   Future EditCoursDB(
       String uid,
@@ -14,7 +12,9 @@ class UpdateCourses {
       String practical,
       String no,
       String semester,
-      String year) async {
+      String year,
+      String labNo,
+      String clinicNo) async {
     try {
       await Firestore.instance.collection('courses').document(uid).updateData({
         'courseCode': courseCode,
@@ -25,7 +25,9 @@ class UpdateCourses {
         'practical': practical,
         'no': no,
         'semester': semester,
-        'year': year
+        'year': year,
+        'clinicNo': clinicNo,
+        'labNo': labNo
       });
     } catch (e) {
       print(e.toString());
@@ -46,7 +48,9 @@ class AddCourse {
       String practical,
       String no,
       String semester,
-      String year) async {
+      String year,
+      String labNo,
+      String clinicNo) async {
     await Course.document(uid).setData(({
       'courseCode': courseCode,
       'courseName': courseName,
@@ -56,7 +60,9 @@ class AddCourse {
       'practical': practical,
       'no': no,
       'semester': semester,
-      'year': year
+      'year': year,
+      'clinicNo': clinicNo,
+      'labNo': labNo
     }));
   }
 }

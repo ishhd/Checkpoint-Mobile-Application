@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
+import 'package:tester/Screens/Student/CoursePageStudent.dart';
 import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
 import 'package:flutter/material.dart';
 
@@ -170,7 +171,7 @@ class FormPageStudentState extends State<FormPageStudent> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(EvaluationFormsAS());
+                runApp(CoursPageStudent());
               },
               color: Color(0xFF525151),
               iconSize: 20,
