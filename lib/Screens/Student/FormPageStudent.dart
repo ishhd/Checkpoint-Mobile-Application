@@ -26,19 +26,20 @@ class FormPageStudentState extends State<FormPageStudent> {
   String Ques8;
   String Ques9;
   String Ques10;
+  String III;
 
   String n = '  1';
   String m = '  2';
   I() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    String uid = 'NtQTZ2dZp4e8WSZ9J1rYW1ugvyC3';
+
     final DocumentSnapshot doc =
         // ignore: missing_return
-        await EFRef.document(uid).get().then((value) {
+        await EFRef.document(user.uid).get().then((value) {
       String Q1 = (value.data)['punctuality'];
       if (Q1 == '1') {
         Ques1 = "Satisfactory";
-      } else if (n == '2') {
+      } else if (Q1 == '2') {
         Ques1 = "Needs Improvement";
       }
       String Q2 =
@@ -53,29 +54,29 @@ class FormPageStudentState extends State<FormPageStudent> {
       String Q4 = (value.data)['tray organization'];
       if (Q4 == '1') {
         Ques4 = "Satisfactory";
-      } else if (n == '2') {
+      } else if (Q4 == '2') {
         Ques4 = "Needs Improvement";
       }
       String Q5 = (value.data)[
           'understanding the indications, relevant anatomy, material selection, technique of procedure'];
       if (Q5 == '1') {
         Ques5 = "Satisfactory";
-      } else if (n == '2') {
+      } else if (Q5 == '2') {
         Ques5 = "Needs Improvement";
       }
       String Q6 = (value.data)['with Staff'];
       if (Q6 == '1') {
         Ques6 = "Satisfactory";
-      } else if (n == '2') {
+      } else if (Q6 == '2') {
         Ques6 = "Needs Improvement";
       }
       String Q7 =
           (value.data)['benches & instrument cleanliness and waste disposals'];
       if (Q7 == '1') {
         Ques7 = "Satisfactory";
-      } else if (n == '2') {
+      } else if (Q7 == '2') {
         Ques7 = "Needs Improvement";
-      } else if (n == 'NA/NO') {
+      } else if (Q7 == 'NA/NO') {
         Ques7 = "NA/NO";
       }
       String Q8 =
@@ -85,6 +86,16 @@ class FormPageStudentState extends State<FormPageStudent> {
       }
       String Q9 = (value.data)['feedback'];
       Ques9 = Q9;
+
+      String QIII =
+          (value.data)['student’s overall ability to perform the protective'];
+      if (QIII == '1') {
+        III = "Needs Improvement";
+      } else if (QIII == '2') {
+        III = "Competent";
+      } else if (QIII == '3') {
+        III = 'Above Expectation';
+      }
     });
   }
 
@@ -104,10 +115,9 @@ class FormPageStudentState extends State<FormPageStudent> {
   String IIQ14;
   II() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    String uid = 'NtQTZ2dZp4e8WSZ9J1rYW1ugvyC3';
     final DocumentSnapshot doc =
         // ignore: missing_return
-        await EFRef.document(uid).get().then((value) {
+        await EFRef.document(user.uid).get().then((value) {
       IIQ1 = (value.data)['preparation of armamentarium / Self Assessment'];
       IIQ2 =
           (value.data)['preparation of armamentarium / Instructor Evaluation'];
@@ -248,7 +258,8 @@ class FormPageStudentState extends State<FormPageStudent> {
                     height: 5,
                   ),
                   sectionIV(
-                      "Student’s overall ability to perform the protective"),
+                      "Student’s overall ability to perform the protective",
+                      III),
                   SizedBox(
                     height: 35,
                   ),
@@ -619,11 +630,7 @@ class FormPageStudentState extends State<FormPageStudent> {
                 value: val,
                 validator: (value) =>
                     value.isEmpty ? 'Choose the Position Please' : null,
-                onChanged: (value) {
-                  setState(() {
-                    selfAssessment = value;
-                  });
-                },
+                onChanged: (value) {},
                 items: ['  0', '  1', '  2', '  NA'].map((value) {
                   return DropdownMenuItem(
                     value: value,
@@ -659,6 +666,32 @@ class FormPageStudentState extends State<FormPageStudent> {
         SizedBox(
           height: 10,
         ),
+        if (val2 == 'Null')
+          Container(
+            height: 45,
+            margin: EdgeInsets.only(top: 70),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(4)),
+            child: DropdownButtonFormField(
+              isExpanded: true,
+              hint: Text("  Instructor Evaluation"),
+              value: instructorEvaluation,
+              validator: (value) =>
+                  value.isEmpty ? 'Choose the Position Please' : null,
+              onChanged: (value) {
+                setState(() {
+                  instructorEvaluation = value;
+                });
+              },
+              items: ['  0', '  1', '  2', '  NA'].map((value) {
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ),
         if (val2 != 'Null')
           Container(
             height: 45,
@@ -685,31 +718,6 @@ class FormPageStudentState extends State<FormPageStudent> {
               }).toList(),
             ),
           ),
-        if (val2 == 'Null')
-          Container(
-              height: 45,
-              margin: EdgeInsets.symmetric(vertical: 20),
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(4)),
-              child: DropdownButtonFormField(
-                isExpanded: true,
-                hint: Text("  Self Assessment"),
-                value: selfAssessment,
-                validator: (value) =>
-                    value.isEmpty ? 'Choose the Position Please' : null,
-                onChanged: (value) {
-                  setState(() {
-                    selfAssessment = value;
-                  });
-                },
-                items: ['  0', '  1', '  2', '  NA'].map((value) {
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              )),
         SizedBox(
           height: 140,
         )
@@ -717,7 +725,7 @@ class FormPageStudentState extends State<FormPageStudent> {
     );
   }
 
-  Widget sectionIV(String question) {
+  Widget sectionIV(String question, String val) {
     return Stack(
       children: [
         Text(
@@ -731,41 +739,74 @@ class FormPageStudentState extends State<FormPageStudent> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: <Widget>[
-                Radio(
-                  value: 1,
-                  groupValue: group,
-                  onChanged: (T) {
-                    setState(() {
-                      group = T;
-                    });
-                  },
-                ),
+                if (val == 'Needs Improvement')
+                  Radio(
+                    value: val,
+                    groupValue: val,
+                    onChanged: (T) {
+                      setState(() {
+                        group = T;
+                      });
+                    },
+                  ),
+                if (val != 'Needs Improvement')
+                  Radio(
+                    value: 2,
+                    groupValue: group,
+                    onChanged: (T) {
+                      setState(() {
+                        group = T;
+                      });
+                    },
+                  ),
                 Text("Needs Improvement"),
                 SizedBox(
                   width: 5,
                 ),
-                Radio(
-                  value: 2,
-                  groupValue: group,
-                  onChanged: (T) {
-                    setState(() {
-                      group = T;
-                    });
-                  },
-                ),
+                if (val == 'Competent')
+                  Radio(
+                    value: val,
+                    groupValue: val,
+                    onChanged: (T) {
+                      setState(() {
+                        group = T;
+                      });
+                    },
+                  ),
+                if (val != 'Competent')
+                  Radio(
+                    value: 2,
+                    groupValue: group,
+                    onChanged: (T) {
+                      setState(() {
+                        group = T;
+                      });
+                    },
+                  ),
                 Text("Competent"),
                 SizedBox(
                   width: 5,
                 ),
-                Radio(
-                  value: 3,
-                  groupValue: group,
-                  onChanged: (T) {
-                    setState(() {
-                      group = T;
-                    });
-                  },
-                ),
+                if (val == 'Above Expectation')
+                  Radio(
+                    value: val,
+                    groupValue: val,
+                    onChanged: (T) {
+                      setState(() {
+                        group = T;
+                      });
+                    },
+                  ),
+                if (val != 'Above Expectation')
+                  Radio(
+                    value: 2,
+                    groupValue: group,
+                    onChanged: (T) {
+                      setState(() {
+                        group = T;
+                      });
+                    },
+                  ),
                 Text("Above Expectation"),
               ],
             ),
