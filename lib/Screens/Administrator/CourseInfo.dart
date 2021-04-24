@@ -17,6 +17,18 @@ class CourseInfo extends StatefulWidget with NavigationStates {
 }
 
 class _CourseInfoState extends State<CourseInfo> {
+  String courseCode = '';
+  String courseName = "";
+  String credietHours = '';
+  String evaluationFormMPE = "";
+  String examFormCE = "";
+  String practical = "";
+  String no = "";
+  String semester = "";
+  String year = "";
+  String labNo = '';
+  String clinicNo = '';
+
   Future getCourse() async {
     final DocumentSnapshot doc =
         // ignore: missing_return
@@ -30,6 +42,8 @@ class _CourseInfoState extends State<CourseInfo> {
       semester = (value.data)['semester'];
       year = (value.data)['year'];
       evaluationFormMPE = (value.data)['evaluationFormMPE'];
+      labNo = (value.data)['labNo'];
+      clinicNo = (value.data)['clinicNo'];
     });
     //name = doc.data as String;
   }
@@ -44,16 +58,6 @@ class _CourseInfoState extends State<CourseInfo> {
   String no = "2";
   String semester = "One year (1st/2nd)";
   String year = "3";*/
-
-  String courseCode = '';
-  String courseName = "";
-  String credietHours = '';
-  String evaluationFormMPE = "";
-  String examFormCE = "";
-  String practical = "";
-  String no = "";
-  String semester = "";
-  String year = "";
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +120,8 @@ class _CourseInfoState extends State<CourseInfo> {
                   buildTextField("Evaluation form MPE", evaluationFormMPE),
                   buildTextField("No.", no),
                   buildTextField("Exam form CE", examFormCE),
+                  buildTextField("Clinic Number", clinicNo),
+                  buildTextField("Lab Number", labNo),
                   SizedBox(
                     height: 35,
                   ),
@@ -138,7 +144,9 @@ class _CourseInfoState extends State<CourseInfo> {
                               practical,
                               no,
                               semester,
-                              year);
+                              year,
+                              clinicNo,
+                              labNo);
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -219,7 +227,9 @@ class _CourseInfoState extends State<CourseInfo> {
         practical,
         no,
         semester,
-        year);
+        year,
+        labNo,
+        clinicNo);
   }
 
   Widget submitButtons({Null Function() onpressed, String text}) {
@@ -274,6 +284,12 @@ class _CourseInfoState extends State<CourseInfo> {
           if (labelText == "Exam form CE") {
             examFormCE = placeholder;
           }
+          if (labelText == "Lab Number") {
+            labNo = placeholder;
+          }
+          if (labelText == "Clinic Number") {
+            clinicNo = placeholder;
+          }
         },
         keyboardType: TextInputType.multiline,
         maxLines: null,
@@ -307,6 +323,8 @@ class _NewCourseState extends State<NewCourse> {
   String no = ' ';
   String semester = ' ';
   String year = ' ';
+  String labNo = '';
+  String clinicNo = '';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -353,6 +371,8 @@ class _NewCourseState extends State<NewCourse> {
             buildTextField("Evaluation form MPE", evaluationFormMPE),
             buildTextField("No.", no),
             buildTextField("Exam form CE", examFormCE),
+            buildTextField("Clinic Number", clinicNo),
+            buildTextField("Lab Number", labNo),
             SizedBox(
               height: 35,
             ),
@@ -380,7 +400,7 @@ class _NewCourseState extends State<NewCourse> {
                                 practical,
                                 no,
                                 semester,
-                                year);
+                                year , labNo , clinicNo);
                           },
                         ),
                         new FlatButton(
@@ -437,6 +457,12 @@ class _NewCourseState extends State<NewCourse> {
           }
           if (labelText == "Exam form CE") {
             examFormCE = placeholder;
+          }
+           if (labelText == "Lab Number") {
+            labNo = placeholder;
+          }
+          if (labelText == "Clinic Number") {
+            clinicNo = placeholder;
           }
         },
         keyboardType: TextInputType.multiline,

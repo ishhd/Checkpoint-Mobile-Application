@@ -342,7 +342,7 @@ class FormsASState extends State<FormsAS> {
                           evaluationform().Appropriate(uid, '1');
                         } else if (questionNumber == 3) {
                           evaluationform().Proper(uid, '1');
-                        } else if (questionNumber == 3) {
+                        } else if (questionNumber == 8) {
                           evaluationform().Adherence(uid, '1');
                         }
                         setState(() {
@@ -494,11 +494,11 @@ class FormsASState extends State<FormsAS> {
                   selfAssessment = value;
                 });
                 if (questionNumber == 1) {
-                  evaluationform().PreparationSA(uid, value);
+                  evaluationform().PreparationSA(uid, selfAssessment);
                 } else if (questionNumber == 2) {
-                  evaluationform().SyringeSA(uid, value);
+                  evaluationform().SyringeSA(uid, selfAssessment);
                 } else if (questionNumber == 3) {
-                  evaluationform().OperatorSA(uid, value);
+                  evaluationform().OperatorSA(uid, selfAssessment);
                 } else if (questionNumber == 4) {
                   evaluationform().IdentificationSA(uid, value);
                 } else if (questionNumber == 5) {
