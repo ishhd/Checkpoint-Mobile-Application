@@ -118,10 +118,11 @@ class AttendancePageStudentState extends State<AttendancePageStudent> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: new Text("It downloaded successfully"),
+                      title: new Text("Download the Report"),
+                      content: new Text("It has successfully downloaded"),
                       actions: <Widget>[
                         new FlatButton(
-                          child: new Text("OK"),
+                          child: new Text("Ok"),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
