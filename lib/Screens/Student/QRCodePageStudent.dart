@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import 'package:tester/Screens/Administrator/AddAdmin.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
@@ -20,9 +26,33 @@ class QRCodePageStudent extends StatefulWidget {
 }
 
 class QRCodePageStudentState extends State<QRCodePageStudent> {
+
+  String name;
+  String uid;
+  getUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    uid = user.uid;
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await userRef.document(user.uid).get().then((value) {
+      name = (value.data)['name'];
+    });
+    //name = doc.data as String;
+  }
+
+  static const double _topSectionTopPadding = 50.0;
+  static const double _topSectionBottomPadding = 20.0;
+  static const double _topSectionHeight = 50.0;
+  GlobalKey globalKey = new GlobalKey();
+  String _dataString = "Hello from this QR";
+  String _inputErrorText;
+  final TextEditingController _textController = TextEditingController();
+
   String _imagePath;
+
   @override
   Widget build(BuildContext context) {
+    getUser();
     // TODO: implement build
     return MaterialApp(
         title: 'Flutter Demo',
@@ -60,7 +90,7 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                   height: 100,
                 ),
                 QrImage(
-                  data: "",
+                  data: 'uid',
                   size: 200,
                 ),
                 SubmitButtons(

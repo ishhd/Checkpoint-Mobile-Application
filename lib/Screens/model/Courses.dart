@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:tester/Screens/Administrator/CourseAdmin.dart';
 
 class UpdateCourses {
   // ignore: non_constant_identifier_names
@@ -71,6 +73,7 @@ class Deletcourse {
   Deletcourse(String uid) {
     try {
       Firestore.instance.collection('courses').document(uid).delete();
+      runApp(CourseAdmin());
     } catch (e) {
       print(e.toString());
       return;

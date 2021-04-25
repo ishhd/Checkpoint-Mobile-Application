@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:path/path.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Sidebar/sidebar.dart';
 import 'package:tester/Screens/SignIn.dart';
+import 'package:tester/Screens/model/QRcode.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/profile.dart';
 
@@ -67,6 +69,7 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       await User().NewStudent(email, password, name, id, user.uid, 0, position);
+      await UserManagement().storeNewUser(user, context, name);
       runApp(SignIn());
       return user;
     } catch (e) {
