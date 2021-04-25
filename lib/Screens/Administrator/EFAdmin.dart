@@ -241,8 +241,6 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       value: 1,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                         setState(() {
                           group1 = T;
                         });
@@ -256,8 +254,6 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       value: 2,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '2');
                         setState(() {
                           group1 = T;
                         });
@@ -297,8 +293,6 @@ class EvaluationFormInfoState extends State<EvaluationFormInfo> {
                       value: 1,
                       groupValue: group2,
                       onChanged: (T) {
-                        evaluationform()
-                            .Appropriate('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
                         setState(() {
                           group2 = T;
                         });

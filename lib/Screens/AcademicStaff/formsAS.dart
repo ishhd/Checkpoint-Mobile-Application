@@ -31,6 +31,7 @@ class FormsASState extends State<FormsAS> {
   String selfAssessmentS = '';
   String instructorEvaluationS = '';
   String aplity = '';
+  String Q1;
 
   // This widget is the root of your application.
   @override
@@ -172,6 +173,7 @@ class FormsASState extends State<FormsAS> {
                       SubmitButtons(
                         text: "Save",
                         onpressed: () {
+                          UpdateFor();
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -269,13 +271,13 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group1,
                       onChanged: (T) {
                         if (questionNumber == 1) {
-                          evaluationform().Punctuality(uid, '1');
+                          evaluationform().punctuality(uid, '1');
                         } else if (questionNumber == 4) {
-                          evaluationform().Tray(uid, '1');
+                          evaluationform().tray(uid, '1');
                         } else if (questionNumber == 5) {
-                          evaluationform().Understanding(uid, '1');
+                          evaluationform().understanding(uid, '1');
                         } else if (questionNumber == 6) {
-                          evaluationform().WithStaff(uid, '1');
+                          evaluationform().withStaff(uid, '1');
                         }
                         setState(() {
                           group1 = T;
@@ -291,13 +293,13 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group1,
                       onChanged: (T) {
                         if (questionNumber == 1) {
-                          evaluationform().Punctuality(uid, '2');
+                          evaluationform().punctuality(uid, '2');
                         } else if (questionNumber == 4) {
-                          evaluationform().Tray(uid, '2');
+                          evaluationform().tray(uid, '2');
                         } else if (questionNumber == 5) {
-                          evaluationform().Understanding(uid, '2');
+                          evaluationform().understanding(uid, '2');
                         } else if (questionNumber == 6) {
-                          evaluationform().WithStaff(uid, '2');
+                          evaluationform().withStaff(uid, '2');
                         }
                         setState(() {
                           group1 = T;
@@ -339,11 +341,11 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group2,
                       onChanged: (T) {
                         if (questionNumber == 2) {
-                          evaluationform().Appropriate(uid, '1');
+                          evaluationform().appropriate(uid, '1');
                         } else if (questionNumber == 3) {
-                          evaluationform().Proper(uid, '1');
+                          evaluationform().proper(uid, '1');
                         } else if (questionNumber == 8) {
-                          evaluationform().Adherence(uid, '1');
+                          evaluationform().adherence(uid, '1');
                         }
                         setState(() {
                           group2 = T;
@@ -383,7 +385,7 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group3,
                       onChanged: (T) {
                         if (questionNumber == 7) {
-                          evaluationform().Benches(uid, '1');
+                          evaluationform().benches(uid, '1');
                         }
                         setState(() {
                           group3 = T;
@@ -400,7 +402,7 @@ class FormsASState extends State<FormsAS> {
                       onChanged: (T) {
                         setState(() {
                           if (questionNumber == 7) {
-                            evaluationform().Benches(uid, '2');
+                            evaluationform().benches(uid, '2');
                           }
                           group3 = T;
                         });
@@ -416,7 +418,7 @@ class FormsASState extends State<FormsAS> {
                       onChanged: (T) {
                         setState(() {
                           if (questionNumber == 7) {
-                            evaluationform().Benches(uid, 'NA/NO');
+                            evaluationform().benches(uid, 'NA/NO');
                           }
                           group3 = T;
                         });
@@ -467,6 +469,11 @@ class FormsASState extends State<FormsAS> {
     }
   }
 
+  UpdateFor() {
+    evaluationform().preparationSA(uid, selfAssessmentP);
+    evaluationform().syringeSA(uid, selfAssessmentS);
+  }
+
   Widget sectionII(String question, int questionNumber) {
     String selfAssessment;
     String instructorEvaluation;
@@ -493,21 +500,22 @@ class FormsASState extends State<FormsAS> {
                 setState(() {
                   selfAssessment = value;
                 });
-                if (questionNumber == 1) {
-                  evaluationform().PreparationSA(uid, selfAssessment);
-                } else if (questionNumber == 2) {
-                  evaluationform().SyringeSA(uid, selfAssessment);
-                } else if (questionNumber == 3) {
-                  evaluationform().OperatorSA(uid, selfAssessment);
+                if (question.contains("Preparation")) {
+                  selfAssessmentP = value;
+                } else if (question.contains("Syringe")) {
+                  selfAssessmentS = value;
+                } else if (question.contains("Operator")) {
+                  evaluationform().operatorSA(uid, value);
                 } else if (questionNumber == 4) {
-                  evaluationform().IdentificationSA(uid, value);
+                  evaluationform().identificationSA(uid, value);
                 } else if (questionNumber == 5) {
-                  evaluationform().NeedleSA(uid, value);
+                  evaluationform().needleSA(uid, value);
                 } else if (questionNumber == 6) {
-                  evaluationform().AnatomySA(uid, value);
+                  evaluationform().anatomySA(uid, value);
                 } else if (questionNumber == 7) {
                   evaluationform().abilitySA(uid, value);
                 }
+
                 if (question.contains("Preparation")) {
                   selfAssessmentP = value;
                 } else if (question.contains("Syringe")) {
@@ -549,22 +557,23 @@ class FormsASState extends State<FormsAS> {
             onChanged: (value) {
               setState(() {
                 instructorEvaluation = value;
+
+                if (questionNumber == 1) {
+                  evaluationform().preparationIE(uid, value);
+                } else if (questionNumber == 2) {
+                  evaluationform().syringeIE(uid, value);
+                } else if (questionNumber == 3) {
+                  evaluationform().operatorIE(uid, value);
+                } else if (questionNumber == 4) {
+                  evaluationform().identificationIE(uid, value);
+                } else if (questionNumber == 5) {
+                  evaluationform().needleIE(uid, value);
+                } else if (questionNumber == 6) {
+                  evaluationform().anatomyIE(uid, value);
+                } else if (questionNumber == 7) {
+                  evaluationform().abilityIE(uid, value);
+                }
               });
-              if (questionNumber == 1) {
-                evaluationform().PreparationIE(uid, value);
-              } else if (questionNumber == 2) {
-                evaluationform().SyringeIE(uid, value);
-              } else if (questionNumber == 3) {
-                evaluationform().OperatorIE(uid, value);
-              } else if (questionNumber == 4) {
-                evaluationform().IdentificationIE(uid, value);
-              } else if (questionNumber == 5) {
-                evaluationform().NeedleIE(uid, value);
-              } else if (questionNumber == 6) {
-                evaluationform().AnatomyIE(uid, value);
-              } else if (questionNumber == 7) {
-                evaluationform().abilityIE(uid, value);
-              }
               if (question.contains("Preparation")) {
                 instructorEvaluationP = value;
               } else {

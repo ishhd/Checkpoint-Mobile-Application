@@ -17,17 +17,17 @@ class CourseInfo extends StatefulWidget with NavigationStates {
 }
 
 class _CourseInfoState extends State<CourseInfo> {
-  String courseCode = '';
-  String courseName = "";
-  String credietHours = '';
-  String evaluationFormMPE = "";
-  String examFormCE = "";
-  String practical = "";
-  String no = "";
-  String semester = "";
-  String year = "";
-  String labNo = '';
-  String clinicNo = '';
+  String courseCode;
+  String courseName;
+  String credietHours;
+  String evaluationFormMPE;
+  String examFormCE;
+  String practical;
+  String no;
+  String semester;
+  String year;
+  String labNo;
+  String clinicNo;
 
   Future getCourse() async {
     final DocumentSnapshot doc =
@@ -400,7 +400,9 @@ class _NewCourseState extends State<NewCourse> {
                                 practical,
                                 no,
                                 semester,
-                                year , labNo , clinicNo);
+                                year,
+                                labNo,
+                                clinicNo);
                           },
                         ),
                         new FlatButton(
@@ -458,7 +460,7 @@ class _NewCourseState extends State<NewCourse> {
           if (labelText == "Exam form CE") {
             examFormCE = placeholder;
           }
-           if (labelText == "Lab Number") {
+          if (labelText == "Lab Number") {
             labNo = placeholder;
           }
           if (labelText == "Clinic Number") {

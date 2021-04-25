@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
@@ -20,7 +21,6 @@ class User {
   final CollectionReference UserNew = Firestore.instance.collection('user');
   final CollectionReference Attendance =
       Firestore.instance.collection('attendance');
-  final CollectionReference Delay = Firestore.instance.collection('Delay');
 
   final CollectionReference evaluationForm1 =
       Firestore.instance.collection('omr312PreClinc');
@@ -33,15 +33,17 @@ class User {
   }*/
 
   Future<void> NewStudent(String email, String password, String name, String id,
-      String uid, int activate, String position) async {
+      String uid, int activate, String position ) async {
+        
     await Attendance.document(uid).setData(({
-      'Name': 0,
-      'Absent': 0,
+      'OMR312Ab': 0,
+      'OMR312De': 0,
+      'OMR511Ab': 0,
+      'OMR511De': 0,
+      'OMR611Ab': 0,
+      'OMR611De': 0
     }));
-    await Delay.document(uid).setData(({
-      'Name': 0,
-      'Delayed': 0,
-    }));
+
     await UserNew.document(uid).setData(({
       'email': email,
       'password': password,
@@ -90,6 +92,7 @@ class User {
       'id': id,
       'activate': 0,
       'position': position
+      
     }));
   }
 
@@ -110,7 +113,9 @@ class User {
       'id': id,
       'activate': 0,
       'position': position
+      
     });
+    
   }
 
   // ignore: non_constant_identifier_names
@@ -220,5 +225,22 @@ class User {
       'name': name,
       'id': id,
     });
+  }
+
+  //name = doc.data as String;
+
+  absent(String uid, String name) async {
+    final AbsentRef = Firestore.instance.collection('attendance');
+    int absent;
+    if (name == 'OMR 312') {
+      await AbsentRef.document(uid).get().then((value) {
+        absent = (value.data)['OMR312Ab'];
+      });
+      absent++;
+
+      await AbsentRef.document(uid).updateData({'OMR312Ab ': absent});
+    } else if (name == 'OMR 511') {
+      await AbsentRef.document(uid).updateData({'absent ': absent});
+    }
   }
 }

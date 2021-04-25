@@ -12,6 +12,7 @@ import 'package:tester/Screens/Administrator/R.dart';
 import 'package:tester/Screens/Administrator/Requests.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Student/FormPageStudent.dart';
+import 'package:tester/Screens/Student/QRCodePageStudent.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignIn(),
+      home: FormsAS(),
     );
   }
 }
