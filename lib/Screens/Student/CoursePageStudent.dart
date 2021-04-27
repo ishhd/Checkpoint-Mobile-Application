@@ -174,13 +174,9 @@ class CoursStudentState extends State<CoursStudent> {
               MenuButtons(
                 label: "View Forms",
                 onpressed: () {
-<<<<<<< HEAD
                   runApp(EvaluationFormsStudent());
-||||||| e77be50
                   runApp(EvaluationFormInfo());
-=======
                   runApp(FormPageStudent());
->>>>>>> d2e464e6606c6b2ed2d7715061a95d5cf516e788
                 },
               ),
             ])));
