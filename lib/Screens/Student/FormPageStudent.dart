@@ -6,12 +6,8 @@ import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Student/CoursePageStudent.dart';
 import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
-<<<<<<< HEAD
 import 'package:tester/Screens/style.dart';
-||||||| e77be50
-=======
 import 'package:flutter/material.dart';
->>>>>>> d2e464e6606c6b2ed2d7715061a95d5cf516e788
 
 final EFRef = Firestore.instance.collection('omr312PreClinc');
 
@@ -176,13 +172,7 @@ class FormPageStudentState extends State<FormPageStudent> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-<<<<<<< HEAD
                 runApp(EvaluationFormsStudent());
-||||||| e77be50
-                runApp(EvaluationFormsAS());
-=======
-                runApp(CoursPageStudent());
->>>>>>> d2e464e6606c6b2ed2d7715061a95d5cf516e788
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -440,37 +430,13 @@ class FormPageStudentState extends State<FormPageStudent> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: <Widget>[
-<<<<<<< HEAD
                     Radio(
                         value: 1,
                         groupValue: group2,
                         onChanged: (value) {
                           onChanged:
-                          (T) {
-                            evaluationform().Appropriate(uid, '1');
-                            setState(() {
-                              Q1 = value;
-                              // group2 = T;
-                            });
-                          };
+                          (T) {};
                         }),
-||||||| e77be50
-                    Radio(
-                      value: 1,
-                      groupValue: group2,
-
-                      onChanged: (value) {
-
-                      onChanged: (T) {
-
-                        evaluationform().Appropriate(uid, '1');
-                        setState(() {
-                          Q1 = value;
-                          // group2 = T;
-                        });
-                      },
-                    ),
-=======
                     if (questionNumber == 2 && val == "Satisfactory")
                       Radio(
                         value: val,
@@ -511,7 +477,6 @@ class FormPageStudentState extends State<FormPageStudent> {
                           });
                         },
                       ),
->>>>>>> d2e464e6606c6b2ed2d7715061a95d5cf516e788
                     Text("Satisfactory"),
                   ],
                 ),
