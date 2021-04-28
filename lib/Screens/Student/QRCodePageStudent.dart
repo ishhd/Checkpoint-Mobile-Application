@@ -3,7 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
@@ -22,6 +26,7 @@ class QRCodePageStudent extends StatefulWidget {
 }
 
 class QRCodePageStudentState extends State<QRCodePageStudent> {
+
   String name;
   String uid;
   getUser() async {
@@ -42,6 +47,9 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
   String _dataString = "Hello from this QR";
   String _inputErrorText;
   final TextEditingController _textController = TextEditingController();
+
+  String _imagePath;
+
   @override
   Widget build(BuildContext context) {
     getUser();
@@ -78,7 +86,6 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
               //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Align(alignment: Alignment.center),
-                //_contentWidget(),
                 SizedBox(
                   height: 100,
                 ),
@@ -86,7 +93,6 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                   data: 'uid',
                   size: 200,
                 ),
-
                 SubmitButtons(
                   text: "Download Image",
                   onpressed: () {
@@ -100,6 +106,7 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                             new FlatButton(
                               child: new Text("Ok"),
                               onPressed: () {
+                                saveImage(_imagePath);
                                 Navigator.of(context).pop();
                               },
                             ),
@@ -113,58 +120,15 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
         ));
   }
 
-  Future<void> _captureAndSharePng() async {
-    try {
-      RenderRepaintBoundary boundary =
-          globalKey.currentContext.findRenderObject();
-      var image = await boundary.toImage();
-      ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
-      final tempDir = await getTemporaryDirectory();
-      final file = await new File('${tempDir.path}/image.png').create();
-      await file.writeAsBytes(pngBytes);
-      final channel = const MethodChannel('channel:me.camellabs.share/share');
-      channel.invokeMethod('shareFile', 'image.png');
-    } catch (e) {
-      print(e.toString());
-    }
+  void saveImage(path) async {
+    SharedPreferences saveImage = await SharedPreferences.getInstance();
+    saveImage.setString('imagepath', path);
   }
 
-  _contentWidget() {
-    final bodyHeight = MediaQuery.of(context).size.height -
-        MediaQuery.of(context).viewInsets.bottom;
-    return Container(
-      color: const Color(0xFFFFFFFF),
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(
-              top: _topSectionTopPadding,
-              left: 20.0,
-              right: 10.0,
-              bottom: _topSectionBottomPadding,
-            ),
-            child: Container(
-              height: _topSectionHeight,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: RepaintBoundary(
-                key: globalKey,
-                child: QrImage(
-                  data: _dataString,
-                  size: 0.5 * bodyHeight,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+  void loadImage() async {
+    SharedPreferences saveImage = await SharedPreferences.getInstance();
+    setState(() {
+      _imagePath = saveImage.getString('imagepath');
+    });
   }
 }
