@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Administrator/CourseInfo.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
+import 'package:tester/Screens/model/Courses.dart';
 
 import '../style.dart';
 
@@ -16,6 +18,10 @@ class CourseAdminState extends State<CourseAdmin> {
   // This widget is the root of your application.
 
   final _formkey = GlobalKey<FormState>();
+  var n;
+  Future getCourse(String uid) async {
+    n = coursRef.document(uid).documentID;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,20 +65,32 @@ class CourseAdminState extends State<CourseAdmin> {
                 label: "OMR 312",
                 color: Color(0xFF92D050),
                 onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      home: CourseInfo(
-                        uid: '1TE8kE3GYaxKtJsFgSdR',
-                      )));
+                  getCourse('zm1261MMkeUHoycCou73');
+                  if (n != null) {
+                    runApp(MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        home: CourseInfo(
+                          uid: '1TE8kE3GYaxKtJsFgSdR',
+                        )));
+                  } else {
+                    DeletPage();
+                  }
                 },
               ),
               CoursesButtons(
                 label: "OMR 511",
                 color: Color(0xFFC697F6),
                 onpressed: () {
-                  runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CourseInfo()));
-                  // runApp(CourseInfo());
+                  getCourse('zm1261MMkeUHoycCou73');
+                  if (n != null) {
+                    runApp(MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        home: CourseInfo(
+                          uid: 'zm1261MMkeUHoycCou73',
+                        )));
+                  } else {
+                    DeletPage();
+                  }
                 },
               ),
               CoursesButtons(

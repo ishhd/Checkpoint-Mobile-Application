@@ -28,6 +28,7 @@ class _CourseInfoState extends State<CourseInfo> {
   String year;
   String labNo;
   String clinicNo;
+  //..........................
 
   Future getCourse() async {
     final DocumentSnapshot doc =
@@ -58,10 +59,25 @@ class _CourseInfoState extends State<CourseInfo> {
   String no = "2";
   String semester = "One year (1st/2nd)";
   String year = "3";*/
-
+  String courseCode1 = '';
+  String courseName1 = '';
+  String credietHours1 = '';
+  String evaluationFormMPE1 = '';
+  String examFormCE1 = '';
+  String practical1 = ' ';
+  String no1 = ' ';
+  String semester1 = '';
+  String year1 = '';
+  String labNo1 = '';
+  String clinicNo1 = '';
+  int n = 0;
   @override
   Widget build(BuildContext context) {
-    getCourse();
+    if (n == 0) {
+      getCourse();
+      n++;
+    }
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -134,19 +150,6 @@ class _CourseInfoState extends State<CourseInfo> {
                       SubmitButtons(
                         text: "Save",
                         onpressed: () {
-                          UpdateCourses().EditCoursDB(
-                              widget.uid,
-                              courseCode,
-                              courseName,
-                              credietHours,
-                              evaluationFormMPE,
-                              examFormCE,
-                              practical,
-                              no,
-                              semester,
-                              year,
-                              clinicNo,
-                              labNo);
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -157,9 +160,9 @@ class _CourseInfoState extends State<CourseInfo> {
                                 actions: <Widget>[
                                   new FlatButton(
                                     child: new Text("Yes"),
-                                    onPressed: () {
+                                    onPressed: () async {
                                       Navigator.of(context).pop();
-                                      UpdateCourseInfo();
+                                      await UpdateCourseInfo();
                                     },
                                   ),
                                   new FlatButton(
@@ -216,20 +219,21 @@ class _CourseInfoState extends State<CourseInfo> {
         ));
   }
 
-  UpdateCourseInfo() {
-    UpdateCourses().EditCoursDB(
-        widget.uid,
-        courseCode,
-        courseName,
-        credietHours,
-        evaluationFormMPE,
-        examFormCE,
-        practical,
-        no,
-        semester,
-        year,
-        labNo,
-        clinicNo);
+  UpdateCourseInfo() async {
+    await UpdateCourses().EditCoursDB(
+      widget.uid,
+      courseCode,
+      courseName,
+      credietHours,
+      evaluationFormMPE,
+      examFormCE,
+      practical,
+      no,
+      semester,
+      year,
+      clinicNo,
+      labNo,
+    );
   }
 
   Widget submitButtons({Null Function() onpressed, String text}) {
@@ -256,40 +260,42 @@ class _CourseInfoState extends State<CourseInfo> {
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextFormField(
         onChanged: (val) {
-          setState(() => placeholder = val);
-          if (labelText == "Course code") {
-            courseCode = placeholder;
-          }
-          if (labelText == "Course name") {
-            courseName = placeholder;
-          }
-          if (labelText == "Year") {
-            year = placeholder;
-          }
-          if (labelText == "Semester") {
-            semester = placeholder;
-          }
-          if (labelText == "Crediet hours") {
-            credietHours = placeholder;
-          }
-          if (labelText == "Practical") {
-            practical = placeholder;
-          }
-          if (labelText == "Evaluation form MPE") {
-            evaluationFormMPE = placeholder;
-          }
-          if (labelText == "No.") {
-            no = placeholder;
-          }
-          if (labelText == "Exam form CE") {
-            examFormCE = placeholder;
-          }
-          if (labelText == "Lab Number") {
-            labNo = placeholder;
-          }
-          if (labelText == "Clinic Number") {
-            clinicNo = placeholder;
-          }
+          setState(() {
+            placeholder = val;
+            if (labelText == "Course code") {
+              courseCode = placeholder;
+            }
+            if (labelText == "Course name") {
+              courseName = placeholder;
+            }
+            if (labelText == "Year") {
+              year = placeholder;
+            }
+            if (labelText == "Semester") {
+              semester = placeholder;
+            }
+            if (labelText == "Crediet hours") {
+              credietHours = placeholder;
+            }
+            if (labelText == "Practical") {
+              practical = placeholder;
+            }
+            if (labelText == "Evaluation form MPE") {
+              evaluationFormMPE = placeholder;
+            }
+            if (labelText == "No.") {
+              no = placeholder;
+            }
+            if (labelText == "Exam form CE") {
+              examFormCE = placeholder;
+            }
+            if (labelText == "Lab Number") {
+              labNo = placeholder;
+            }
+            if (labelText == "Clinic Number") {
+              clinicNo = placeholder;
+            }
+          });
         },
         keyboardType: TextInputType.multiline,
         maxLines: null,
