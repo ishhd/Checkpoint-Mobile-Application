@@ -1,21 +1,19 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 class UserManagement {
-    GlobalKey globalKey = new GlobalKey();
+  GlobalKey globalKey = new GlobalKey();
 
   storeNewUser(FirebaseUser user, context, name) async {
     File qr;
@@ -62,7 +60,8 @@ class UserManagement {
 
   Future<void> _captureAndSharePng() async {
     try {
-      RenderRepaintBoundary boundary = globalKey.currentContext.findRenderObject();
+      RenderRepaintBoundary boundary =
+          globalKey.currentContext.findRenderObject();
       var image = await boundary.toImage();
       ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
       Uint8List pngBytes = byteData.buffer.asUint8List();
@@ -71,7 +70,7 @@ class UserManagement {
       await file.writeAsBytes(pngBytes);
       final channel = const MethodChannel('channel:me.camellabs.share/share');
       channel.invokeMethod('shareFile', 'image.png');
-    } catch(e) {
+    } catch (e) {
       print(e.toString());
     }
   }

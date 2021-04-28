@@ -84,7 +84,8 @@ class CoursPageStudentState extends State<CoursPageStudent> {
                 color: Color(0xFFF6CAAC),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CoursStudent()));
+                      debugShowCheckedModeBanner: false,
+                      home: CoursStudent(uid: '2IJMCEPsz6rUv1GtHi2q')));
                 },
               ),
             ])));

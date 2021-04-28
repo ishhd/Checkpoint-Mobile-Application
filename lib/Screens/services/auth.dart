@@ -69,7 +69,7 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       await User().NewStudent(email, password, name, id, user.uid, 0, position);
-      await UserManagement().storeNewUser(user, context, name);
+      //await UserManagement().storeNewUser(user, context, name);
       runApp(SignIn());
       return user;
     } catch (e) {
