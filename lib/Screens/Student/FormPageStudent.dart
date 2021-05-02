@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/style.dart';
 
-
 final EFRef = Firestore.instance.collection('omr312PreClinc');
 
 class FormPageStudent extends StatefulWidget {
@@ -179,7 +178,6 @@ class FormPageStudentState extends State<FormPageStudent> {
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
                 runApp(EvaluationFormsStudent());
-
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -437,8 +435,6 @@ class FormPageStudentState extends State<FormPageStudent> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: <Widget>[
-
-=======
 /*
 
                     Radio(

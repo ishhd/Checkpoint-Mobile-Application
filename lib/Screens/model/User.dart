@@ -33,8 +33,7 @@ class User {
   }*/
 
   Future<void> NewStudent(String email, String password, String name, String id,
-      String uid, int activate, String position ) async {
-        
+      String uid, int activate, String position) async {
     await Attendance.document(uid).setData(({
       'OMR312Ab': 0,
       'OMR312De': 0,
@@ -92,7 +91,6 @@ class User {
       'id': id,
       'activate': 0,
       'position': position
-      
     }));
   }
 
@@ -113,9 +111,7 @@ class User {
       'id': id,
       'activate': 0,
       'position': position
-      
     });
-    
   }
 
   // ignore: non_constant_identifier_names
