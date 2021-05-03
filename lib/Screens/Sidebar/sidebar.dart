@@ -45,14 +45,19 @@ class _SideBarState extends State<SideBar>
   }
 
   getUser() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    try {
+      FirebaseUser user = await FirebaseAuth.instance.currentUser();
 
-    final DocumentSnapshot doc =
-        // ignore: missing_return
-        await userRef.document(user.uid).get().then((value) {
-      position = (value.data)['position'];
-      name = (value.data)['name'];
-    });
+      final DocumentSnapshot doc =
+          // ignore: missing_return
+          await userRef.document(user.uid).get().then((value) {
+        position = (value.data)['position'];
+        name = (value.data)['name'];
+      });
+    } catch (e) {
+      //print(e.toString());
+      return null;
+    }
   }
 
   @override
@@ -106,14 +111,14 @@ class _SideBarState extends State<SideBar>
                       ),
                       ListTile(
                         title: Text(
-                          name,
+                          name != null ? name : '',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                               fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          position,
+                          position != null ? position : '',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

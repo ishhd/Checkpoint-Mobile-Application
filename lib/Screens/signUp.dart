@@ -209,7 +209,7 @@ class _SignUpState extends State<SignUp> {
         email, password, name, id, position, activate);
 
     if (result == null) {
-      setState(() => error = 'Check Your Input Again');
+      setState(() => error = 'Check Your Input Again'); 
     } else {
       runApp(SignIn());
     }

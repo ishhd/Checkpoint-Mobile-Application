@@ -113,7 +113,7 @@ class _CourseInfoState extends State<CourseInfo> {
                       children: [
                         Container(
                           child: Text(
-                            courseCode,
+                            courseCode != null ? courseCode : '',
                             style: TextStyle(
                                 fontSize: 30,
                                 color: Color(0xFF98D1D4),

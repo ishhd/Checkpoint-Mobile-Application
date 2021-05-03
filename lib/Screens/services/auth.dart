@@ -68,7 +68,7 @@ class AuthService {
       runApp(SignIn());
       return user;
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
       return null;
     }
   }
