@@ -7,7 +7,6 @@ import 'package:flutter/rendering.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
@@ -26,9 +25,9 @@ class QRCodePageStudent extends StatefulWidget {
 }
 
 class QRCodePageStudentState extends State<QRCodePageStudent> {
-
   String name;
   String uid;
+
   getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     uid = user.uid;
@@ -90,12 +89,14 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                   height: 100,
                 ),
                 QrImage(
-                  data: 'uid',
-                  size: 200,
-                ),
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    data: _dataString,
+                    size: 200),
                 SubmitButtons(
                   text: "Download Image",
                   onpressed: () {
+                    loadImage();
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -106,7 +107,6 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                             new FlatButton(
                               child: new Text("Ok"),
                               onPressed: () {
-                                saveImage(_imagePath);
                                 Navigator.of(context).pop();
                               },
                             ),
