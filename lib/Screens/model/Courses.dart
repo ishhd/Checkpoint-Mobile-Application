@@ -1,22 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/Administrator/CourseAdmin.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/AcademicStaff/formsAS.dart';
-import 'package:tester/Screens/Administrator/CourseInfo.dart';
-import 'package:tester/Screens/Administrator/EFAdmin.dart';
-import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/CoursePageStudent.dart';
-import 'package:tester/Screens/Student/FormPageStudent.dart';
-import 'package:tester/Screens/Student/homePageStudent.dart';
-import 'package:tester/Screens/style.dart';
 
 class UpdateCourses {
   final CollectionReference Course = Firestore.instance.collection('courses');
   // ignore: non_constant_identifier_names
- Future<void> EditCoursDB(
+  Future<void> EditCoursDB(
     String uid,
     String courseCode,
     String courseName,
@@ -49,6 +40,7 @@ class UpdateCourses {
       return null;
     }
   }
+
   Future<void> EditCoursCode(
     String uid,
     String courseCode,

@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/style.dart';
 
 class Acti extends StatefulWidget {
   Acti({Key key}) : super(key: key);
-
 
   @override
   _ActiState createState() => _ActiState();

@@ -1,12 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:path/path.dart';
-import 'package:tester/Screens/Administrator/AddAdmin.dart';
-import 'package:tester/Screens/Sidebar/sidebar.dart';
 import 'package:tester/Screens/SignIn.dart';
-import 'package:tester/Screens/model/QRcode.dart';
 import 'package:tester/Screens/model/User.dart';
-import 'package:tester/Screens/profile.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

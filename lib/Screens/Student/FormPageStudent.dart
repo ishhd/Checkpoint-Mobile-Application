@@ -2,17 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
-import 'package:tester/Screens/AcademicStaff/formsAS.dart';
-import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Student/CoursePageStudent.dart';
-import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
 
 import 'package:tester/Screens/style.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/style.dart';
+
 
 final EFRef = Firestore.instance.collection('omr312PreClinc');
 
@@ -435,6 +433,7 @@ class FormPageStudentState extends State<FormPageStudent> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: <Widget>[
+
                     Radio(
                         value: 1,
                         groupValue: group2,

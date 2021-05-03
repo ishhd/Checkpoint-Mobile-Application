@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/AcademicStaff/formsAS.dart';
 import 'package:tester/Screens/Administrator/CourseInfo.dart';
-import 'package:tester/Screens/Administrator/EFAdmin.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/FormPageStudent.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
@@ -176,11 +174,6 @@ class CoursStudentState extends State<CoursStudent> {
                 label: "View Forms",
                 onpressed: () {
                   runApp(EvaluationFormsStudent());
-
-
-                  runApp(EvaluationFormInfo());
-                
-
                 },
               ),
             ])));
