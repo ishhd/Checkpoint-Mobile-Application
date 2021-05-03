@@ -2,11 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
-import 'package:tester/Screens/Sidebar/sidebar.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
-import 'package:tester/Screens/model/User.dart';
 import 'package:tester/Screens/services/auth.dart';
 import 'package:tester/Screens/style.dart';
 

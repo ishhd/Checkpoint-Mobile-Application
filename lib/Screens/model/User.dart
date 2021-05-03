@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
-import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
@@ -33,8 +31,7 @@ class User {
   }*/
 
   Future<void> NewStudent(String email, String password, String name, String id,
-      String uid, int activate, String position ) async {
-        
+      String uid, int activate, String position) async {
     await Attendance.document(uid).setData(({
       'OMR312Ab': 0,
       'OMR312De': 0,
@@ -92,7 +89,6 @@ class User {
       'id': id,
       'activate': 0,
       'position': position
-      
     }));
   }
 
@@ -113,9 +109,7 @@ class User {
       'id': id,
       'activate': 0,
       'position': position
-      
     });
-    
   }
 
   // ignore: non_constant_identifier_names
