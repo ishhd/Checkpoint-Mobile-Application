@@ -3,14 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
-import 'package:tester/Screens/AcademicStaff/formsAS.dart';
 import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/Student/CoursePageStudent.dart';
 import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
-
-import 'package:tester/Screens/style.dart';
-import 'package:flutter/material.dart';
-
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -177,7 +172,7 @@ class FormPageStudentState extends State<FormPageStudent> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                runApp(EvaluationFormsStudent());
+                runApp(EvaluationFormsAS());
               },
               color: Color(0xFF525151),
               iconSize: 20,
@@ -435,20 +430,6 @@ class FormPageStudentState extends State<FormPageStudent> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: <Widget>[
-                    Radio(
-                        value: 1,
-                        groupValue: group2,
-                        onChanged: (value) {
-                          onChanged:
-                          (T) {};
-                        }),
-                    Radio(
-                        value: 1,
-                        groupValue: group2,
-                        onChanged: (value) {
-                          onChanged:
-                          (T) {};
-                        }),
                     if (questionNumber == 2 && val == "Satisfactory")
                       Radio(
                         value: val,

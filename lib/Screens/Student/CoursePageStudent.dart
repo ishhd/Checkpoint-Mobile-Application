@@ -176,11 +176,6 @@ class CoursStudentState extends State<CoursStudent> {
                 label: "View Forms",
                 onpressed: () {
                   runApp(EvaluationFormsStudent());
-
-
-                  runApp(EvaluationFormInfo());
-                
-
                 },
               ),
             ])));
