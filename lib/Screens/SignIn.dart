@@ -106,7 +106,6 @@ class _SignInState extends State<SignIn> {
                         child: TextButton(
                           child: Text("Forget my password"),
                           onPressed: () {
-                            // User().Activate();
                             //runApp(ResetPass());
                           },
                         ),
@@ -121,6 +120,9 @@ class _SignInState extends State<SignIn> {
                               if (n == 1) {
                                 setState(
                                     () => error = 'Soory Your Account on Hold');
+                              } else if (result == null) {
+                                setState(() => error =
+                                    'Soory Your Do not Have an Account Please Sign Up');
                               } else {
                                 setState(
                                     () => error = 'Check Your Input Again');

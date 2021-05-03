@@ -94,10 +94,7 @@ class evaluationform {
   //Q9
   Future feedback(String uid, String value) async {
     try {
-      Firestore.instance
-          .collection('omr312PreClinc')
-          .document(uid)
-          .updateData({'feedback': value});
+      evaluationForm1.document(uid).updateData({'feedback': value});
     } catch (e) {
       print(e.toString());
       return null;
