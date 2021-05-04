@@ -53,7 +53,9 @@ class HomePageStudentState extends State<HomePageStudent> {
                 MenuButtons(
                   label: "Attendance Report",
                   onpressed: () {
-                    runApp(AttendancePageStudent());
+                    runApp(MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        home: AttendancePageStudent()));
                   },
                 ),
               ],

@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
+
+final AbsentRef = Firestore.instance.collection('attendance');
 
 class AttendancePageStudent extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -11,6 +15,18 @@ class AttendancePageStudent extends StatefulWidget {
 }
 
 class AttendancePageStudentState extends State<AttendancePageStudent> {
+  int Absent = 0;
+  String name;
+  getAbsent(String coursName) async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await AbsentRef.document(user.uid).get().then((value) {
+      Absent = (value.data)['omr312Ab'];
+    });
+    //name = doc.data as String;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -101,10 +117,11 @@ class AttendancePageStudentState extends State<AttendancePageStudent> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: new Text("It downloaded successfully"),
+                      title: new Text("Download the Report"),
+                      content: new Text("It has successfully downloaded"),
                       actions: <Widget>[
                         new FlatButton(
-                          child: new Text("OK"),
+                          child: new Text("Ok"),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },

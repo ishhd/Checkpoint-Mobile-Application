@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tester/Screens/AcademicStaff/homePageAS.dart';
+import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
@@ -8,14 +8,22 @@ import 'package:tester/Screens/Student/homePageStudent.dart';
 class User {
   String error = '';
   String uid;
+  String name;
+  String id;
+  String activate;
+  String state;
+  var vv = [];
   final CollectionReference Student = Firestore.instance.collection('student');
   final CollectionReference AcademicStaff =
       Firestore.instance.collection('academicStaff');
   final CollectionReference UserNew = Firestore.instance.collection('user');
-  final CollectionReference evaluationForm =
-      Firestore.instance.collection('evaluationForm');
+  final CollectionReference Attendance =
+      Firestore.instance.collection('attendance');
 
-  User({this.uid});
+  final CollectionReference evaluationForm1 =
+      Firestore.instance.collection('omr312PreClinc');
+
+  User({this.uid, this.name, this.id, this.activate});
   /*Future<void> NewUser(
       String email, String password, String name, String id, String uid) async {
     return await ref.document(uid).setData(
@@ -24,6 +32,15 @@ class User {
 
   Future<void> NewStudent(String email, String password, String name, String id,
       String uid, int activate, String position) async {
+    await Attendance.document(uid).setData(({
+      'OMR312Ab': 0,
+      'OMR312De': 0,
+      'OMR511Ab': 0,
+      'OMR511De': 0,
+      'OMR611Ab': 0,
+      'OMR611De': 0
+    }));
+
     await UserNew.document(uid).setData(({
       'email': email,
       'password': password,
@@ -32,23 +49,38 @@ class User {
       'activate': 0,
       'position': position
     }));
-    await evaluationForm.document(uid).setData(({
-          'OMR312': 'OMR312',
-          'Punctuality': 0,
-          'Appropriate attire as described in ‘Critical PPM’': 0,
-          'Proper bench cleanliness': 0,
-          'Ability to assess success of anesthesia': 0,
-          'Anatomy & injection procedure': 0,
-          'Needle insertion point': 0,
-          'Operator & Manikin positions': 0,
-          'Preparation of armamentarium': 0,
-          'Syringe assembly for injection and aspiration': 0,
-          'Identification soft and hard tissue landmarks': 0,
-          'Student is defensive': 0,
-          'Student is receptive	to	 feedback': 0,
-          'Above Expectation': 0,
-          'Competent': 0,
-          'Needs improvement': 0,
+    await evaluationForm1.document(uid).setData(({
+          'courseName': 'OMR312',
+          'punctuality': 'Null',
+          'appropriate attire as described in ‘Critical PPM’': 'Null',
+          'proper bench cleanliness': 'Null',
+          'tray organization': 'Null',
+          'understanding the indications, relevant anatomy, material selection, technique of procedure':
+              'Null',
+          'with Staff': 'Null',
+          'benches & instrument cleanliness and waste disposals': 'Null',
+          'adherence to school’s ‘Code of Professional Conduct’': 'Null',
+          'feedback': 'Null',
+          'preparation of armamentarium / Self Assessment': 'Null',
+          'syringe assembly for injection and aspiration / Self Assessment':
+              'Null',
+          'operator & Manikin positions / Self Assessment': 'Null',
+          'identification soft and hard tissue landmarks / Self Assessment':
+              'Null',
+          'needle insertion point / Self Assessment': 'Null',
+          'anatomy & injection procedure / Self Assessment': 'Null',
+          'ability to assess success of anesthesia / Self Assessment': 'Null',
+          'preparation of armamentarium / Instructor Evaluation': 'Null',
+          'syringe assembly for injection and aspiration / Instructor Evaluation':
+              'Null',
+          'operator & Manikin positions / Instructor Evaluation': 'Null',
+          'identification soft and hard tissue landmarks / Instructor Evaluation':
+              'Null',
+          'needle insertion point / Instructor Evaluation': 'Null',
+          'anatomy & injection procedure / Instructor Evaluation': 'Null',
+          'ability to assess success of anesthesia / Instructor Evaluation':
+              'Null',
+          'student’s overall ability to perform the protective': 'Null',
         }));
     return await Student.document(uid).setData(({
       'email': email,
@@ -80,20 +112,38 @@ class User {
     });
   }
 
-  Future AuthPage(String uid) async {
+  // ignore: non_constant_identifier_names
+  Future<void> NewAdmin(
+      String email, String password, String name, String id, String uid) async {
+    await UserNew.document(uid).setData(({
+      'email': email,
+      'password': password,
+      'name': name,
+      'id': id,
+      'activate': 1,
+      'position': 'Admin'
+    }));
+  }
+
+  // ignore: non_constant_identifier_names
+  Future AuthPage(String uiid) async {
     try {
-      Firestore.instance.collection('user').document(uid).get().then((value) {
+      uid = uiid;
+      await Firestore.instance
+          .collection('user')
+          .document(uiid)
+          .get()
+          .then((value) {
         var userType = (value.data)['position'];
         var activate = (value.data)['activate'];
         if (userType == '  Academic Staff' && activate == 1) {
-          runApp(HomeScreen(widget: homepageAS()));
-          Bar('  Academic Staff');
+          runApp(HomeScreen(widget: CourseAS()));
         } else if (userType == '  Student' && activate == 1) {
           runApp(HomeScreen(widget: HomePageStudent()));
-          Bar('  Student');
         } else if (userType == 'Admin') {
           runApp(HomeScreen(widget: homePageAdministrator()));
-          Bar('Admin');
+        } else if (activate == 0) {
+          state = '1';
         }
       });
     } catch (e) {
@@ -102,22 +152,13 @@ class User {
     }
   }
 
-  Future Bar(String Type) async {
-    try {
-      if (Type == '  Academic Staff') {
-        // BarPage('  Academic Staff');
-      } else if (Type == '  Student') {
-        // BarPage('  Academic Staff');
-      } else if (Type == 'Admin') {
-        // BarPage('  Academic Staff');
-      }
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
+  Future status() async {
+    state = 'Your acccount into hold';
+    return state;
   }
 
 // Change the active to 1
+  // ignore: non_constant_identifier_names
   Future Activate(String uid) async {
     try {
       Firestore.instance
@@ -130,9 +171,9 @@ class User {
     }
   }
 
-  Stream<QuerySnapshot> get ActUser {
-    return UserNew.snapshots();
-  }
+  //Stream<QuerySnapshot> get ActUser {
+  //  return UserNew.snapshots();
+  //}
 
 // print user for activate
   Future PrintUs() async {
@@ -141,20 +182,59 @@ class User {
       var id = (value.data)['id'];
       var Activ = (value.data)['activate'];
       if (Activ == 0) {
-        print(Name && id);
-        return Name && id;
+        for (var i in vv) {
+          print(Name && id);
+        }
       } else {
         return 'There is no one';
       }
     });
   }
 
-  Stream<QuerySnapshot> get user {
+  /*List<User> _userList(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return User(
+          name: doc.data['name'] ?? ' ',
+          id: doc.data[id] ?? '',
+          activate: doc.data['activate']);
+    }).toList();
+  }*/
+
+  /* Stream<List<User>> get user {
     Firestore.instance.collection('user').document(uid).get().then((value) {
       var activate = (value.data)['activate'];
       if (activate == 0) {
-        return UserNew.snapshots();
-      }
+    return UserNew.snapshots().map(_userList);
+  }*/
+
+  // ignore: non_constant_identifier_names
+  Future<void> UpdateAdmin(
+    String name,
+    String id,
+  ) async {
+    await Firestore.instance
+        .collection('user')
+        .document('4L4GSLTUJvPjZGiM8sN4JXh0qOt2')
+        .updateData({
+      'name': name,
+      'id': id,
     });
+  }
+
+  //name = doc.data as String;
+
+  absent(String uid, String name) async {
+    final AbsentRef = Firestore.instance.collection('attendance');
+    int absent;
+    if (name == 'OMR 312') {
+      await AbsentRef.document(uid).get().then((value) {
+        absent = (value.data)['OMR312Ab'];
+      });
+      absent++;
+
+      await AbsentRef.document(uid).updateData({'OMR312Ab ': absent});
+    } else if (name == 'OMR 511') {
+      await AbsentRef.document(uid).updateData({'absent ': absent});
+    }
   }
 }

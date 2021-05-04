@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tester/Screens/AcademicStaff/EvaluationFormsAS.dart';
-import 'package:tester/Screens/model/evaluationform.dart';
+import 'package:tester/Screens/model/evaluationforms/OMR512.dart';
 import 'package:tester/Screens/style.dart';
+
+String uid = 'wQwPMRwmGUMfTwWsKTtttXZa21N2';
 
 class FormsAS extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -18,11 +20,18 @@ class FormsASState extends State<FormsAS> {
   int group3 = -1;
   int group = -1;
   String name = '';
+  String iname = '';
   String selfAssessmentP = '';
+  String selfAssessmentO = '';
+  String selfAssessmentI = '';
+  String selfAssessmentN = '';
+  String selfAssessmentA = '';
+  String selfAssessmentB = '';
   String instructorEvaluationP = '';
   String selfAssessmentS = '';
   String instructorEvaluationS = '';
   String aplity = '';
+  String Q1;
 
   // This widget is the root of your application.
   @override
@@ -81,7 +90,7 @@ class FormsASState extends State<FormsAS> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         onChanged: (val) {
-                          name = val;
+                          iname = val;
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -115,19 +124,25 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 5,
                   ),
-                  questionType(1, "Punctuality"),
+                  questionType(1, "Punctuality", 1),
                   questionType(
-                      2, "Appropriate attire as described in Critical PPM"),
-                  questionType(2, "Proper bench cleanliness"),
-                  questionType(1, "Tray organization"),
-                  questionType(1,
-                      "Understanding the indications, relevant anatomy, material selection, technique of procedure"),
-                  questionType(1, "With Staff"),
-                  questionType(3,
-                      "Benches & instrument cleanliness and waste disposals"),
-                  questionType(2,
-                      "Adherence to school’s ‘Code of Professional Conduct’"),
-                  questionType(4, "Feedback"),
+                      2, "Appropriate attire as described in Critical PPM", 2),
+                  questionType(2, "Proper bench cleanliness", 3),
+                  questionType(1, "Tray organization", 4),
+                  questionType(
+                      1,
+                      "Understanding the indications, relevant anatomy, material selection, technique of procedure",
+                      5),
+                  questionType(1, "With Staff", 6),
+                  questionType(
+                      3,
+                      "Benches & instrument cleanliness and waste disposals",
+                      7),
+                  questionType(
+                      2,
+                      "Adherence to school’s ‘Code of Professional Conduct’",
+                      8),
+                  questionType(4, "Feedback", 9),
                   SizedBox(
                     height: 35,
                   ),
@@ -137,13 +152,13 @@ class FormsASState extends State<FormsAS> {
                   SizedBox(
                     height: 5,
                   ),
-                  sectionII("Preparation of armamentarium"),
-                  sectionII("Syringe assembly for injection and aspiration"),
-                  sectionII("Operator & Manikin positions"),
-                  sectionII("Identification soft and hard tissue landmarks"),
-                  sectionII("Needle insertion point"),
-                  sectionII("Anatomy & injection procedure"),
-                  sectionII("Ability to assess success of anesthesia"),
+                  sectionII("Preparation of armamentarium", 1),
+                  sectionII("Syringe assembly for injection and aspiration", 2),
+                  sectionII("Operator & Manikin positions", 3),
+                  sectionII("Identification soft and hard tissue landmarks", 4),
+                  sectionII("Needle insertion point", 5),
+                  sectionII("Anatomy & injection procedure", 6),
+                  sectionII("Ability to assess success of anesthesia", 7),
                   SizedBox(
                     height: 5,
                   ),
@@ -158,6 +173,7 @@ class FormsASState extends State<FormsAS> {
                       SubmitButtons(
                         text: "Save",
                         onpressed: () {
+                          UpdateFor();
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -199,7 +215,7 @@ class FormsASState extends State<FormsAS> {
                                     child: new Text("Excel Sheet"),
                                     onPressed: () async {
                                       await http.get(
-                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=&&name5=&&name6=&&name7=&&name8=&&name9=$aplity&&name10=");
+                                          "https://script.google.com/macros/s/AKfycbzFAC6ilUBL8AqKLmRcazkElHbGYUYAKJxn0_bKINZhCAq0-9kplPQlcr_sHlUJifSHqQ/exec?name1=$name&&name2=$selfAssessmentP&&name3=$selfAssessmentS&&name4=$selfAssessmentO&&name5=$selfAssessmentI&&name6=$selfAssessmentN&&name7=$selfAssessmentA&&name8=$selfAssessmentB&&name9=$aplity&&name10=$iname");
 
                                       Navigator.of(context).pop();
                                     },
@@ -228,7 +244,7 @@ class FormsASState extends State<FormsAS> {
         ));
   }
 
-  Widget questionType(int questiontype, String question) {
+  Widget questionType(int questiontype, String question, int questionNumber) {
     String questionStr = question;
     int questiontypeint = questiontype;
 
@@ -254,8 +270,15 @@ class FormsASState extends State<FormsAS> {
                       value: 1,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                        if (questionNumber == 1) {
+                          evaluationform().punctuality(uid, '1');
+                        } else if (questionNumber == 4) {
+                          evaluationform().tray(uid, '1');
+                        } else if (questionNumber == 5) {
+                          evaluationform().understanding(uid, '1');
+                        } else if (questionNumber == 6) {
+                          evaluationform().withStaff(uid, '1');
+                        }
                         setState(() {
                           group1 = T;
                         });
@@ -269,8 +292,15 @@ class FormsASState extends State<FormsAS> {
                       value: 2,
                       groupValue: group1,
                       onChanged: (T) {
-                        evaluationform()
-                            .Punctuality('07Pgmy307rU1i1SpzQGh053TtTB3', '2');
+                        if (questionNumber == 1) {
+                          evaluationform().punctuality(uid, '2');
+                        } else if (questionNumber == 4) {
+                          evaluationform().tray(uid, '2');
+                        } else if (questionNumber == 5) {
+                          evaluationform().understanding(uid, '2');
+                        } else if (questionNumber == 6) {
+                          evaluationform().withStaff(uid, '2');
+                        }
                         setState(() {
                           group1 = T;
                         });
@@ -310,8 +340,13 @@ class FormsASState extends State<FormsAS> {
                       value: 1,
                       groupValue: group2,
                       onChanged: (T) {
-                        evaluationform()
-                            .Appropriate('07Pgmy307rU1i1SpzQGh053TtTB3', '1');
+                        if (questionNumber == 2) {
+                          evaluationform().appropriate(uid, '1');
+                        } else if (questionNumber == 3) {
+                          evaluationform().proper(uid, '1');
+                        } else if (questionNumber == 8) {
+                          evaluationform().adherence(uid, '1');
+                        }
                         setState(() {
                           group2 = T;
                         });
@@ -349,6 +384,9 @@ class FormsASState extends State<FormsAS> {
                       value: 1,
                       groupValue: group3,
                       onChanged: (T) {
+                        if (questionNumber == 7) {
+                          evaluationform().benches(uid, '1');
+                        }
                         setState(() {
                           group3 = T;
                         });
@@ -363,6 +401,9 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group3,
                       onChanged: (T) {
                         setState(() {
+                          if (questionNumber == 7) {
+                            evaluationform().benches(uid, '2');
+                          }
                           group3 = T;
                         });
                       },
@@ -376,6 +417,9 @@ class FormsASState extends State<FormsAS> {
                       groupValue: group3,
                       onChanged: (T) {
                         setState(() {
+                          if (questionNumber == 7) {
+                            evaluationform().benches(uid, 'NA/NO');
+                          }
                           group3 = T;
                         });
                       },
@@ -409,8 +453,7 @@ class FormsASState extends State<FormsAS> {
               margin: EdgeInsets.only(top: 20),
               child: TextFormField(
                 onChanged: (val) {
-                  evaluationform()
-                      .feedback('07Pgmy307rU1i1SpzQGh053TtTB3', val);
+                  evaluationform().feedback(uid, val);
                 },
                 maxLines: 8,
                 decoration: InputDecoration(
@@ -426,7 +469,12 @@ class FormsASState extends State<FormsAS> {
     }
   }
 
-  Widget sectionII(String question) {
+  UpdateFor() {
+    evaluationform().preparationSA(uid, selfAssessmentP);
+    evaluationform().syringeSA(uid, selfAssessmentS);
+  }
+
+  Widget sectionII(String question, int questionNumber) {
     String selfAssessment;
     String instructorEvaluation;
 
@@ -449,15 +497,39 @@ class FormsASState extends State<FormsAS> {
               validator: (value) =>
                   value.isEmpty ? 'Choose the Position Please' : null,
               onChanged: (value) {
-                evaluationform()
-                    .feedback('07Pgmy307rU1i1SpzQGh053TtTB3', value);
                 setState(() {
                   selfAssessment = value;
                 });
                 if (question.contains("Preparation")) {
                   selfAssessmentP = value;
-                } else {
+                } else if (question.contains("Syringe")) {
                   selfAssessmentS = value;
+                } else if (question.contains("Operator")) {
+                  evaluationform().operatorSA(uid, value);
+                } else if (questionNumber == 4) {
+                  evaluationform().identificationSA(uid, value);
+                } else if (questionNumber == 5) {
+                  evaluationform().needleSA(uid, value);
+                } else if (questionNumber == 6) {
+                  evaluationform().anatomySA(uid, value);
+                } else if (questionNumber == 7) {
+                  evaluationform().abilitySA(uid, value);
+                }
+
+                if (question.contains("Preparation")) {
+                  selfAssessmentP = value;
+                } else if (question.contains("Syringe")) {
+                  selfAssessmentS = value;
+                } else if (question.contains("Operator")) {
+                  selfAssessmentO = value;
+                } else if (question.contains("Identification")) {
+                  selfAssessmentI = value;
+                } else if (question.contains("Needle")) {
+                  selfAssessmentN = value;
+                } else if (question.contains("Anatomy")) {
+                  selfAssessmentA = value;
+                } else {
+                  selfAssessmentB = value;
                 }
               },
               items: ['  0', '  1', '  2', '  NA'].map((value) {
@@ -485,6 +557,22 @@ class FormsASState extends State<FormsAS> {
             onChanged: (value) {
               setState(() {
                 instructorEvaluation = value;
+
+                if (questionNumber == 1) {
+                  evaluationform().preparationIE(uid, value);
+                } else if (questionNumber == 2) {
+                  evaluationform().syringeIE(uid, value);
+                } else if (questionNumber == 3) {
+                  evaluationform().operatorIE(uid, value);
+                } else if (questionNumber == 4) {
+                  evaluationform().identificationIE(uid, value);
+                } else if (questionNumber == 5) {
+                  evaluationform().needleIE(uid, value);
+                } else if (questionNumber == 6) {
+                  evaluationform().anatomyIE(uid, value);
+                } else if (questionNumber == 7) {
+                  evaluationform().abilityIE(uid, value);
+                }
               });
               if (question.contains("Preparation")) {
                 instructorEvaluationP = value;
@@ -525,6 +613,7 @@ class FormsASState extends State<FormsAS> {
                   value: 1,
                   groupValue: group,
                   onChanged: (T) {
+                    evaluationform().overall(uid, '1');
                     setState(() {
                       group = T;
                     });
@@ -539,6 +628,8 @@ class FormsASState extends State<FormsAS> {
                   value: 2,
                   groupValue: group,
                   onChanged: (T) {
+                    evaluationform().overall(uid, '2');
+
                     setState(() {
                       group = T;
                     });
@@ -553,6 +644,7 @@ class FormsASState extends State<FormsAS> {
                   value: 3,
                   groupValue: group,
                   onChanged: (T) {
+                    evaluationform().overall(uid, '3');
                     setState(() {
                       group = T;
                     });

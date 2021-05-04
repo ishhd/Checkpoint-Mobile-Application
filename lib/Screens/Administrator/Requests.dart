@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/Administrator/AddAdmin.dart';
 import 'package:tester/Screens/bloc.navigation_bloc/navigation_bloc.dart';
 
 class Requests extends StatefulWidget with NavigationStates {
@@ -9,16 +11,42 @@ class Requests extends StatefulWidget with NavigationStates {
 }
 
 class RequestsState extends State<Requests> {
-  List fullNames = [
-    "Shahad Harith",
-    "Rewaa Alalawi",
-    "Ameera Aluofi",
-  ];
+  String name = '';
+  String id;
+  String uid;
+  String position;
+  getUser() async {
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await userRef.document(uid).get().then((value) {
+      name = (value.data)['name'];
+      id = (value.data)['id'];
+      position = (value.data)['position'];
+    });
+  }
+
+  activate(String uid) async {
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await userRef.document(uid).get().then((value) {
+      name = (value.data)['name'];
+      id = (value.data)['id'];
+      position = (value.data)['position'];
+      uid = (value.data)['uid'];
+    });
+
+    final user = <Widget>[];
+    for (var i = 0; i < 10; i++) {
+      user.add(new ListTile());
+    }
+  }
+
+  List fullNames = [];
 
   List idNumbers = [
-    "1234567",
-    "1234567",
-    "1234567",
+    "1707861",
+    "1708664",
+    "1708103",
   ];
 
   @override
@@ -87,11 +115,10 @@ class RequestsState extends State<Requests> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(fullNames[index],
+                        Text(name,
                             style:
                                 TextStyle(color: Colors.black, fontSize: 18)),
-                        Text("Student or Academic Staff",
-                            style: TextStyle(color: Colors.grey)),
+                        Text("Student", style: TextStyle(color: Colors.grey)),
                         Text(idNumbers[index],
                             style: TextStyle(color: Colors.grey)),
                       ],

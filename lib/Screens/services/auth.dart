@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:tester/Screens/SignIn.dart';
+import 'package:tester/Screens/model/QRcode.dart';
 import 'package:tester/Screens/model/User.dart';
+import 'package:tester/Screens/services/returnqr.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -11,6 +14,14 @@ class AuthService {
     return user != null ? User(uid: user.uid) : null;
   }
 
+  Future getCurrent() async {
+    FirebaseUser result = (await _auth.currentUser());
+    return result.uid;
+    //  String uid = user.uid;
+    // return uid;
+    //return currentUser.uid;
+    //return (await _auth.currentUser()).uid;
+  }
 
   Future signInAnon() async {
     try {
@@ -28,14 +39,18 @@ class AuthService {
   }
 
   //Sign in
+  // ignore: non_constant_identifier_names
   Future SignInProcess(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      //await Profile(
+      // uid: user.uid,
+      //);
       await User().AuthPage(user.uid);
-      
-      return _userFromFire(user);
+
+      //return _userFromFire(user);
     } catch (e) {
       print(e.toString());
       return null;
@@ -53,10 +68,13 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       await User().NewStudent(email, password, name, id, user.uid, 0, position);
-      runApp(SignIn());
+
+      // print("result:$result2");
+      // await UserManagement().storeNewUser(user, context, name);
+      //runApp(SignIn());
       return user;
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
       return null;
     }
   }
@@ -80,16 +98,27 @@ class AuthService {
     }
   }
 
-  Future p() async {
+  // ignore: non_constant_identifier_names
+  Future AddNewAdmin(
+    String email,
+    String password,
+    String name,
+    String id,
+  ) async {
     try {
-      FirebaseUser user;
-      await User().AuthPage(user.uid);
-      print(user);
-      return user;
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = result.user;
+      await User().NewAdmin(email, password, name, id, user.uid);
     } catch (e) {
       print(e.toString());
       return null;
     }
+  }
+
+  Future prof() {
+    FirebaseUser user;
+    // runApp(Profile(uid: user.uid));
   }
 
   // get the information

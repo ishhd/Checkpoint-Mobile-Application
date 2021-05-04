@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tester/Screens/Administrator/EFAdmin.dart';
+import 'package:tester/Screens/Administrator/CourseInfo.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
+import 'package:tester/Screens/Student/FormPageStudent.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
 import 'package:tester/Screens/style.dart';
 
@@ -55,7 +57,8 @@ class CoursPageStudentState extends State<CoursPageStudent> {
                 color: Color(0xFF92D050),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CoursStudent()));
+                      debugShowCheckedModeBanner: false,
+                      home: CoursStudent(uid: '1TE8kE3GYaxKtJsFgSdR')));
                 },
               ),
               CoursesButtons(
@@ -79,7 +82,8 @@ class CoursPageStudentState extends State<CoursPageStudent> {
                 color: Color(0xFFF6CAAC),
                 onpressed: () {
                   runApp(MaterialApp(
-                      debugShowCheckedModeBanner: false, home: CoursStudent()));
+                      debugShowCheckedModeBanner: false,
+                      home: CoursStudent(uid: '2IJMCEPsz6rUv1GtHi2q')));
                 },
               ),
             ])));
@@ -87,14 +91,31 @@ class CoursPageStudentState extends State<CoursPageStudent> {
 }
 
 class CoursStudent extends StatefulWidget {
+  final String uid;
+  const CoursStudent({this.uid});
   State<StatefulWidget> createState() {
     return CoursStudentState();
   }
 }
 
 class CoursStudentState extends State<CoursStudent> {
+  String labNo = '';
+  String clinicNo = '';
+  String courseCode = '';
+  Future getCourse() async {
+    final DocumentSnapshot doc =
+        // ignore: missing_return
+        await coursRef.document(widget.uid).get().then((value) {
+      courseCode = (value.data)['courseCode'];
+      labNo = (value.data)['labNo'];
+      clinicNo = (value.data)['clinicNo'];
+    });
+    //name = doc.data as String;
+  }
+
   @override
   Widget build(BuildContext context) {
+    getCourse();
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
@@ -106,7 +127,7 @@ class CoursStudentState extends State<CoursStudent> {
             appBar: AppBar(
               backgroundColor: Color(0xFFD9D9D9),
               title: Text(
-                "Name of the course#",
+                courseCode,
                 style: TextStyle(
                   fontSize: 30,
                   color: Color(0xFF525151),
@@ -129,7 +150,7 @@ class CoursStudentState extends State<CoursStudent> {
               SizedBox(height: 50),
               Container(
                 child: Text(
-                  "Lab No.  ## ",
+                  "Lab No.   " + labNo,
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.grey,
@@ -140,7 +161,7 @@ class CoursStudentState extends State<CoursStudent> {
               SizedBox(height: 20),
               Container(
                 child: Text(
-                  "Clinc No.  ## ",
+                  "Clinc No.   " + clinicNo,
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.grey,
@@ -152,7 +173,7 @@ class CoursStudentState extends State<CoursStudent> {
               MenuButtons(
                 label: "View Forms",
                 onpressed: () {
-                  runApp(EvaluationFormInfo());
+                  runApp(EvaluationFormsStudent());
                 },
               ),
             ])));
