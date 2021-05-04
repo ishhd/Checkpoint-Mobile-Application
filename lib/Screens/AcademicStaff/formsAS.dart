@@ -337,7 +337,7 @@ class FormsASState extends State<FormsAS> {
                 child: Row(
                   children: <Widget>[
                     Radio(
-                      value: "Satisfactory",
+                      value: 1,
                       groupValue: group2,
                       onChanged: (T) {
                         if (questionNumber == 2) {

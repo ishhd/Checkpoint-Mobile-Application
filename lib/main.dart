@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tester/Screens/AcademicStaff/formsAS.dart';
+import 'package:tester/Screens/signUp.dart';
 
 //Pages
 import 'Screens/SignIn.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: FormsAS(),
+      home: SignIn(),
     );
   }
 }

@@ -49,7 +49,7 @@ class UserManagement {
     String downloadUrl = await snapshot.ref.getDownloadURL();
     print("DownloadUrl: ${downloadUrl}");
 
-    Firestore.instance.collection('student').add({
+    Firestore.instance.collection('student').document(user.uid).updateData({
       'uid': user.uid,
       'qrCodeUrl': downloadUrl,
     }).catchError((e) {

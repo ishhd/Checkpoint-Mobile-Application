@@ -1,10 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:tester/Screens/SignIn.dart';
+import 'package:tester/Screens/model/QRcode.dart';
 import 'package:tester/Screens/model/User.dart';
+import 'package:tester/Screens/services/returnqr.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   //creat user object
   User _userFromFire(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
@@ -64,8 +68,10 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       await User().NewStudent(email, password, name, id, user.uid, 0, position);
-      //await UserManagement().storeNewUser(user, context, name);
-      runApp(SignIn());
+
+      // print("result:$result2");
+      // await UserManagement().storeNewUser(user, context, name);
+      //runApp(SignIn());
       return user;
     } catch (e) {
       //print(e.toString());
@@ -108,6 +114,11 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+
+  Future prof() {
+    FirebaseUser user;
+    // runApp(Profile(uid: user.uid));
   }
 
   // get the information
