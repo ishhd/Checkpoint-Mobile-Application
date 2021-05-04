@@ -110,11 +110,6 @@ class AuthService {
     }
   }
 
-  Future prof() {
-    FirebaseUser user;
-    // runApp(Profile(uid: user.uid));
-  }
-
   // get the information
   Future RequstsActivate() async {
     try {
