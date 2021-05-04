@@ -26,6 +26,7 @@ class _SignInState extends State<SignIn> {
     final DocumentSnapshot doc =
         // ignore: missing_return
         await userRef.document(user.uid).get().then((value) {
+      print(value.data);
       var state = (value.data)['activate'];
       if (state == 0) {
         n = 1;

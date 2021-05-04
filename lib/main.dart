@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tester/Screens/AcademicStaff/formsAS.dart';
+import 'package:tester/Screens/signUp.dart';
 
 //Pages
 import 'Screens/SignIn.dart';
