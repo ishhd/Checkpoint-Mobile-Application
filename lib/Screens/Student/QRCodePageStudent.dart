@@ -101,16 +101,16 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                 SizedBox(
                   height: 100,
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 70, 0, 35),
-                  child: Text(qrCodeUrl),
-                ),
-
-                /* QrImage(
+                /*Container(
+                    margin: EdgeInsets.fromLTRB(0, 70, 0, 35),
+                    child: Text(qrCodeUrl),
+                    ),*/
+                QrImage(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
                     data: _dataString,
                     size: 200),
+                /*
                 Container(
                     margin: EdgeInsets.fromLTRB(0, 70, 0, 35),
                     child: FutureBuilder(
@@ -153,6 +153,7 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
   }
 
   void saveImage(path) async {
+    path = qrCodeUrl;
     SharedPreferences saveImage = await SharedPreferences.getInstance();
     saveImage.setString('imagepath', path);
   }
