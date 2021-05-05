@@ -107,7 +107,7 @@ class _SignInState extends State<SignIn> {
                         child: TextButton(
                           child: Text("Forget my password"),
                           onPressed: () {
-                            //runApp(ResetPass());
+                            runApp(ResetPass());
                           },
                         ),
                       ),
@@ -120,10 +120,10 @@ class _SignInState extends State<SignIn> {
                                   await _auth.SignInProcess(email, password);
                               if (n == 1) {
                                 setState(
-                                    () => error = 'Soory Your Account on Hold');
+                                    () => error = 'Sorry Your Account on Hold');
                               } else if (result == null) {
                                 setState(() => error =
-                                    'Soory Your Do not Have an Account Please Sign Up');
+                                    'Sorry Your Do not Have an Account Please Sign Up');
                               } else {
                                 setState(
                                     () => error = 'Check Your Input Again');
