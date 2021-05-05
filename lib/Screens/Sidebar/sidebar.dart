@@ -4,9 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tester/Screens/AcademicStaff/CourseAS.dart';
-import 'package:tester/Screens/Administrator/Requests.dart';
+import 'package:tester/Screens/Administrator/Requestsstud.dart';
 import 'package:tester/Screens/Administrator/SchedulesAdmin.dart';
 import 'package:tester/Screens/Administrator/homepage_administrator.dart';
+import 'package:tester/Screens/Administrator/tab.dart';
 import 'package:tester/Screens/Sidebar/home_screen.dart';
 import 'package:tester/Screens/SignIn.dart';
 import 'package:tester/Screens/Student/homePageStudent.dart';
@@ -81,188 +82,196 @@ class _SideBarState extends State<SideBar>
     }
   }
 
+  Future<bool> _willPopCallback() async {
+    print("object");
+    // await showDialog or Show add banners or whatever
+    // then
+    return Future.value(false);
+  }
+
   @override
   Widget build(BuildContext context) {
     getUser();
     final AuthService _auth = AuthService();
 
     final screenWidth = MediaQuery.of(context).size.width;
-
-    return StreamBuilder<bool>(
-      initialData: false,
-      stream: isSidebarOpenedStream,
-      builder: (context, isSideBarOpenedAsync) {
-        return AnimatedPositioned(
-          duration: _animationDuration,
-          top: 0,
-          bottom: 0,
-          left: isSideBarOpenedAsync.data ? 0 : -screenWidth,
-          right: isSideBarOpenedAsync.data ? 0 : screenWidth - 45,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: const Color(0xFF98D1D4),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 100,
-                      ),
-                      ListTile(
-                        title: Text(
-                          name != null ? name : '',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.w800),
-                        ),
-                        subtitle: Text(
-                          position != null ? position : '',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                        leading: CircleAvatar(
-                          child: Icon(
-                            Icons.perm_identity,
-                            color: Colors.white,
-                          ),
-                          radius: 40,
-                        ),
-                      ),
-                      Divider(
-                        height: 64,
-                        thickness: 0.5,
-                        color: Colors.white.withOpacity(0.5),
-                        indent: 32,
-                        endIndent: 32,
-                      ),
-                      MenuItem(
-                        icon: Icons.home,
-                        title: "Home",
-                        onTap: () {
-                          getUser();
-                          if (position == 'Admin') {
-                            onIconPressed();
-
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeScreen(
-                                      widget: homePageAdministrator()),
-                                ),
-                                (Route<dynamic> route) => true);
-                          } else if (position == '  Academic Staff') {
-                            onIconPressed();
-
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreen(widget: CourseAS()),
-                                ),
-                                (Route<dynamic> route) => true);
-                          } else if (position == '  Student') {
-                            onIconPressed();
-
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreen(widget: HomePageStudent()),
-                                ),
-                                (Route<dynamic> route) => true);
-                          }
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.person,
-                        title: "My Profile",
-                        onTap: () {
-                          onIconPressed();
-
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    HomeScreen(widget: Profile()),
-                              ),
-                              (Route<dynamic> route) => false);
-                        },
-                      ),
-                      if (position == 'Admin')
-                        MenuItem(
-                          icon: Icons.archive,
-                          title: "Requests",
-                          onTap: () {
-                            onIconPressed();
-
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreen(widget: Requests()),
-                                ),
-                                (Route<dynamic> route) => false);
-                          },
-                        ),
-                      MenuItem(
-                        icon: Icons.table_chart_sharp,
-                        title: "Schedule",
-                        onTap: () {
-                          onIconPressed();
-
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    HomeScreen(widget: SchedulesAdmin()),
-                              ),
-                              (Route<dynamic> route) => false);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.exit_to_app,
-                        title: "Logout",
-                        onTap: () async {
-                          await _auth.signOut();
-                          runApp(SignIn());
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment(0, -0.9),
-                child: GestureDetector(
-                  onTap: () {
-                    onIconPressed();
-                  },
-                  child: ClipPath(
-                    clipper: CustomMenuClipper(),
+    return new WillPopScope(
+        onWillPop: _willPopCallback,
+        child: StreamBuilder<bool>(
+          initialData: false,
+          stream: isSidebarOpenedStream,
+          builder: (context, isSideBarOpenedAsync) {
+            return AnimatedPositioned(
+              duration: _animationDuration,
+              top: 0,
+              bottom: 0,
+              left: isSideBarOpenedAsync.data ? 0 : -screenWidth,
+              right: isSideBarOpenedAsync.data ? 0 : screenWidth - 45,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
                     child: Container(
-                      width: 35,
-                      height: 110,
-                      color: Color(0xFF98D1D4),
-                      alignment: Alignment.centerLeft,
-                      child: AnimatedIcon(
-                        progress: _animationController.view,
-                        icon: AnimatedIcons.menu_close,
-                        color: Colors.white,
-                        size: 25,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      color: const Color(0xFF98D1D4),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 100,
+                          ),
+                          ListTile(
+                            title: Text(
+                              name != null ? name : '',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                            subtitle: Text(
+                              position != null ? position : '',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                            leading: CircleAvatar(
+                              child: Icon(
+                                Icons.perm_identity,
+                                color: Colors.white,
+                              ),
+                              radius: 40,
+                            ),
+                          ),
+                          Divider(
+                            height: 64,
+                            thickness: 0.5,
+                            color: Colors.white.withOpacity(0.5),
+                            indent: 32,
+                            endIndent: 32,
+                          ),
+                          MenuItem(
+                            icon: Icons.home,
+                            title: "Home",
+                            onTap: () {
+                              getUser();
+                              if (position == 'Admin') {
+                                onIconPressed();
+
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen(
+                                          widget: homePageAdministrator()),
+                                    ),
+                                    (Route<dynamic> route) => true);
+                              } else if (position == '  Academic Staff') {
+                                onIconPressed();
+
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomeScreen(widget: CourseAS()),
+                                    ),
+                                    (Route<dynamic> route) => true);
+                              } else if (position == '  Student') {
+                                onIconPressed();
+
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomeScreen(widget: HomePageStudent()),
+                                    ),
+                                    (Route<dynamic> route) => true);
+                              }
+                            },
+                          ),
+                          MenuItem(
+                            icon: Icons.person,
+                            title: "My Profile",
+                            onTap: () {
+                              onIconPressed();
+
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeScreen(widget: Profile()),
+                                  ),
+                                  (Route<dynamic> route) => false);
+                            },
+                          ),
+                          if (position == 'Admin')
+                            MenuItem(
+                              icon: Icons.archive,
+                              title: "Requests",
+                              onTap: () {
+                                onIconPressed();
+
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomeScreen(widget: Requesttab()),
+                                    ),
+                                    (Route<dynamic> route) => false);
+                              },
+                            ),
+                          MenuItem(
+                            icon: Icons.table_chart_sharp,
+                            title: "Schedule",
+                            onTap: () {
+                              onIconPressed();
+
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeScreen(widget: SchedulesAdmin()),
+                                  ),
+                                  (Route<dynamic> route) => false);
+                            },
+                          ),
+                          MenuItem(
+                            icon: Icons.exit_to_app,
+                            title: "Logout",
+                            onTap: () async {
+                              await _auth.signOut();
+                              runApp(SignIn());
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment(0, -0.9),
+                    child: GestureDetector(
+                      onTap: () {
+                        onIconPressed();
+                      },
+                      child: ClipPath(
+                        clipper: CustomMenuClipper(),
+                        child: Container(
+                          width: 35,
+                          height: 110,
+                          color: Color(0xFF98D1D4),
+                          alignment: Alignment.centerLeft,
+                          child: AnimatedIcon(
+                            progress: _animationController.view,
+                            icon: AnimatedIcons.menu_close,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        );
-      },
-    );
+            );
+          },
+        ));
   }
 }
 
