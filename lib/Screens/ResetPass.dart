@@ -67,7 +67,7 @@ class _ResetPass extends State<ResetPass> {
                         height: 20,
                       ),
                       SubmitButtons(
-                          text: "Reset Pass",
+                          text: "Reset Password",
                           onpressed: () async {
                             await _auth.resetPassword(email);
                             runApp(SignIn());
@@ -79,6 +79,14 @@ class _ResetPass extends State<ResetPass> {
                             error,
                             style: TextStyle(color: Colors.red),
                           ),
+                        ),
+                      ),
+                      Container(
+                        child: TextButton(
+                          child: Text("Back to sign in"),
+                          onPressed: () {
+                            runApp(SignIn());
+                          },
                         ),
                       ),
                     ],
