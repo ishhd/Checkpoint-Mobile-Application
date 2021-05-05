@@ -51,6 +51,16 @@ class RequestsstudState extends State<Requestsstud> {
     });
   }
 
+  Delet(String email) {
+    setState(() {
+      //fullNames.removeAt(index);
+      userRef.document(email).delete().catchError((e) {
+        print(e);
+      });
+      //change student activation case
+    });
+  }
+
   Widget requestList() {
     return FutureBuilder<QuerySnapshot>(
         future: userRef
@@ -95,6 +105,7 @@ class RequestsstudState extends State<Requestsstud> {
                               child: FlatButton(
                                 onPressed: () {
                                   activation(doc.documentID);
+                                  // Delet(doc.documentID);
                                 },
                                 color: Color(0xFF98D1D4),
                                 shape: RoundedRectangleBorder(
