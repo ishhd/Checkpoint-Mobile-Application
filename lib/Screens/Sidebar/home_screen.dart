@@ -12,23 +12,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future<bool> _willPopCallback() async {
+    print("object");
+    // await showDialog or Show add banners or whatever
+    // then
+    return Future.value(false);
+  }
+
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            widget.widget,
-            SideBar(),
-          ],
-        ),
-      ),
-    );
+    return new WillPopScope(
+        onWillPop: _willPopCallback,
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: Scaffold(
+            body: Stack(
+              children: <Widget>[
+                widget.widget,
+                SideBar(),
+              ],
+            ),
+          ),
+        ));
   }
 }

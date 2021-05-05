@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -25,18 +26,30 @@ class QRCodePageStudent extends StatefulWidget {
 }
 
 class QRCodePageStudentState extends State<QRCodePageStudent> {
-  String name;
+  String qrCodeUrl;
   String uid;
 
   getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     uid = user.uid;
+
     final DocumentSnapshot doc =
         // ignore: missing_return
         await userRef.document(user.uid).get().then((value) {
-      name = (value.data)['name'];
+      qrCodeUrl = (value.data)['qrCodeUrl'];
     });
     //name = doc.data as String;
+  }
+
+  Future<Widget> _getImage(BuildContext context, String imageName) async {
+    Image image;
+    await FireStorageService.loadImage(context, imageName).then((value) {
+      image = Image.network(
+        value.toString(),
+        fit: BoxFit.scaleDown,
+      );
+    });
+    return image;
   }
 
   static const double _topSectionTopPadding = 50.0;
@@ -88,11 +101,30 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
                 SizedBox(
                   height: 100,
                 ),
-                QrImage(
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 70, 0, 35),
+                  child: Text(qrCodeUrl),
+                ),
+
+                /* QrImage(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
                     data: _dataString,
                     size: 200),
+                Container(
+                    margin: EdgeInsets.fromLTRB(0, 70, 0, 35),
+                    child: FutureBuilder(
+                      future: _getImage(context, uid),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width / 11,
+                            height: 12,
+                            child: snapshot.data,
+                          );
+                        }
+                      },
+                    )),*/
                 SubmitButtons(
                   text: "Download Image",
                   onpressed: () {
@@ -130,5 +162,12 @@ class QRCodePageStudentState extends State<QRCodePageStudent> {
     setState(() {
       _imagePath = saveImage.getString('imagepath');
     });
+  }
+}
+
+class FireStorageService extends ChangeNotifier {
+  FireStorageService();
+  static Future<dynamic> loadImage(BuildContext context, String Image) async {
+    return await FirebaseStorage.instance.ref().child(Image).getDownloadURL();
   }
 }
