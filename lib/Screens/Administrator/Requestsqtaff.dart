@@ -43,6 +43,16 @@ class RequestsstaffState extends State<Requestsstaff> {
     });
   }
 
+  delete(String email) {
+    setState(() {
+      //fullNames.removeAt(index);
+      userRef.document(email).delete().catchError((e) {
+        print(e);
+      });
+      //change student activation case
+    });
+  }
+
   Widget requestList() {
     return FutureBuilder<QuerySnapshot>(
         future: userRef
@@ -93,6 +103,25 @@ class RequestsstaffState extends State<Requestsstaff> {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Text(
                                   "Activate",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: FlatButton(
+                                onPressed: () {
+                                  delete(doc.documentID);
+                                },
+                                color: Colors.red,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Text(
+                                  "Deny",
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),

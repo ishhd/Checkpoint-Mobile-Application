@@ -20,6 +20,7 @@ class RequesttabState extends State<Requesttab> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Color(0xFF525151),
             title: Center(child: Text('Requests')),
             bottom: TabBar(
               tabs: [
