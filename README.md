@@ -1,16 +1,23 @@
 # Checkpoint mobile application
 
-A new Flutter project.
+The project is focused on using technology to improve and facilitate the education operations and simplify the evaluation of students. The idea of the mobile application Checkpoint is to develop the educational process in the faculty of dentistry at King Abdulaziz University. It develops the process of registering the attendance of many students by scanning (QR) codes for each student which makes it faster and more accurate process. The mobile application also changes the evaluation process from traditional papers to digital evaluation forms, where the academic staff can evaluate their students quickly, easily, and with high accuracy, then the evaluation forms are converted into Excel sheet immediately when it needs to be.
+Dart language is used as a work environment to serve both Android and IOS device users, thus, increase in efficiency.
 
-## Getting Started
+## Sign up page:
+![](/Screenshot/Signup.png)
 
-This project is a starting point for a Flutter application.
+## Sign in page:
+![](/Screenshot/Signin.png)
 
-A few resources to get you started if this is your first Flutter project:
+## Home page:
+![](/Screenshot/Homepage.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Sidebar:
+![](/Screenshot/Sidebar.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Request page page:
+![](/Screenshot/RequestPage.png)
+
+## Excel sheet example:
+![](/Screenshot/Excel.png)
+
